@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #EEE9F2; }
+  a { color: #C4218F; }
+  a:hover { color: #8E1268; }
+  @keyframes wcGlow { 0%,100% { opacity: .55 } 50% { opacity: 1 } }
+</style>
+</helmet>
+
+<section style="padding: 56px 56px 80px; display: flex; flex-direction: column; gap: 28px; font-family: 'Space Grotesk', system-ui, sans-serif">
+  <div style="display: flex; flex-direction: column; gap: 6px; max-width: 900px">
+    <div style="font: 600 13px 'Space Grotesk', sans-serif; letter-spacing: .16em; text-transform: uppercase; color: #8E6EA8">Winx Colorix · écran 1 · iPhone 14 Plus 428 × 926</div>
+    <h1 style="margin: 0; font: 700 34px 'Baloo 2', sans-serif; color: #2A1B36">Fiche coloriage — deux mises en page</h1>
+    <p style="margin: 0; font-size: 15px; line-height: 1.5; color: #5C4A6B; max-width: 62ch; text-wrap: pretty">Même données : album Winx Club, planche 24, 31 codes du livre dont 16 encore à attribuer. À gauche, la liste dans l'ordre du livre. À droite, les manquants regroupés en tête et les lignes en bandes de couleur pleine.</p>
+  </div>
+
+  <div style="display: flex; flex-wrap: nowrap; gap: 48px; align-items: flex-start; width: max-content">
+
+    <div id="1a" style="display: flex; flex-direction: column; gap: 14px">
+      <div style="display: flex; align-items: center; gap: 10px">
+        <span style="display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 999px; background: #2A1B36; color: #FFF; font: 700 13px 'Space Grotesk', sans-serif">1a</span>
+        <span style="font: 600 15px 'Space Grotesk', sans-serif; color: #2A1B36">Ordre du livre · sobre</span>
+      </div>
+
+      <div style="width: 428px; height: 926px; border-radius: 46px; background: #FCFAFD; box-shadow: 0 0 0 11px #17101E, 0 28px 60px -18px rgba(42,27,54,.55); overflow: hidden; position: relative; display: flex; flex-direction: column">
+
+        <div style="position: absolute; top: 0; left: 0; right: 0; height: 54px; z-index: 5; display: flex; align-items: flex-end; justify-content: space-between; padding: 0 30px 8px; font: 600 14px 'Space Grotesk', sans-serif; color: #2A1B36; pointer-events: none">
+          <span>21:47</span>
+          <span style="letter-spacing: .1em">▮▮▮ ⌁</span>
+        </div>
+
+        <div style="padding: 58px 20px 14px; background: #FCFAFD; border-bottom: 2px solid #EFE6F4; display: flex; flex-direction: column; gap: 12px">
+          <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px">
+            <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
+              <div style="font: 600 12px 'Space Grotesk', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #9B7FB2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Coloriages Mystères · Winx Club</div>
+              <div style="font: 700 38px/1 'Baloo 2', sans-serif; color: #2A1B36">Planche 24</div>
+            </div>
+            <span style="flex: none; margin-top: 6px; padding: 6px 12px; border-radius: 999px; background: #FFE9B8; color: #7A4E00; font: 700 13px 'Space Grotesk', sans-serif; white-space: nowrap">En cours</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px">
+            <div style="flex: 1; height: 8px; border-radius: 999px; background: #EFE6F4; overflow: hidden">
+              <div style="width: 48%; height: 100%; border-radius: 999px; background: linear-gradient(90deg, #F2542D, #FFC22E 34%, #63C36A 62%, #2C7BE8)"></div>
+            </div>
+            <span style="font: 600 13px 'Space Grotesk', sans-serif; color: #6B5680; white-space: nowrap">15 / 31 codes</span>
+          </div>
+        </div>
+
+        <div style="flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; background: #FCFAFD">
+          <sc-for list="{{ rows }}" as="r" hint-placeholder-count="9">
+            <div style="display: flex; align-items: center; gap: 14px; padding: 11px 20px; border-bottom: 1px solid #F3EDF7; min-height: 66px">
+              <div style="flex: none; width: 46px; height: 46px; border-radius: 14px; background: {{ r.hex }}; box-shadow: inset 0 0 0 1px rgba(20,10,28,.14); display: flex; align-items: center; justify-content: center; font: 700 21px 'Space Grotesk', sans-serif; color: {{ r.ink }}">{{ r.code }}</div>
+              <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px">
+                <div style="display: flex; align-items: baseline; gap: 8px">
+                  <span style="font: 700 40px/1 'Space Grotesk', sans-serif; letter-spacing: -.01em; color: {{ r.refColor }}; font-variant-numeric: tabular-nums">{{ r.ref }}</span>
+                  <span style="font: 600 12px 'Space Grotesk', sans-serif; letter-spacing: .07em; text-transform: uppercase; color: #9B7FB2">{{ r.marque }}</span>
+                </div>
+                <span style="font-size: 13px; color: #6B5680; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{ r.teinte }}</span>
+              </div>
+              <sc-if value="{{ r.plus }}" hint-placeholder-val="{{ false }}">
+                <div style="flex: none; display: flex; flex-direction: column; align-items: flex-end; gap: 2px; padding-left: 6px; border-left: 2px solid #F3EDF7">
+                  <span style="font: 700 22px/1 'Space Grotesk', sans-serif; color: #2A1B36">{{ r.ref2 }}</span>
+                  <span style="font: 600 10px 'Space Grotesk', sans-serif; letter-spacing: .08em; text-transform: uppercase; color: #9B7FB2">+ dessus</span>
+                </div>
+              </sc-if>
+              <sc-if value="{{ r.vide }}" hint-placeholder-val="{{ false }}">
+                <span style="flex: none; font-size: 26px; color: #E0AFCF">＋</span>
+              </sc-if>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="flex: none; padding: 12px 20px 30px; background: #FFFFFF; border-top: 2px solid #EFE6F4; display: flex; align-items: center; gap: 12px; box-shadow: 0 -10px 24px -18px rgba(42,27,54,.5)">
+          <button style="flex: none; display: flex; align-items: center; gap: 9px; height: 62px; padding: 0 20px; border: 2px solid #E2D3EC; border-radius: 20px; background: #FFF; color: #2A1B36; font: 600 20px 'Space Grotesk', sans-serif; font-variant-numeric: tabular-nums" style-active="background:#F6EFFA">
+            <span style="width: 12px; height: 12px; border-radius: 3px; background: #F2542D"></span>1:12:04
+          </button>
+          <button style="flex: 1; height: 62px; border: none; border-radius: 20px; background: #2A1B36; color: #FFF; font: 700 21px 'Baloo 2', sans-serif" style-active="background:#433054">Terminé ✦</button>
+        </div>
+
+        <div style="position: absolute; bottom: 9px; left: 50%; transform: translateX(-50%); width: 140px; height: 5px; border-radius: 999px; background: #2A1B36; opacity: .35"></div>
+      </div>
+    </div>
+
+    <div id="1b" style="display: flex; flex-direction: column; gap: 14px">
+      <div style="display: flex; align-items: center; gap: 10px">
+        <span style="display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 999px; background: #C4218F; color: #FFF; font: 700 13px 'Space Grotesk', sans-serif">1b</span>
+        <span style="font: 600 15px 'Space Grotesk', sans-serif; color: #2A1B36">Manquants en tête · bandes pleines · plus habillé</span>
+      </div>
+
+      <div style="width: 428px; height: 926px; border-radius: 46px; background: #FCFAFD; box-shadow: 0 0 0 11px #17101E, 0 28px 60px -18px rgba(42,27,54,.55); overflow: hidden; position: relative; display: flex; flex-direction: column">
+
+        <div style="position: absolute; top: 0; left: 0; right: 0; height: 54px; z-index: 5; display: flex; align-items: flex-end; justify-content: space-between; padding: 0 30px 8px; font: 600 14px 'Space Grotesk', sans-serif; color: #FFF; pointer-events: none">
+          <span>21:47</span>
+          <span style="letter-spacing: .1em">▮▮▮ ⌁</span>
+        </div>
+
+        <div style="position: relative; flex: none; padding: 58px 20px 16px; background: linear-gradient(150deg, #3B1E5C 0%, #7A2B7E 52%, #C4218F 100%); overflow: hidden">
+          <div style="position: absolute; top: -34px; right: -66px; width: 250px; height: 250px; opacity: .22; background: radial-gradient(closest-side, #FFC22E, transparent 72%)"></div>
+          <div style="position: absolute; top: 12px; right: 18px; width: 168px; height: 130px; border-radius: 100% 8% 100% 8%; border: 2px solid rgba(255,255,255,.28); transform: rotate(-14deg)"></div>
+          <div style="position: absolute; top: 40px; right: 46px; width: 120px; height: 96px; border-radius: 100% 8% 100% 8%; border: 2px solid rgba(255,255,255,.18); transform: rotate(-8deg)"></div>
+          <div style="position: absolute; top: 74px; right: 128px; width: 7px; height: 7px; background: #FFF; border-radius: 999px; animation: wcGlow 2.6s ease-in-out infinite"></div>
+          <div style="position: absolute; top: 118px; right: 62px; width: 5px; height: 5px; background: #FFE9B8; border-radius: 999px; animation: wcGlow 3.4s ease-in-out infinite"></div>
+          <div style="position: relative; display: flex; flex-direction: column; gap: 12px">
+            <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px">
+              <div style="display: flex; flex-direction: column; gap: 1px; min-width: 0">
+                <div style="font: 600 12px 'Space Grotesk', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.74)">Coloriages Mystères · Winx Club</div>
+                <div style="font: 800 40px/1.05 'Baloo 2', sans-serif; color: #FFF">Planche 24</div>
+              </div>
+              <span style="flex: none; margin-top: 8px; padding: 6px 12px; border-radius: 999px; background: rgba(255,255,255,.2); color: #FFF; font: 700 13px 'Space Grotesk', sans-serif; white-space: nowrap; backdrop-filter: blur(4px)">En cours</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px">
+              <div style="flex: 1; height: 8px; border-radius: 999px; background: rgba(255,255,255,.24); overflow: hidden">
+                <div style="width: 48%; height: 100%; border-radius: 999px; background: linear-gradient(90deg, #FFC22E, #63C36A 55%, #17AFA6)"></div>
+              </div>
+              <span style="font: 600 13px 'Space Grotesk', sans-serif; color: rgba(255,255,255,.9); white-space: nowrap">15 / 31</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="flex: none; padding: 14px 20px 16px; background: #FFF4FA; border-bottom: 2px solid #F6DCEA">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px">
+            <span style="font: 700 15px 'Baloo 2', sans-serif; color: #C4218F">16 codes t'attendent encore</span>
+            <span style="font: 600 12px 'Space Grotesk', sans-serif; color: #B07398">tape pour choisir</span>
+          </div>
+          <div style="display: flex; gap: 9px; overflow-x: auto; -webkit-overflow-scrolling: touch; padding: 3px 0 5px; scrollbar-width: none">
+            <sc-for list="{{ manquants }}" as="m" hint-placeholder-count="16">
+              <div style="flex: none; width: 56px; height: 56px; border-radius: 16px; background: {{ m.hex }}; box-shadow: inset 0 0 0 1px rgba(20,10,28,.16), 0 0 0 2px #FFF4FA, 0 0 0 3.5px #F0B7D4; display: flex; align-items: center; justify-content: center; font: 700 24px 'Space Grotesk', sans-serif; color: {{ m.ink }}">{{ m.code }}</div>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; background: #FCFAFD">
+          <sc-for list="{{ attribues }}" as="r" hint-placeholder-count="7">
+            <div style="display: flex; align-items: stretch; gap: 0; border-bottom: 1px solid #F3EDF7; min-height: 74px">
+              <div style="flex: none; width: 74px; background: {{ r.hex }}; display: flex; align-items: center; justify-content: center; font: 700 30px 'Space Grotesk', sans-serif; color: {{ r.ink }}">{{ r.code }}</div>
+              <div style="flex: 1; min-width: 0; padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; gap: 10px">
+                <div style="min-width: 0; display: flex; flex-direction: column; gap: 0">
+                  <span style="font: 700 44px/1 'Space Grotesk', sans-serif; letter-spacing: -.015em; color: #2A1B36; font-variant-numeric: tabular-nums">{{ r.ref }}</span>
+                  <span style="font-size: 13px; color: #6B5680">{{ r.marque }} · {{ r.teinte }}</span>
+                </div>
+                <sc-if value="{{ r.plus }}" hint-placeholder-val="{{ false }}">
+                  <div style="flex: none; padding: 5px 10px; border-radius: 12px; background: #F4ECF9; display: flex; flex-direction: column; align-items: center">
+                    <span style="font: 700 19px/1.1 'Space Grotesk', sans-serif; color: #5B3A78">{{ r.ref2 }}</span>
+                    <span style="font: 600 9px 'Space Grotesk', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #9B7FB2">dessus</span>
+                  </div>
+                </sc-if>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="flex: none; padding: 11px 20px 30px; background: #FFFFFF; border-top: 2px solid #EFE6F4; display: flex; flex-direction: column; gap: 9px; box-shadow: 0 -10px 24px -18px rgba(42,27,54,.5)">
+          <button style="height: 40px; border: 2px dashed #E2D3EC; border-radius: 14px; background: #FFF; color: #6B5680; font: 600 14px 'Space Grotesk', sans-serif" style-active="background:#F6EFFA">Reprendre le nuancier de la planche 19</button>
+          <div style="display: flex; align-items: center; gap: 12px">
+            <button style="flex: none; display: flex; align-items: center; gap: 9px; height: 62px; padding: 0 20px; border: 2px solid #E2D3EC; border-radius: 20px; background: #FFF; color: #2A1B36; font: 600 20px 'Space Grotesk', sans-serif; font-variant-numeric: tabular-nums" style-active="background:#F6EFFA">
+              <span style="width: 12px; height: 12px; border-radius: 3px; background: #F2542D"></span>1:12:04
+            </button>
+            <button style="flex: 1; height: 62px; border: none; border-radius: 20px; background: linear-gradient(120deg, #C4218F, #7A2B7E); color: #FFF; font: 700 21px 'Baloo 2', sans-serif">Terminé ✦</button>
+          </div>
+        </div>
+
+        <div style="position: absolute; bottom: 9px; left: 50%; transform: translateX(-50%); width: 140px; height: 5px; border-radius: 999px; background: #2A1B36; opacity: .35"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1040,&quot;height&quot;:1120}}">
+const DATA = [
+  ["1","#141A24","noir bleuté","Posca","8018"],
+  ["2","#A8A86A","kaki clair","GuangNa","657"],
+  ["3","#1E3A8A","bleu profond","GuangNa","746"],
+  ["4","#2E63C8","bleu moyen","GuangNa","634"],
+  ["5","#4FA6E8","bleu ciel","GuangNa","650"],
+  ["6","#86C9F2","bleu clair","GuangNa","888"],
+  ["7","#C3E4F9","bleu très clair","GuangNa","878"],
+  ["8","#0B0B0D","noir"],
+  ["9","#46586E","bleu-gris foncé"],
+  ["0","#4A2A78","violet foncé","GuangNa","878"],
+  ["a","#7A4BC4","violet"],
+  ["b","#B9A6E8","lavande"],
+  ["c","#3A1030","prune très foncé","GuangNa","925","8018"],
+  ["d","#7A1230","bordeaux"],
+  ["e","#C42150","framboise","GuangNa","916"],
+  ["f","#F0428A","rose vif","GuangNa","910"],
+  ["h","#D6219B","magenta"],
+  ["k","#F27BAE","rose moyen"],
+  ["m","#F9B8CE","rose clair"],
+  ["n","#C4653A","terracotta"],
+  ["p","#EFCDBC","beige rosé"],
+  ["q","#F7D3DE","rose pâle","GuangNa","913"],
+  ["r","#DC2020","rouge"],
+  ["t","#F27A16","orange"],
+  ["u","#FBB014","jaune orangé"],
+  ["v","#FADA1E","jaune"],
+  ["x","#2A2A2E","gris très foncé"],
+  ["y","#4C5A46","gris-vert foncé"],
+  ["z","#1E6B34","vert foncé","GuangNa","794"],
+  ["◊","#35A34C","vert moyen","GuangNa","649"],
+  ["Δ","#8FD070","vert clair","GuangNa","645"]
+];
+
+function ink(hex) {
+  const n = parseInt(hex.slice(1), 16);
+  const l = (0.299 * (n >> 16) + 0.587 * ((n >> 8) & 255) + 0.114 * (n & 255)) / 255;
+  return l > 0.62 ? "rgba(20,10,28,.72)" : "rgba(255,255,255,.95)";
+}
+
+class Component extends DCLogic {
+  build() {
+    return DATA.map(([code, hex, teinte, marque, ref, ref2]) => ({
+      code, hex, teinte,
+      ink: ink(hex),
+      marque: marque || "",
+      ref: ref || "à attribuer",
+      ref2: ref2 || "",
+      plus: !!ref2,
+      vide: !ref,
+      refColor: ref ? "#2A1B36" : "#C4218F"
+    }));
+  }
+  renderVals() {
+    const all = this.build();
+    return { rows: all, attribues: all.filter(r => !r.vide), manquants: all.filter(r => r.vide) };
+  }
+}
+
+</script>
+</body>
+</html>

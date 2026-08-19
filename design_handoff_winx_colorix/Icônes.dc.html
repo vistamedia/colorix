@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #EEE9F2; }
+  a { color: #C4218F; }
+  a:hover { color: #8E1268; }
+</style>
+</helmet>
+
+<section style="padding: 56px; display: flex; flex-direction: column; gap: 36px; font-family: 'Space Grotesk', system-ui, sans-serif; width: max-content">
+  <div style="display: flex; flex-direction: column; gap: 6px; max-width: 780px">
+    <div style="font: 600 13px 'Space Grotesk', sans-serif; letter-spacing: .16em; text-transform: uppercase; color: #8E6EA8">Winx Colorix · icônes PWA</div>
+    <h1 style="margin: 0; font: 700 34px 'Baloo 2', sans-serif; color: #2A1B36">La marque : quatre ailes, un éclat</h1>
+    <p style="margin: 0; font-size: 15px; line-height: 1.5; color: #5C4A6B; max-width: 60ch; text-wrap: pretty">Aucun personnage, aucun visuel sous droits — les mêmes ailes que les en-têtes de l'app, ici en plein, sur le dégradé d'identité. Silhouette symétrique : elle tient à 40 px comme à 512.</p>
+  </div>
+
+  <div style="display: flex; gap: 44px; align-items: flex-start">
+    <sc-for list="{{ icons }}" as="ic" hint-placeholder-count="4">
+      <div style="display: flex; flex-direction: column; gap: 12px; align-items: flex-start">
+        <div id="{{ ic.id }}" style="width: {{ ic.px }}; height: {{ ic.px }}; overflow: hidden; position: relative; flex: none">
+          <div style="position: absolute; top: 0; left: 0; width: 512px; height: 512px; transform: scale({{ ic.k }}); transform-origin: top left; background: linear-gradient(150deg, #3B1E5C 0%, #7A2B7E 54%, #C4218F 100%); overflow: hidden">
+            <div style="position: absolute; top: -140px; right: -140px; width: 460px; height: 460px; opacity: .34; background: radial-gradient(closest-side, #FFC22E, transparent 70%)"></div>
+            <div style="position: absolute; bottom: -170px; left: -110px; width: 380px; height: 380px; opacity: .2; background: radial-gradient(closest-side, #2C7BE8, transparent 72%)"></div>
+            <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center">
+              <div style="position: relative; width: 512px; height: 512px; transform: scale({{ ic.mark }})">
+                <div style="position: absolute; left: 88px; top: 147px; width: 168px; height: 176px; border-radius: 100% 100% 6% 100%; background: #FFFFFF; transform: rotate(-7deg); transform-origin: bottom right"></div>
+                <div style="position: absolute; left: 256px; top: 147px; width: 168px; height: 176px; border-radius: 100% 100% 100% 6%; background: #FFFFFF; transform: rotate(7deg); transform-origin: bottom left"></div>
+                <div style="position: absolute; left: 150px; top: 317px; width: 106px; height: 126px; border-radius: 100% 6% 100% 100%; background: #FFFFFF; transform: rotate(7deg); transform-origin: top right"></div>
+                <div style="position: absolute; left: 256px; top: 317px; width: 106px; height: 126px; border-radius: 6% 100% 100% 100%; background: #FFFFFF; transform: rotate(-7deg); transform-origin: top left"></div>
+                <div style="position: absolute; left: 126px; top: 178px; width: 106px; height: 112px; border-radius: 100% 100% 10% 100%; background: #C4218F; opacity: .15; transform: rotate(-7deg); transform-origin: bottom right"></div>
+                <div style="position: absolute; left: 280px; top: 178px; width: 106px; height: 112px; border-radius: 100% 100% 100% 10%; background: #C4218F; opacity: .15; transform: rotate(7deg); transform-origin: bottom left"></div>
+                <div style="position: absolute; left: 230px; top: 77px; width: 52px; height: 52px; border-radius: 15px 4px 15px 4px; background: #FFC22E; transform: rotate(45deg)"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 1px">
+          <span style="font: 700 14px 'Space Grotesk', sans-serif; color: #2A1B36">{{ ic.px }} · {{ ic.role }}</span>
+          <span style="font-size: 12px; color: #9B7FB2">{{ ic.file }}</span>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="display: flex; gap: 48px; align-items: flex-start; padding-top: 8px">
+    <div style="display: flex; flex-direction: column; gap: 14px">
+      <span style="font: 700 16px 'Baloo 2', sans-serif; color: #2A1B36">Sur l'écran d'accueil, à côté d'autres apps</span>
+      <div style="width: 428px; padding: 28px 26px; border-radius: 30px; background: linear-gradient(165deg, #14203A, #3B1E5C 60%, #6B2C63); display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px 22px">
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 7px">
+          <div style="width: 64px; height: 64px; border-radius: 17px; overflow: hidden; position: relative; box-shadow: 0 4px 10px -2px rgba(0,0,0,.45)">
+            <div style="position: absolute; top: 0; left: 0; width: 512px; height: 512px; transform: scale(.125); transform-origin: top left; background: linear-gradient(150deg, #3B1E5C 0%, #7A2B7E 54%, #C4218F 100%)">
+              <div style="position: absolute; top: -140px; right: -140px; width: 460px; height: 460px; opacity: .34; background: radial-gradient(closest-side, #FFC22E, transparent 70%)"></div>
+              <div style="position: absolute; left: 88px; top: 147px; width: 168px; height: 176px; border-radius: 100% 100% 6% 100%; background: #FFF; transform: rotate(-7deg); transform-origin: bottom right"></div>
+              <div style="position: absolute; left: 256px; top: 147px; width: 168px; height: 176px; border-radius: 100% 100% 100% 6%; background: #FFF; transform: rotate(7deg); transform-origin: bottom left"></div>
+              <div style="position: absolute; left: 150px; top: 317px; width: 106px; height: 126px; border-radius: 100% 6% 100% 100%; background: #FFF; transform: rotate(7deg); transform-origin: top right"></div>
+              <div style="position: absolute; left: 256px; top: 317px; width: 106px; height: 126px; border-radius: 6% 100% 100% 100%; background: #FFF; transform: rotate(-7deg); transform-origin: top left"></div>
+              <div style="position: absolute; left: 230px; top: 77px; width: 52px; height: 52px; border-radius: 15px 4px 15px 4px; background: #FFC22E; transform: rotate(45deg)"></div>
+            </div>
+          </div>
+          <span style="font: 500 11px 'Space Grotesk', sans-serif; color: #FFF; text-shadow: 0 1px 2px rgba(0,0,0,.5)">Colorix</span>
+        </div>
+        <sc-for list="{{ voisins }}" as="v" hint-placeholder-count="7">
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 7px">
+            <div style="width: 64px; height: 64px; border-radius: 17px; background: {{ v.bg }}; box-shadow: 0 4px 10px -2px rgba(0,0,0,.45)"></div>
+            <span style="font: 500 11px 'Space Grotesk', sans-serif; color: rgba(255,255,255,.82)">{{ v.nom }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 14px; max-width: 420px">
+      <span style="font: 700 16px 'Baloo 2', sans-serif; color: #2A1B36">Écran de lancement iOS</span>
+      <div style="width: 214px; height: 463px; border-radius: 34px; overflow: hidden; position: relative; background: linear-gradient(150deg, #3B1E5C 0%, #7A2B7E 54%, #C4218F 100%); box-shadow: 0 0 0 8px #17101E, 0 20px 44px -18px rgba(42,27,54,.55); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px">
+        <div style="position: absolute; top: -70px; right: -70px; width: 230px; height: 230px; opacity: .3; background: radial-gradient(closest-side, #FFC22E, transparent 70%)"></div>
+        <div style="position: relative; width: 96px; height: 96px">
+          <div style="position: absolute; left: 16px; top: 28px; width: 32px; height: 33px; border-radius: 100% 100% 10% 100%; background: #FFF; transform: rotate(-7deg); transform-origin: bottom right"></div>
+          <div style="position: absolute; left: 48px; top: 28px; width: 32px; height: 33px; border-radius: 100% 100% 100% 10%; background: #FFF; transform: rotate(7deg); transform-origin: bottom left"></div>
+          <div style="position: absolute; left: 25px; top: 60px; width: 23px; height: 22px; border-radius: 100% 10% 100% 100%; background: #FFF; transform: rotate(7deg); transform-origin: top right"></div>
+          <div style="position: absolute; left: 48px; top: 60px; width: 23px; height: 22px; border-radius: 10% 100% 100% 100%; background: #FFF; transform: rotate(-7deg); transform-origin: top left"></div>
+          <div style="position: absolute; left: 43px; top: 14px; width: 10px; height: 10px; border-radius: 3px 1px 3px 1px; background: #FFC22E; transform: rotate(45deg)"></div>
+        </div>
+        <span style="font: 800 22px 'Baloo 2', sans-serif; color: #FFF">Colorix</span>
+      </div>
+      <p style="margin: 0; font-size: 13px; line-height: 1.55; color: #5C4A6B; text-wrap: pretty">iOS n'utilise pas le champ <code style="font-size: 12px; color: #C4218F">background_color</code> du manifeste : il faut une image de lancement par taille d'écran, ou ce dégradé rendu en PNG. Pour l'iPhone 14 Plus : <strong>1284 × 2778</strong>. Le fichier est fourni : <code style="font-size: 12px; color: #C4218F">icons/splash-1284x2778.png</code>.</p>
+    </div>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 14px; padding-top: 8px">
+    <span style="font: 700 16px 'Baloo 2', sans-serif; color: #2A1B36">Source de l'export · 428 × 926, exporté à 3×</span>
+    <div id="splash" style="width: 428px; height: 926px; position: relative; overflow: hidden; background: linear-gradient(150deg, #3B1E5C 0%, #7A2B7E 54%, #C4218F 100%); flex: none">
+      <div style="position: absolute; top: -150px; right: -150px; width: 480px; height: 480px; opacity: .32; background: radial-gradient(closest-side, #FFC22E, transparent 70%)"></div>
+      <div style="position: absolute; bottom: -200px; left: -140px; width: 460px; height: 460px; opacity: .22; background: radial-gradient(closest-side, #2C7BE8, transparent 72%)"></div>
+      <div style="position: absolute; top: 96px; right: -46px; width: 176px; height: 138px; border-radius: 100% 8% 100% 8%; border: 2px solid rgba(255,255,255,.13); transform: rotate(-14deg)"></div>
+      <div style="position: absolute; bottom: 104px; left: -52px; width: 150px; height: 118px; border-radius: 8% 100% 8% 100%; border: 2px solid rgba(255,255,255,.1); transform: rotate(12deg)"></div>
+      <div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 30px; padding-bottom: 56px">
+        <div style="position: relative; width: 148px; height: 161px; flex: none">
+        <div style="position: absolute; left: -39px; top: -34px; width: 512px; height: 512px; transform: scale(.44); transform-origin: top left">
+          <div style="position: absolute; left: 88px; top: 147px; width: 168px; height: 176px; border-radius: 100% 100% 6% 100%; background: #FFFFFF; transform: rotate(-7deg); transform-origin: bottom right"></div>
+          <div style="position: absolute; left: 256px; top: 147px; width: 168px; height: 176px; border-radius: 100% 100% 100% 6%; background: #FFFFFF; transform: rotate(7deg); transform-origin: bottom left"></div>
+          <div style="position: absolute; left: 150px; top: 317px; width: 106px; height: 126px; border-radius: 100% 6% 100% 100%; background: #FFFFFF; transform: rotate(7deg); transform-origin: top right"></div>
+          <div style="position: absolute; left: 256px; top: 317px; width: 106px; height: 126px; border-radius: 6% 100% 100% 100%; background: #FFFFFF; transform: rotate(-7deg); transform-origin: top left"></div>
+          <div style="position: absolute; left: 126px; top: 178px; width: 106px; height: 112px; border-radius: 100% 100% 6% 100%; background: #C4218F; opacity: .15; transform: rotate(-7deg); transform-origin: bottom right"></div>
+          <div style="position: absolute; left: 280px; top: 178px; width: 106px; height: 112px; border-radius: 100% 100% 100% 6%; background: #C4218F; opacity: .15; transform: rotate(7deg); transform-origin: bottom left"></div>
+          <div style="position: absolute; left: 230px; top: 77px; width: 52px; height: 52px; border-radius: 15px 4px 15px 4px; background: #FFC22E; transform: rotate(45deg)"></div>
+        </div>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 7px">
+          <span style="font: 800 40px/1 'Baloo 2', sans-serif; color: #FFFFFF">Colorix</span>
+          <span style="font: 600 13px 'Space Grotesk', sans-serif; letter-spacing: .22em; text-transform: uppercase; color: rgba(255,255,255,.6)">nuanciers</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1400,&quot;height&quot;:1100}}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      icons: [
+        { id: "icon-512", px: "512px", k: 1, mark: 1, role: "manifeste, any", file: "icon-512.png" },
+        { id: "icon-512-maskable", px: "512px", k: 1, mark: 0.72, role: "manifeste, maskable", file: "icon-512-maskable.png" },
+        { id: "icon-192", px: "192px", k: 0.375, mark: 1, role: "manifeste, any", file: "icon-192.png" },
+        { id: "icon-180", px: "180px", k: 0.3515625, mark: 1, role: "apple-touch-icon", file: "apple-touch-icon.png" }
+      ],
+      voisins: [
+        { nom: "Photos", bg: "linear-gradient(150deg,#FFD86B,#FF6B8A 50%,#7A6BFF)" },
+        { nom: "Réglages", bg: "linear-gradient(150deg,#B9C0CC,#6E7580)" },
+        { nom: "Musique", bg: "linear-gradient(150deg,#FF5E5E,#C4218F)" },
+        { nom: "Notes", bg: "linear-gradient(150deg,#FFF0B8,#FFC22E)" },
+        { nom: "Appareil", bg: "linear-gradient(150deg,#5C6470,#2A2E36)" },
+        { nom: "Horloge", bg: "linear-gradient(150deg,#2A2E36,#0B0B0D)" },
+        { nom: "Safari", bg: "linear-gradient(150deg,#7FD0FF,#1D74E8)" }
+      ]
+    };
+  }
+}
+
+</script>
+</body>
+</html>

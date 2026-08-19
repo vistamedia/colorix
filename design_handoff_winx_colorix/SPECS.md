@@ -1,0 +1,312 @@
+# Winx Colorix — Spécifications
+
+PWA de suivi de coloriages mystère et de correspondance de nuanciers.
+Usage strictement mobile, mono-utilisateur, hors ligne.
+
+---
+
+## 1. Intention
+
+Remplacer un carnet papier.
+
+Aujourd'hui, l'utilisatrice note à la main, pour chaque planche : « Winx Club –
+page 24 », puis la liste des codes de la légende avec la référence du feutre
+choisi pour chacun. Elle refait ce travail à chaque coloriage, sur un carnet
+qui peut se perdre, sans historique et sans moyen de savoir ce qu'elle possède
+déjà.
+
+L'app doit faire trois choses, dans cet ordre d'importance :
+
+1. **Tenir le nuancier de chaque coloriage** — c'est l'écran ouvert pendant
+   qu'elle colorie, quinze fois par soirée.
+2. **Suivre sa collection** — quels albums elle possède, quelles planches sont
+   faites, avec photo du résultat.
+3. **Lui montrer son travail** — statistiques, progression, partage.
+
+Tout le reste est du confort.
+
+---
+
+## 2. Vérifications préalables (bloquantes)
+
+À exécuter sur l'iPhone cible avant d'écrire du code applicatif. Chacune peut
+invalider un choix d'architecture.
+
+| # | Vérification | Critère |
+|---|---|---|
+| V1 | Hébergement HTTPS disponible et joignable | L'URL s'ouvre dans Safari iOS |
+| V2 | Installation sur l'écran d'accueil, service worker actif | L'app s'ouvre en mode avion |
+| V3 | Persistance du stockage : écrire ~50 Mo, fermer, rouvrir après 72 h | Les données sont intactes |
+| V4 | Capture photo via `<input type="file" accept="image/*">` | Vérifier si Safari livre du JPEG ou du HEIC |
+| V5 | `navigator.share()` avec un fichier image vers Instagram | La photo arrive dans l'app cible |
+| V6 | Wake Lock dans la web app installée | L'écran reste allumé sur la fiche coloriage |
+
+V4 est le plus important : si Safari livre du HEIC brut, il faut un décodage
+côté client, ce qui est coûteux. Le comportement attendu est une conversion
+automatique en JPEG, à confirmer.
+
+---
+
+## 3. Architecture
+
+**PWA statique. Aucun serveur, aucun compte, aucune donnée qui sort.**
+
+- HTML / CSS / JavaScript natifs, modules ES, **zéro dépendance, zéro build**
+- Stockage : **IndexedDB** pour tout, y compris les photos (Blob)
+- `localStorage` réservé aux préférences légères (thème, dernier album ouvert)
+- Service worker en *cache-first* sur la coquille de l'app → fonctionnement
+  hors ligne intégral
+- HTTPS obligatoire (exigence du service worker). N'importe quel hébergeur
+  statique convient. L'app ne contient aucune donnée sensible : une URL non
+  référencée suffit comme protection.
+
+**Cible unique : Safari iOS sur iPhone 14 Plus.** Pas de responsive desktop, pas
+de support Android, pas de rétrocompatibilité. Cette contrainte est un choix :
+elle autorise les API récentes sans repli.
+
+---
+
+## 4. Modèle de données
+
+### 4.1 Catalogue (livré avec l'app, en lecture seule)
+
+`data/catalogue.json`, versionné, remplaçable sans toucher aux données de
+l'utilisatrice.
+
+```
+Livre {
+  id            "hachette-winx-club"
+  titre         "Coloriages Mystères — Winx Club"
+  collection    "Winx Club" | "Disney" | "Marvel" | "Art-thérapie" | ...
+  editeur       "Hachette Heroes"
+  ean13         "978..."
+  annee         2024
+  nb_coloriages 50
+  couverture    URL éditeur (chargée en ligne, repli sur une pastille de couleur)
+}
+```
+
+Les visuels de couverture ne sont **pas** embarqués dans l'app : lien vers
+l'image de l'éditeur, mis en cache après premier affichage. Évite le poids et
+la question des droits.
+
+### 4.2 Données utilisatrice (IndexedDB)
+
+```
+Possession { livre_id, date_acquisition, note }
+
+Coloriage {
+  id, livre_id, numero          1..N, généré à la coche du livre
+  statut                        pas_commence | en_cours | termine
+  sujet_revele                  texte libre, saisi à la fin — c'est le mystère
+  date_debut, date_fin
+  duree_cumulee_s               chrono facultatif
+  difficulte                    1..5
+  note                          texte libre
+}
+
+Nuancier { coloriage_id, entrees: [ Entree ] }
+Entree   { code: "1".."0" | "a".."z" | "◊" | "Δ",
+           pastille_hex,        couleur imprimée dans le livre, pipettée
+           feutres: [feutre_id] ordonnés — superposition pour créer la nuance
+           note }
+
+Marque   { id, nom }                          Posca, GuangNa, extensible
+Set      { id, marque_id, nom, nb_feutres }   "Pack 360"
+Feutre   { id, set_id, reference "792", nom "Leaf green",
+           hex, etat: possede | faible | a_sec | non_possede }
+
+Photo    { id, coloriage_id, blob, role: resultat | detail | reference, date }
+```
+
+**Le code de légende n'est pas numérique.** L'album Winx Club utilise 31 codes :
+`1 2 3 4 5 6 7 8 9 0 a b c d e f h k m n p q r t u v x y z ◊ Δ`. Les caractères
+ambigus sont volontairement écartés par l'éditeur (pas de `g i j l o s w`) —
+l'app doit respecter ce jeu et ne jamais proposer les lettres exclues. Le jeu de
+codes est une propriété du livre, pas une constante globale.
+
+---
+
+## 5. L'écran de travail : la fiche coloriage
+
+C'est l'écran le plus utilisé de l'app. Tout le reste peut être médiocre, celui-ci
+non.
+
+**Contenu.** L'album et le numéro en en-tête. Puis la liste des codes du nuancier :
+pour chacun, la pastille de couleur du livre, le caractère du code, et la ou les
+références de feutre en très gros. Lisible à bout de bras, sur une table, sans
+lunettes.
+
+**Comportements.**
+- Wake Lock actif : l'écran ne s'éteint pas tant qu'on est sur cette fiche
+- Tap sur une ligne → attribution ou changement de feutre
+- Bouton « Reprendre le nuancier de… » → copie les correspondances d'un autre
+  coloriage du même album, puis on ajuste
+- Chrono facultatif, un seul bouton, pas de compte à rebours
+- Bouton « Terminé » → demande le sujet révélé et propose la photo
+
+**Ce qu'il ne faut pas y mettre :** statistiques, badges, suggestions,
+notifications. C'est un outil de travail.
+
+---
+
+## 6. Attribution d'un feutre à un code
+
+Trois voies, de la plus rapide à la plus manuelle.
+
+**6.1 Pipette.** Elle photographie la bande de légende de la planche. L'app
+affiche la photo, elle tape sur une pastille : moyenne des pixels sur une zone
+de 5 × 5, conversion en hexadécimal, enregistrée comme `pastille_hex`.
+
+**6.2 Proposition automatique.** À partir de `pastille_hex`, l'app calcule la
+distance colorimétrique avec tous les feutres possédés et propose les trois plus
+proches. Conversion sRGB → Lab puis ΔE76 : une soixantaine de lignes, aucune
+dépendance. ΔE2000 est inutile ici, l'écart de perception ne le justifie pas
+face à l'imprécision d'une photo prise à la lumière du salon.
+
+**La proposition est toujours validée par elle.** Jamais d'attribution automatique
+silencieuse : l'éclairage fausse tout, et c'est son œil qui décide.
+
+**6.3 Saisie directe.** Recherche par référence (« 792 ») ou par nom
+(« leaf green »), avec filtre sur le set. Nécessaire pour les feutres qu'elle
+connaît par cœur.
+
+---
+
+## 7. L'inventaire des feutres
+
+Le point de friction principal : le Pack 360 GuangNa représente 360 saisies.
+
+**Amorçage.** Les nuanciers de référence des sets sont livrés avec l'app sous
+forme de `data/nuanciers/guangna-360.json` et `posca.json` — référence, nom,
+hexadécimal. Générés une fois à partir des planches photographiées, hors app.
+À l'installation, elle coche ses sets et tout apparaît d'un coup.
+
+**État de chaque feutre.** `possédé / faible / à sec / non possédé`, modifiable
+d'un tap depuis n'importe quel écran où le feutre apparaît. C'est ce qui
+alimente la liste de courses.
+
+**Ajout manuel** pour les feutres hors set : marque, référence, nom, couleur
+prise à la pipette sur son propre aplat.
+
+**Précision.** La couleur du fabricant n'est pas la couleur rendue sur son
+papier. L'app doit permettre de **remplacer l'hexadécimal d'amorçage par une
+valeur pipettée sur son propre nuancier papier**, feutre par feutre. C'est ce qui
+rend les propositions automatiques réellement justes.
+
+---
+
+## 8. Photos
+
+- Capture ou choix depuis la photothèque, via `<input type="file" capture>`
+- Redimensionnement à 1600 px sur le grand côté, JPEG qualité 0.8, via canvas
+- Environ 300 Ko par photo. 500 coloriages ≈ 150 Mo : tenable
+- Plusieurs photos par coloriage, avec un rôle : résultat, détail, référence
+- Une photo est désignée comme vignette de la planche
+
+---
+
+## 9. Sauvegarde et export
+
+**Fonction de premier plan, pas un réglage enterré.**
+
+- Export : archive ZIP contenant `data.json` et le dossier `photos/`.
+  Écriture ZIP en mode *stored*, sans compression — les JPEG sont déjà
+  compressés. Environ 80 lignes, aucune dépendance.
+- Import : restauration complète ou fusion, avec écran de confirmation
+- `navigator.storage.persist()` demandé au premier lancement
+- Rappel non intrusif si aucun export depuis 30 jours
+
+Si deux ans de travail disparaissent avec le téléphone, l'app a échoué, quelles
+que soient ses autres qualités.
+
+---
+
+## 10. Partage
+
+Bouton unique sur une planche terminée. `navigator.share()` avec le fichier
+image et une légende pré-remplie (album, numéro, sujet révélé, feutres
+principaux utilisés). Elle choisit l'app de destination, elle écrit ce qu'elle
+veut, elle publie là-bas.
+
+**L'app ne rapatrie aucun commentaire, ne stocke aucun identifiant de réseau
+social, n'appelle aucune API de plateforme.** Publier automatiquement sur
+Instagram ou TikTok exigerait un compte professionnel et une validation
+applicative, pour un résultat moins souple que le partage natif.
+
+---
+
+## 11. Statistiques
+
+Écran de consultation, jamais de pression.
+
+- **Progression par album** — barre, N sur M
+- **Mosaïque** — toutes les planches terminées en grille, par mois. L'écran
+  qu'on montre
+- **Calendrier** — un carré par jour colorié, sur douze mois
+- **Palmarès des couleurs** — codes et feutres les plus employés, en dégradé
+- **Usure** — nombre de planches par feutre, croisé avec l'état déclaré. Sert
+  aussi de liste de courses
+- **Durée moyenne** par planche, si le chrono a été utilisé
+
+**Progression.** L'échelle des transformations Winx comme paliers :
+Charmix, Enchantix, Believix, Harmonix, Sirenix, Bloomix, Mythix, Butterflix,
+Tynix, Onyrix. Seuils à fixer avec elle — c'est elle qui connaît l'ordre canonique
+et qui doit trouver la progression juste. Une animation au franchissement, rien
+de plus. Pas de série à ne pas rompre, pas de rappel quotidien : le coloriage est
+une détente, l'app ne doit pas en faire une obligation.
+
+---
+
+## 12. Habillage
+
+Confié à Claude Design, avec deux contraintes.
+
+**Les codes de l'univers, pas les personnages.** Palettes des six fées, ailes
+traitées en motif, éclats, typographie. Aucune reproduction de visuel sous
+droits — et une identité qui cite l'univers sans le photocopier vieillira
+beaucoup mieux.
+
+**La fiche coloriage échappe au décor.** Contraste maximal, aplats de couleur
+fidèles, typographie large. Un fond pailleté derrière un nuancier rendrait
+l'outil inutilisable. Le décoratif vit dans le catalogue, les statistiques et
+les transitions.
+
+---
+
+## 13. Jalons
+
+| # | Livrable | Critère de fin |
+|---|---|---|
+| 0 | Vérifications §2 | Les six comportements sont confirmés sur l'iPhone |
+| 1 | Socle | PWA installable, catalogue, coche d'un album, génération des planches, statuts, export JSON |
+| 2 | Nuanciers | Sets amorcés, attribution code → feutre, fiche coloriage complète |
+| 3 | Pipette | Photo de légende, extraction des couleurs, proposition par ΔE |
+| 4 | Photos | Capture, compression, galerie, export ZIP complet |
+| 5 | Statistiques | Mosaïque, calendrier, palmarès, paliers Winx |
+| 6 | Finitions | Partage, Wake Lock, icônes, animations |
+
+**Le jalon 2 est déjà utilisable au quotidien** — il remplace le carnet, ce qui
+est l'objectif. Le jalon 3 fait gagner du temps, les suivants font plaisir.
+
+---
+
+## 14. Limites connues
+
+- Le catalogue ne contient que les livres, pas le sujet des planches : elles sont
+  générées vides et numérotées, nommées au fil des révélations
+- La couleur pipettée dépend de l'éclairage de la photo — d'où la validation
+  systématique par l'œil
+- Les couvertures ne s'affichent qu'en ligne, tant qu'elles n'ont pas été mises
+  en cache
+- Un seul profil, aucune synchronisation entre appareils
+- Safari iOS uniquement
+
+## 15. Évolutions envisageables
+
+- Reconnaissance automatique de la grille sur une photo de nuancier papier, pour
+  pipetter les 360 aplats d'un coup
+- Filtre « planches réalisables avec ce que je possède », et liste des feutres
+  manquants pour les autres
+- Détection du numéro de planche par OCR sur la photo de la légende
+- Import du catalogue à jour depuis un fichier, sans réinstaller l'app

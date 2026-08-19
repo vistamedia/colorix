@@ -1,0 +1,17 @@
+{
+  "name": "Colorix — vérifications",
+  "short_name": "Vérifs",
+  "description": "Diagnostic préalable du jalon 0.",
+  "lang": "fr",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "id": "/colorix-verifications/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#3B1E5C",
+  "theme_color": "#3B1E5C",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" }
+  ]
+}

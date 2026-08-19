@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#3B1E5C">
+<title>Colorix — vérifications</title>
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="apple-touch-icon" href="./apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Vérifs">
+<style>
+  :root {
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+    --encre: #2A1B36;
+    --encre-2: #6B5680;
+    --encre-3: #9B7FB2;
+    --fond: #FCFAFD;
+    --surface: #FFFFFF;
+    --separateur: #F3EDF7;
+    --bordure: #E2D3EC;
+    --magenta: #C4218F;
+    --violet-nuit: #3B1E5C;
+    --vert: #1E6B34;
+    --vert-fond: #E8F5EC;
+    --rouge: #B4162F;
+    --rouge-fond: #FDECEF;
+    --ambre: #7A4E00;
+    --ambre-fond: #FFE9B8;
+  }
+
+  * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--fond);
+    color: var(--encre);
+    font: 400 16px/1.45 -apple-system, system-ui, sans-serif;
+    overscroll-behavior: none;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  header {
+    padding: calc(var(--safe-top) + 16px) 20px 18px;
+    background: linear-gradient(150deg, #3B1E5C 0%, #7A2B7E 55%, #C4218F 100%);
+    color: #FFF;
+  }
+  header h1 { margin: 0 0 4px; font-size: 27px; line-height: 1.1; font-weight: 800; }
+  header p { margin: 0; font-size: 13px; color: rgba(255,255,255,.8); }
+
+  main { padding: 16px 20px calc(var(--safe-bottom) + 28px); }
+
+  section {
+    background: var(--surface);
+    border: 1px solid var(--separateur);
+    border-radius: 18px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+  }
+
+  .entete { display: flex; align-items: flex-start; gap: 10px; }
+  .entete h2 { margin: 0; font-size: 17px; font-weight: 700; flex: 1; line-height: 1.25; }
+
+  .verdict {
+    flex: none;
+    padding: 4px 11px;
+    border-radius: 999px;
+    font: 700 12px/1.5 ui-monospace, Menlo, monospace;
+    background: var(--separateur);
+    color: var(--encre-3);
+    white-space: nowrap;
+  }
+  .verdict[data-etat="ok"]      { background: var(--vert-fond);   color: var(--vert); }
+  .verdict[data-etat="echec"]   { background: var(--rouge-fond);  color: var(--rouge); }
+  .verdict[data-etat="attente"] { background: var(--ambre-fond);  color: var(--ambre); }
+
+  .consigne { margin: 8px 0 0; font-size: 13px; color: var(--encre-2); }
+
+  dl { margin: 10px 0 0; font: 400 13px/1.5 ui-monospace, Menlo, monospace; }
+  dl div { display: flex; gap: 10px; padding: 5px 0; border-top: 1px solid var(--separateur); }
+  dl div:first-child { border-top: none; }
+  dt { flex: none; width: 116px; color: var(--encre-3); }
+  dd { margin: 0; flex: 1; min-width: 0; word-break: break-word; }
+
+  button {
+    font: 600 15px -apple-system, system-ui, sans-serif;
+    color: var(--encre);
+    background: var(--surface);
+    border: 2px solid var(--bordure);
+    border-radius: 14px;
+    padding: 12px 16px;
+    margin: 10px 8px 0 0;
+    min-height: 46px;
+  }
+  button:active { background: #F6EFFA; }
+  button[disabled] { opacity: .45; }
+  button.primaire { background: var(--encre); border-color: var(--encre); color: #FFF; }
+  button.primaire:active { background: #433054; }
+
+  input[type=file] { display: none; }
+  label.fichier {
+    display: inline-block;
+    font: 600 15px -apple-system, system-ui, sans-serif;
+    border: 2px solid var(--bordure);
+    border-radius: 14px;
+    padding: 12px 16px;
+    margin: 10px 8px 0 0;
+  }
+  label.fichier:active { background: #F6EFFA; }
+
+  .journal {
+    margin-top: 10px;
+    padding: 10px 12px;
+    background: #FBF7FD;
+    border-radius: 12px;
+    font: 400 12px/1.5 ui-monospace, Menlo, monospace;
+    color: var(--encre-2);
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  .journal:empty { display: none; }
+
+  #rapport {
+    width: 100%;
+    height: 220px;
+    font: 400 11px/1.4 ui-monospace, Menlo, monospace;
+    border: 1px solid var(--bordure);
+    border-radius: 12px;
+    padding: 10px;
+    user-select: text;
+    -webkit-user-select: text;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Colorix — vérifications</h1>
+  <p>Jalon 0 · les six contrôles de SPECS §2</p>
+</header>
+
+<main>
+
+  <section id="v1">
+    <div class="entete"><h2>V1 · Hébergement HTTPS</h2><span class="verdict" data-etat="attente">…</span></div>
+    <dl></dl>
+  </section>
+
+  <section id="v2">
+    <div class="entete"><h2>V2 · Service worker et mode avion</h2><span class="verdict" data-etat="attente">…</span></div>
+    <p class="consigne">Charge la page une fois en ligne, ajoute-la à l’écran d’accueil, puis passe en mode avion et rouvre-la depuis l’icône.</p>
+    <dl></dl>
+    <button data-action="sonder-cache">Tester une lecture du cache</button>
+    <div class="journal"></div>
+  </section>
+
+  <section id="v3">
+    <div class="entete"><h2>V3 · Persistance de 50 Mo</h2><span class="verdict" data-etat="attente">…</span></div>
+    <p class="consigne">Écris les 50 Mo, ferme l’app, et reviens après 72 h : le verdict se calcule tout seul à l’ouverture.</p>
+    <dl></dl>
+    <button data-action="ecrire-50mo">Écrire 50 Mo</button>
+    <button data-action="relire">Relire et vérifier</button>
+    <button data-action="effacer">Effacer</button>
+    <div class="journal"></div>
+  </section>
+
+  <section id="v4">
+    <div class="entete"><h2>V4 · Format livré par la photo</h2><span class="verdict" data-etat="attente">…</span></div>
+    <p class="consigne">Fais les trois, dans l’ordre. La ligne qui compte est la dernière : si le canvas relit l’image, le format brut n’a plus d’importance.</p>
+    <label class="fichier">Appareil photo<input type="file" accept="image/*" capture="environment" data-voie="appareil photo"></label>
+    <label class="fichier">Photothèque<input type="file" accept="image/*" data-voie="photothèque"></label>
+    <label class="fichier">Sélecteur large<input type="file" data-voie="sélecteur large"></label>
+    <dl></dl>
+    <div class="journal"></div>
+  </section>
+
+  <section id="v5">
+    <div class="entete"><h2>V5 · Partage d’un fichier image</h2><span class="verdict" data-etat="attente">…</span></div>
+    <p class="consigne">Le partage doit proposer Instagram et la photo doit arriver entière dans l’app cible.</p>
+    <dl></dl>
+    <button data-action="partager">Partager une image d’essai</button>
+    <div class="journal"></div>
+  </section>
+
+  <section id="v6">
+    <div class="entete"><h2>V6 · Wake Lock</h2><span class="verdict" data-etat="attente">…</span></div>
+    <p class="consigne">À faire depuis l’icône de l’écran d’accueil, pas dans Safari. Pose le téléphone et attends plus longtemps que ton délai de verrouillage automatique.</p>
+    <dl></dl>
+    <button data-action="verrou">Demander le verrou</button>
+    <button data-action="relacher" disabled>Relâcher</button>
+    <div class="journal"></div>
+  </section>
+
+  <section id="rapport-section">
+    <div class="entete"><h2>Rapport à me renvoyer</h2></div>
+    <textarea id="rapport" readonly></textarea>
+    <button class="primaire" data-action="copier">Copier le rapport</button>
+    <div class="journal"></div>
+  </section>
+
+</main>
+
+<script type="module" src="./diagnostic.js"></script>
+</body>
+</html>

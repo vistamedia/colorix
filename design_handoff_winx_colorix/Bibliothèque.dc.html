@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+  body { margin: 0; background: #EEE9F2; }
+  a { color: #C4218F; }
+  a:hover { color: #8E1268; }
+  @keyframes wcGlow { 0%,100% { opacity: .5 } 50% { opacity: 1 } }
+</style>
+</helmet>
+
+<section style="padding: 56px 56px 80px; display: flex; flex-direction: column; gap: 28px; font-family: 'Space Grotesk', system-ui, sans-serif">
+  <div style="display: flex; flex-direction: column; gap: 6px; max-width: 900px">
+    <div style="font: 600 13px 'Space Grotesk', sans-serif; letter-spacing: .16em; text-transform: uppercase; color: #8E6EA8">Winx Colorix · écran 2 · iPhone 14 Plus 428 × 926</div>
+    <h1 style="margin: 0; font: 700 34px 'Baloo 2', sans-serif; color: #2A1B36">Bibliothèque — la vitrine</h1>
+    <p style="margin: 0; font-size: 15px; line-height: 1.5; color: #5C4A6B; max-width: 62ch; text-wrap: pretty">L'écran d'entrée, puis l'album ouvert. Les vignettes de la grille sont des emplacements vides : dépose tes photos dessus, elles restent. Les couvertures sont en repli de couleur, comme prévu dans les specs tant que l'image éditeur n'est pas en cache.</p>
+  </div>
+
+  <div style="display: flex; flex-wrap: nowrap; gap: 48px; align-items: flex-start; width: max-content">
+
+    <div id="2a" style="display: flex; flex-direction: column; gap: 14px">
+      <div style="display: flex; align-items: center; gap: 10px">
+        <span style="display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 999px; background: #2A1B36; color: #FFF; font: 700 13px 'Space Grotesk', sans-serif">2a</span>
+        <span style="font: 600 15px 'Space Grotesk', sans-serif; color: #2A1B36">Mes albums</span>
+      </div>
+
+      <div style="width: 428px; height: 926px; border-radius: 46px; background: #FCFAFD; box-shadow: 0 0 0 11px #17101E, 0 28px 60px -18px rgba(42,27,54,.55); overflow: hidden; position: relative; display: flex; flex-direction: column">
+        <div style="position: absolute; top: 0; left: 0; right: 0; height: 54px; z-index: 5; display: flex; align-items: flex-end; justify-content: space-between; padding: 0 30px 8px; font: 600 14px 'Space Grotesk', sans-serif; color: #FFF; pointer-events: none">
+          <span>21:47</span><span style="letter-spacing: .1em">▮▮▮ ⌁</span>
+        </div>
+
+        <div style="position: relative; flex: none; padding: 60px 22px 22px; background: linear-gradient(150deg, #3B1E5C 0%, #7A2B7E 55%, #C4218F 100%); overflow: hidden">
+          <div style="position: absolute; top: -50px; right: -60px; width: 260px; height: 260px; opacity: .25; background: radial-gradient(closest-side, #FFC22E, transparent 70%)"></div>
+          <div style="position: absolute; top: 26px; right: 14px; width: 176px; height: 138px; border-radius: 100% 8% 100% 8%; border: 2px solid rgba(255,255,255,.26); transform: rotate(-14deg)"></div>
+          <div style="position: absolute; top: 56px; right: 44px; width: 124px; height: 100px; border-radius: 100% 8% 100% 8%; border: 2px solid rgba(255,255,255,.16); transform: rotate(-6deg)"></div>
+          <div style="position: absolute; top: 92px; right: 140px; width: 7px; height: 7px; background: #FFF; border-radius: 999px; animation: wcGlow 2.8s ease-in-out infinite"></div>
+          <div style="position: relative; display: flex; flex-direction: column; gap: 14px">
+            <div style="font: 800 40px/1.05 'Baloo 2', sans-serif; color: #FFF">Ma collection</div>
+            <div style="display: flex; gap: 8px">
+              <div style="flex: 1; padding: 10px 12px; border-radius: 16px; background: rgba(255,255,255,.16); backdrop-filter: blur(6px)">
+                <div style="font: 700 26px/1 'Space Grotesk', sans-serif; color: #FFF">37</div>
+                <div style="font: 600 11px 'Space Grotesk', sans-serif; letter-spacing: .07em; text-transform: uppercase; color: rgba(255,255,255,.76)">planches finies</div>
+              </div>
+              <div style="flex: 1; padding: 10px 12px; border-radius: 16px; background: rgba(255,255,255,.16); backdrop-filter: blur(6px)">
+                <div style="font: 700 26px/1 'Space Grotesk', sans-serif; color: #FFF">4</div>
+                <div style="font: 600 11px 'Space Grotesk', sans-serif; letter-spacing: .07em; text-transform: uppercase; color: rgba(255,255,255,.76)">albums</div>
+              </div>
+              <div style="flex: 1.35; padding: 10px 12px; border-radius: 16px; background: rgba(255,255,255,.16); backdrop-filter: blur(6px)">
+                <div style="font: 700 17px/1.15 'Baloo 2', sans-serif; color: #FFE9B8">Believix</div>
+                <div style="font: 600 11px 'Space Grotesk', sans-serif; letter-spacing: .07em; text-transform: uppercase; color: rgba(255,255,255,.76)">palier atteint</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 16px 20px 0; display: flex; flex-direction: column; gap: 12px">
+          <sc-for list="{{ albums }}" as="al" hint-placeholder-count="4">
+            <div style="display: flex; gap: 14px; padding: 12px; border-radius: 22px; background: #FFF; box-shadow: 0 2px 0 rgba(42,27,54,.06), 0 10px 24px -18px rgba(42,27,54,.5)">
+              <div style="flex: none; width: 78px; height: 104px; border-radius: 12px; background: {{ al.cover }}; display: flex; align-items: flex-end; padding: 8px; box-shadow: inset 0 0 0 1px rgba(20,10,28,.12)">
+                <span style="font: 700 12px/1.15 'Baloo 2', sans-serif; color: {{ al.ink }}">{{ al.court }}</span>
+              </div>
+              <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; padding: 2px 0">
+                <div style="display: flex; flex-direction: column; gap: 3px">
+                  <span style="font: 700 19px/1.15 'Baloo 2', sans-serif; color: #2A1B36">{{ al.titre }}</span>
+                  <span style="font-size: 12px; color: #9B7FB2">{{ al.editeur }} · {{ al.annee }}</span>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 6px">
+                  <div style="height: 9px; border-radius: 999px; background: #F0EAF5; overflow: hidden">
+                    <div style="width: {{ al.pct }}; height: 100%; border-radius: 999px; background: {{ al.cover }}"></div>
+                  </div>
+                  <span style="font: 600 13px 'Space Grotesk', sans-serif; color: #6B5680">{{ al.faits }} sur {{ al.total }}</span>
+                </div>
+              </div>
+            </div>
+          </sc-for>
+          <button style="display: flex; align-items: center; justify-content: center; gap: 10px; height: 58px; border: 2px dashed #D9C6E6; border-radius: 20px; background: transparent; color: #7A2B7E; font: 700 17px 'Baloo 2', sans-serif" style-active="background:#F6EFFA">＋ Cocher un album du catalogue</button>
+        </div>
+
+        <div style="flex: none; padding: 10px 20px 28px; background: #FFF; border-top: 2px solid #EFE6F4; display: flex; justify-content: space-between">
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 6px 16px; border-radius: 14px; background: #F8EFF6">
+            <span style="font-size: 20px; line-height: 1">◆</span>
+            <span style="font: 700 11px 'Space Grotesk', sans-serif; color: #C4218F">Albums</span>
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 6px 16px; color: #9B7FB2">
+            <span style="font-size: 20px; line-height: 1">▤</span>
+            <span style="font: 600 11px 'Space Grotesk', sans-serif">Feutres</span>
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 6px 16px; color: #9B7FB2">
+            <span style="font-size: 20px; line-height: 1">✦</span>
+            <span style="font: 600 11px 'Space Grotesk', sans-serif">Stats</span>
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 6px 16px; color: #9B7FB2">
+            <span style="font-size: 20px; line-height: 1">⚙</span>
+            <span style="font: 600 11px 'Space Grotesk', sans-serif">Réglages</span>
+          </div>
+        </div>
+        <div style="position: absolute; bottom: 9px; left: 50%; transform: translateX(-50%); width: 140px; height: 5px; border-radius: 999px; background: #2A1B36; opacity: .35"></div>
+      </div>
+    </div>
+
+    <div id="2b" style="display: flex; flex-direction: column; gap: 14px">
+      <div style="display: flex; align-items: center; gap: 10px">
+        <span style="display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 999px; background: #C4218F; color: #FFF; font: 700 13px 'Space Grotesk', sans-serif">2b</span>
+        <span style="font: 600 15px 'Space Grotesk', sans-serif; color: #2A1B36">Album ouvert · grille des planches</span>
+      </div>
+
+      <div style="width: 428px; height: 926px; border-radius: 46px; background: #FCFAFD; box-shadow: 0 0 0 11px #17101E, 0 28px 60px -18px rgba(42,27,54,.55); overflow: hidden; position: relative; display: flex; flex-direction: column">
+        <div style="position: absolute; top: 0; left: 0; right: 0; height: 54px; z-index: 5; display: flex; align-items: flex-end; justify-content: space-between; padding: 0 30px 8px; font: 600 14px 'Space Grotesk', sans-serif; color: #FFF; pointer-events: none">
+          <span>21:47</span><span style="letter-spacing: .1em">▮▮▮ ⌁</span>
+        </div>
+
+        <div style="position: relative; flex: none; padding: 58px 20px 18px; background: linear-gradient(150deg, #3B1E5C 0%, #7A2B7E 55%, #C4218F 100%); overflow: hidden">
+          <div style="position: absolute; top: -40px; right: -70px; width: 240px; height: 240px; opacity: .22; background: radial-gradient(closest-side, #FFC22E, transparent 70%)"></div>
+          <div style="position: absolute; top: 20px; right: 10px; width: 160px; height: 126px; border-radius: 100% 8% 100% 8%; border: 2px solid rgba(255,255,255,.22); transform: rotate(-12deg)"></div>
+          <div style="position: relative; display: flex; flex-direction: column; gap: 12px">
+            <div style="display: flex; align-items: center; gap: 10px; font: 600 14px 'Space Grotesk', sans-serif; color: rgba(255,255,255,.8)">‹ Ma collection</div>
+            <div style="font: 800 32px/1.08 'Baloo 2', sans-serif; color: #FFF; max-width: 300px">Coloriages Mystères Winx&nbsp;Club</div>
+            <div style="display: flex; align-items: center; gap: 10px">
+              <div style="flex: 1; height: 8px; border-radius: 999px; background: rgba(255,255,255,.24); overflow: hidden">
+                <div style="width: 48%; height: 100%; border-radius: 999px; background: linear-gradient(90deg, #FFC22E, #FFF)"></div>
+              </div>
+              <span style="font: 700 14px 'Space Grotesk', sans-serif; color: #FFF; white-space: nowrap">24 sur 50</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 14px 20px 0">
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px">
+            <sc-for list="{{ planches }}" as="p" hint-placeholder-count="12">
+              <div style="position: relative; aspect-ratio: 1; border-radius: 16px; overflow: hidden; background: #F4EEF8; box-shadow: inset 0 0 0 1px rgba(42,27,54,.07)">
+                <sc-if value="{{ p.photo }}" hint-placeholder-val="{{ true }}">
+                  <image-slot id="{{ p.slot }}" shape="rounded" radius="16" placeholder="{{ p.num }}"></image-slot>
+                </sc-if>
+                <sc-if value="{{ p.encours }}" hint-placeholder-val="{{ false }}">
+                  <div style="position: absolute; inset: 0; border-radius: 16px; background: #FFF4FA; box-shadow: inset 0 0 0 3px #C4218F; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px">
+                    <span style="font: 800 34px/1 'Baloo 2', sans-serif; color: #C4218F">{{ p.num }}</span>
+                    <span style="font: 700 10px 'Space Grotesk', sans-serif; letter-spacing: .09em; text-transform: uppercase; color: #C4218F">en cours</span>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ p.vide }}" hint-placeholder-val="{{ false }}">
+                  <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font: 600 24px 'Space Grotesk', sans-serif; color: #C9B6D8">{{ p.num }}</div>
+                </sc-if>
+                <sc-if value="{{ p.photo }}" hint-placeholder-val="{{ true }}">
+                  <div style="position: absolute; top: 6px; left: 6px; padding: 2px 7px; border-radius: 999px; background: rgba(23,16,30,.62); color: #FFF; font: 700 11px 'Space Grotesk', sans-serif; pointer-events: none; backdrop-filter: blur(3px)">{{ p.num }}</div>
+                </sc-if>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="flex: none; padding: 12px 20px 30px; background: #FFF; border-top: 2px solid #EFE6F4; box-shadow: 0 -10px 24px -18px rgba(42,27,54,.5)">
+          <button style="width: 100%; height: 60px; border: none; border-radius: 20px; background: linear-gradient(120deg, #C4218F, #7A2B7E); color: #FFF; font: 700 20px 'Baloo 2', sans-serif">Reprendre la planche 24 ✦</button>
+        </div>
+        <div style="position: absolute; bottom: 9px; left: 50%; transform: translateX(-50%); width: 140px; height: 5px; border-radius: 999px; background: #2A1B36; opacity: .35"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1040,&quot;height&quot;:1120}}">
+const ALBUMS = [
+  ["Coloriages Mystères — Winx Club", "Winx Club", "Hachette Heroes", 2024, 24, 50, "linear-gradient(160deg,#C4218F,#7A2B7E)", "#FFF"],
+  ["Coloriages Mystères — Disney Princesses", "Disney", "Hachette Heroes", 2023, 9, 60, "linear-gradient(160deg,#2C7BE8,#17AFA6)", "#FFF"],
+  ["Coloriages Mystères — Marvel", "Marvel", "Hachette Heroes", 2022, 4, 40, "linear-gradient(160deg,#F2542D,#7A1230)", "#FFF"],
+  ["Art-thérapie — Jardins secrets", "Jardins", "Hachette Heroes", 2021, 0, 45, "linear-gradient(160deg,#63C36A,#FFC22E)", "rgba(20,10,28,.78)"]
+];
+
+class Component extends DCLogic {
+  planches() {
+    const out = [];
+    for (let n = 1; n <= 24; n++) {
+      const photo = n <= 23 && n !== 24 && [1,2,3,5,6,8,9,11,12,14,15,17,18,20,21,23].includes(n);
+      const encours = n === 24;
+      out.push({
+        num: String(n).padStart(2, "0"),
+        slot: "planche-" + n,
+        photo, encours, vide: !photo && !encours
+      });
+    }
+    return out;
+  }
+  renderVals() {
+    return {
+      planches: this.planches(),
+      albums: ALBUMS.map(([titre, court, editeur, annee, faits, total, cover, ink]) => ({
+        titre, court, editeur, annee, faits, total, cover, ink,
+        pct: Math.round((faits / total) * 100) + "%"
+      }))
+    };
+  }
+}
+
+</script>
+</body>
+</html>
