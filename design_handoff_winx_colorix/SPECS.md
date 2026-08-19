@@ -121,7 +121,7 @@ Coloriage {
 
 Nuancier { coloriage_id, entrees: [ Entree ] }
 Entree   { code: "1".."0" | "a".."z" | "◊" | "Δ",
-           pastille_hex,        couleur imprimée dans le livre, pipettée
+           pastille_hex,        couleur imprimée sur cette planche-là, relevée
            feutres: [feutre_id] ordonnés — superposition pour créer la nuance
            note }
 
@@ -146,6 +146,12 @@ codes est une propriété du livre, pas une constante globale.
 C'est l'écran le plus utilisé de l'app. Tout le reste peut être médiocre, celui-ci
 non.
 
+**La palette appartient à la planche, pas au livre.** Chaque planche a sa page
+« Mon nuancier #N » dans le livre, où la bande des codes est imprimée avec les
+couleurs de cette planche-là. Le jeu de codes, lui, ne bouge pas. Aucune couleur
+n'est donc livrée avec le catalogue : tant qu'une planche n'a pas été relevée,
+ses cases sont grises — une couleur approchée serait plus trompeuse que rien.
+
 **Contenu.** L'album et le numéro en en-tête. Puis la liste des codes du nuancier :
 pour chacun, la pastille de couleur du livre, le caractère du code, et la ou les
 références de feutre en très gros. Lisible à bout de bras, sur une table, sans
@@ -154,8 +160,11 @@ lunettes.
 **Comportements.**
 - Wake Lock actif : l'écran ne s'éteint pas tant qu'on est sur cette fiche
 - Tap sur une ligne → attribution ou changement de feutre
+- Bouton « Relever le nuancier en photo » → §6.0, toujours accessible : un
+  mauvais cadrage se voit souvent après coup
 - Bouton « Reprendre le nuancier de… » → copie les correspondances d'un autre
-  coloriage du même album, puis on ajuste
+  coloriage du même album, puis on ajuste. Les feutres seulement : les couleurs
+  imprimées appartiennent à la planche
 - Chrono facultatif, un seul bouton, pas de compte à rebours
 - Bouton « Terminé » → demande le sujet révélé et propose la photo
 
@@ -166,11 +175,20 @@ notifications. C'est un outil de travail.
 
 ## 6. Attribution d'un feutre à un code
 
-Trois voies, de la plus rapide à la plus manuelle.
+Trois voies, de la plus rapide à la plus manuelle. Toutes partent de
+`pastille_hex`, que le relevé du §6.0 remplit d'un coup.
 
-**6.1 Pipette.** Elle photographie la bande de légende de la planche. L'app
-affiche la photo, elle tape sur une pastille : moyenne des pixels sur une zone
-de 5 × 5, conversion en hexadécimal, enregistrée comme `pastille_hex`.
+**6.0 Relevé de la palette de la planche.** Elle photographie la page
+« Mon nuancier #N » du livre. Quatre repères aux coins de la bande de couleurs
+donnent l'homographie, un cinquième sur le blanc de la page donne la référence
+colorimétrique — la page étant elle-même blanche, aucune feuille n'est à
+ajouter dans le cadre. Les couleurs des codes du livre sont écrites d'un coup
+dans le nuancier de la planche.
+
+**6.1 Pipette.** Pour un code isolé, ou pour corriger. Elle photographie la
+bande de légende de la planche. L'app affiche la photo, elle tape sur une
+pastille : moyenne des pixels sur une zone de 5 × 5, conversion en
+hexadécimal, enregistrée comme `pastille_hex`.
 
 **6.2 Proposition automatique.** À partir de `pastille_hex`, l'app calcule la
 distance colorimétrique avec tous les feutres possédés et propose les trois plus
@@ -308,6 +326,9 @@ est l'objectif. Le jalon 3 fait gagner du temps, les suivants font plaisir.
 Jalons 0 à 6 construits et déployés. Le jalon 0 reste ouvert sur V3 et V6, qui
 demandent du temps d'observation et non du code.
 
+Le §6.0 est venu après coup : le catalogue portait une palette unique, relevée
+à l'œil sur la planche 24 et servie à toutes les planches. Elle a été retirée.
+
 Deux écarts assumés par rapport à ce document :
 
 - Les **couvertures d'album sont embarquées** (`data/couvertures/`) plutôt que
@@ -343,6 +364,10 @@ fausses serait pire que ne rien proposer.
   colorimétrique. Le papier de la carte étant lui-même coloré, il ne peut pas
   servir de blanc : sans référence neutre dans le cadre, teinte du papier,
   température de la lumière et gradient d'éclairage sont indissociables.
+- ~~Fabriquer le nuancier d'une planche depuis la photo de sa page « Mon
+  nuancier »~~ — **fait.** Même géométrie que ci-dessus, sur une bande d'une
+  seule colonne : les repères se posent aux quatre coins de la bande, dont les
+  bords imprimés se visent bien mieux qu'un centre de case.
 - Filtre « planches réalisables avec ce que je possède », et liste des feutres
   manquants pour les autres
 - Détection du numéro de planche par OCR sur la photo de la légende

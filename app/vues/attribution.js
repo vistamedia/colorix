@@ -16,7 +16,7 @@ export async function monter(coloriageId, code) {
   const [contexte, tous, listeMarques] = await Promise.all([
     contexteNuancier(courante.livre_id), feutres(), marques()
   ]);
-  const n = await nuancier(coloriageId, contexte.jeu, contexte.teintes);
+  const n = await nuancier(coloriageId, contexte.jeu);
   const entree = n.entrees.find(e => e.code === code);
 
   const nomMarque = new Map(listeMarques.map(m => [m.id, m.nom]));
