@@ -1,0 +1,7 @@
+---
+deployment:
+  tasks:
+    - export CIBLE=/home/gata7073/colorix.dananlab.fr
+    - /bin/mkdir -p $CIBLE/verifications $CIBLE/icons
+    - /bin/cp -f verifications/. $CIBLE/verifications/ -R
+    - /bin/cp -f icons/. $CIBLE/icons/ -R
