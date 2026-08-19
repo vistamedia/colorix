@@ -1,0 +1,245 @@
+import * as base from './base.js';
+
+const MAGASINS = ['possessions', 'coloriages', 'nuanciers', 'marques', 'sets', 'feutres'];
+
+let catalogueMemo = null;
+
+export async function catalogue() {
+  if (!catalogueMemo) {
+    const reponse = await fetch('./data/catalogue.json');
+    catalogueMemo = await reponse.json();
+  }
+  return catalogueMemo;
+}
+
+export async function livre(id) {
+  return (await catalogue()).livres.find(l => l.id === id) || null;
+}
+
+/* ---------- possession et planches ---------- */
+
+export const possessions = () => base.lireTout('possessions');
+
+export async function albumsPossedes() {
+  const [liste, cat] = await Promise.all([possessions(), catalogue()]);
+  const albums = [];
+  for (const p of liste) {
+    const fiche = cat.livres.find(l => l.id === p.livre_id);
+    if (!fiche) continue;
+    const planches = await base.lireParIndex('coloriages', 'livre_id', p.livre_id);
+    albums.push({
+      ...fiche,
+      possession: p,
+      nb_coloriages: p.nb_coloriages,
+      faits: planches.filter(c => c.statut === 'termine').length,
+      en_cours: planches.find(c => c.statut === 'en_cours') || null
+    });
+  }
+  return albums.sort((a, b) => (b.possession.date_acquisition || '').localeCompare(a.possession.date_acquisition || ''));
+}
+
+export async function posseder(livreId, nbColoriages, jeuCodes) {
+  const fiche = await livre(livreId);
+  await base.ecrire('possessions', {
+    livre_id: livreId,
+    date_acquisition: new Date().toISOString(),
+    nb_coloriages: nbColoriages,
+    jeu_codes: jeuCodes || fiche?.jeu_codes || null,
+    teintes: fiche?.teintes || null,
+    note: ''
+  });
+  const planches = Array.from({ length: nbColoriages }, (_, i) => ({
+    id: `${livreId}-${i + 1}`,
+    livre_id: livreId,
+    numero: i + 1,
+    statut: 'pas_commence',
+    sujet_revele: '',
+    date_debut: null,
+    date_fin: null,
+    duree_cumulee_s: 0,
+    difficulte: null,
+    note: ''
+  }));
+  await base.ecrireLot('coloriages', planches);
+}
+
+export async function retirerAlbum(livreId) {
+  const planches = await base.lireParIndex('coloriages', 'livre_id', livreId);
+  for (const p of planches) {
+    await base.supprimer('nuanciers', p.id);
+    for (const photo of await base.lireParIndex('photos', 'coloriage_id', p.id)) {
+      await base.supprimer('photos', photo.id);
+    }
+    await base.supprimer('coloriages', p.id);
+  }
+  await base.supprimer('possessions', livreId);
+}
+
+export const planchesDe = async (livreId) =>
+  (await base.lireParIndex('coloriages', 'livre_id', livreId)).sort((a, b) => a.numero - b.numero);
+
+export const planche = (id) => base.lire('coloriages', id);
+
+export async function majPlanche(id, champs) {
+  const actuelle = await planche(id);
+  const suivante = { ...actuelle, ...champs };
+  await base.ecrire('coloriages', suivante);
+  return suivante;
+}
+
+export async function demarrer(id) {
+  const p = await planche(id);
+  if (p.statut !== 'pas_commence') return p;
+  return majPlanche(id, { statut: 'en_cours', date_debut: new Date().toISOString() });
+}
+
+export const terminer = (id, sujetRevele) =>
+  majPlanche(id, { statut: 'termine', sujet_revele: sujetRevele, date_fin: new Date().toISOString() });
+
+/* ---------- nuanciers ---------- */
+
+/* Les teintes du livre amorcent le nuancier : elles sont une propriété du livre,
+   relevées à l'œil sur sa légende, et destinées à être remplacées à la pipette.
+   SPECS §7. */
+export async function nuancier(coloriageId, jeuCodes, teintes) {
+  const existant = await base.lire('nuanciers', coloriageId);
+  if (existant) return existant;
+  return {
+    coloriage_id: coloriageId,
+    entrees: (jeuCodes || []).map(code => ({
+      code,
+      pastille_hex: teintes?.[code]?.hex || null,
+      teinte: teintes?.[code]?.nom || '',
+      feutres: [],
+      note: ''
+    }))
+  };
+}
+
+/* Jeu de codes et teintes viennent du livre ; la possession en garde une copie
+   pour que l'app reste juste même si le catalogue est remplacé. */
+export async function contexteNuancier(livreId) {
+  const [fiche, liste] = await Promise.all([livre(livreId), possessions()]);
+  const p = liste.find(x => x.livre_id === livreId);
+  return {
+    fiche,
+    jeu: p?.jeu_codes || fiche?.jeu_codes || [],
+    teintes: p?.teintes || fiche?.teintes || null
+  };
+}
+
+export async function enregistrerNuancier(n) {
+  await base.ecrire('nuanciers', n);
+  return n;
+}
+
+export async function attribuer(coloriageId, code, feutreIds, contexte) {
+  const n = await nuancier(coloriageId, contexte.jeu, contexte.teintes);
+  const entree = n.entrees.find(e => e.code === code);
+  if (entree) entree.feutres = feutreIds;
+  return enregistrerNuancier(n);
+}
+
+export async function pipetter(coloriageId, code, hex, contexte) {
+  const n = await nuancier(coloriageId, contexte.jeu, contexte.teintes);
+  const entree = n.entrees.find(e => e.code === code);
+  if (entree) entree.pastille_hex = hex;
+  return enregistrerNuancier(n);
+}
+
+/* Copie les correspondances d'une autre planche du même album. SPECS §5. */
+export async function reprendreNuancier(sourceId, cibleId, contexte) {
+  const source = await base.lire('nuanciers', sourceId);
+  if (!source) return null;
+  const cible = await nuancier(cibleId, contexte.jeu, contexte.teintes);
+  for (const entree of cible.entrees) {
+    const modele = source.entrees.find(e => e.code === entree.code);
+    if (modele && modele.feutres.length) {
+      entree.feutres = [...modele.feutres];
+      if (!entree.pastille_hex) entree.pastille_hex = modele.pastille_hex;
+    }
+  }
+  return enregistrerNuancier(cible);
+}
+
+/* ---------- photos ---------- */
+
+export const photosDe = (coloriageId) => base.lireParIndex('photos', 'coloriage_id', coloriageId);
+
+export async function ajouterPhoto(coloriageId, blob, role) {
+  const existantes = await photosDe(coloriageId);
+  const photo = {
+    id: `${coloriageId}-${Date.now()}`,
+    coloriage_id: coloriageId,
+    blob,
+    role,
+    vignette: role === 'resultat' && !existantes.some(p => p.vignette),
+    date: new Date().toISOString()
+  };
+  await base.ecrire('photos', photo);
+  return photo;
+}
+
+export async function designerVignette(coloriageId, photoId) {
+  for (const photo of await photosDe(coloriageId)) {
+    await base.ecrire('photos', { ...photo, vignette: photo.id === photoId });
+  }
+}
+
+export const supprimerPhoto = (id) => base.supprimer('photos', id);
+
+/* ---------- feutres ---------- */
+
+export const feutres = () => base.lireTout('feutres');
+export const sets = () => base.lireTout('sets');
+export const marques = () => base.lireTout('marques');
+
+export const feutre = (id) => base.lire('feutres', id);
+
+export const majFeutre = async (id, champs) =>
+  base.ecrire('feutres', { ...(await feutre(id)), ...champs });
+
+export async function amorcerSet(chemin) {
+  const donnees = await (await fetch(chemin)).json();
+  const marqueId = donnees.marque.toLowerCase().replace(/\s+/g, '-');
+  const setId = `${marqueId}-${donnees.nb_feutres}`;
+
+  await base.ecrire('marques', { id: marqueId, nom: donnees.marque });
+  await base.ecrire('sets', { id: setId, marque_id: marqueId, nom: donnees.set, nb_feutres: donnees.nb_feutres });
+
+  const existants = new Map((await base.lireParIndex('feutres', 'set_id', setId)).map(f => [f.id, f]));
+  await base.ecrireLot('feutres', donnees.feutres.map(f => {
+    const id = `${setId}-${f.reference}`;
+    const ancien = existants.get(id);
+    return {
+      id,
+      set_id: setId,
+      marque_id: marqueId,
+      reference: f.reference,
+      nom: f.nom,
+      pack: f.pack,
+      hex: ancien?.hex ?? f.hex,
+      etat: ancien?.etat ?? 'possede'
+    };
+  }));
+  return setId;
+}
+
+/* ---------- sauvegarde ---------- */
+
+export async function exporter() {
+  const contenu = { version: 1, exporte_le: new Date().toISOString() };
+  for (const magasin of MAGASINS) contenu[magasin] = await base.lireTout(magasin);
+  const photos = await base.lireTout('photos');
+  contenu.photos = photos.map(({ blob, ...reste }) => reste);
+  return contenu;
+}
+
+export async function importer(contenu, fusionner) {
+  if (!fusionner) await base.vider(MAGASINS);
+  for (const magasin of MAGASINS) {
+    if (Array.isArray(contenu[magasin]) && contenu[magasin].length) {
+      await base.ecrireLot(magasin, contenu[magasin]);
+    }
+  }
+}
