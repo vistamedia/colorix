@@ -10,7 +10,7 @@ export async function monter(coloriageId, code) {
   if (!courante) return { element: h('div', { class: 'vue' }, h('p', { class: 'vide' }, 'Planche introuvable.')) };
 
   const contexte = await contexteNuancier(courante.livre_id);
-  const n = await nuancier(coloriageId, contexte.jeu, contexte.teintes);
+  const n = await nuancier(coloriageId, contexte.jeu);
   const entree = n.entrees.find(e => e.code === code);
 
   let donnees = null;

@@ -16,10 +16,9 @@ function relacherVerrou() {
   verrou = null;
 }
 
-function libelleTeinte(entree, attribues) {
-  if (entree.teinte) return entree.teinte;
-  return attribues.map(f => f.nom).filter(Boolean).join(' + ');
-}
+/* Le sous-titre d'une rangée nomme les feutres posés, jamais la teinte du
+   livre : celle-ci change d'une planche à l'autre et n'est nulle part écrite. */
+const nomsFeutres = (attribues) => attribues.map(f => f.nom).filter(Boolean).join(' + ');
 
 /* ---------- mise en page A : ordre du livre, sobre ---------- */
 
@@ -31,6 +30,7 @@ function rangeeA(entree, attribues, ouvrir) {
   const reference = principal
     ? h('span', { class: 'reference' }, principal.reference)
     : h('span', { class: 'reference reference--vide' }, 'à attribuer');
+  const noms = nomsFeutres(attribues);
 
   return h('button', { class: 'rangee', onclick: ouvrir },
     h('span', {
@@ -41,7 +41,7 @@ function rangeeA(entree, attribues, ouvrir) {
       h('span', { class: 'rangee__ligne' },
         reference,
         principal && h('span', { class: 'marque' }, principal.marque_nom)),
-      h('span', { class: 'teinte' }, libelleTeinte(entree, attribues))),
+      noms ? h('span', { class: 'teinte' }, noms) : null),
     dessus && h('span', { class: 'superpose' },
       h('span', { class: 'superpose__ref' }, dessus.reference),
       h('span', { class: 'superpose__libelle' }, '+ dessus')),
@@ -61,7 +61,7 @@ function rangeeB(entree, attribues, ouvrir) {
       h('span', { class: 'rangee__texte' },
         h('span', { class: 'reference reference--large' }, principal.reference),
         h('span', { class: 'teinte' },
-          [principal.marque_nom, libelleTeinte(entree, attribues)].filter(Boolean).join(' · '))),
+          [principal.marque_nom, nomsFeutres(attribues)].filter(Boolean).join(' · '))),
       dessus && h('span', { class: 'badge-superpose' },
         h('span', { class: 'badge-superpose__ref' }, dessus.reference),
         h('span', { class: 'badge-superpose__libelle' }, 'dessus'))));
@@ -95,7 +95,7 @@ export async function monter(coloriageId) {
     contexteNuancier(courante.livre_id), feutres(), marques(), planchesDe(courante.livre_id)
   ]);
   const fiche = contexte.fiche;
-  const n = await nuancier(coloriageId, contexte.jeu, contexte.teintes);
+  const n = await nuancier(coloriageId, contexte.jeu);
 
   const parId = new Map(tousFeutres.map(f => [f.id, f]));
   const nomMarque = new Map(listeMarques.map(m => [m.id, m.nom]));
@@ -172,6 +172,16 @@ export async function monter(coloriageId) {
     .filter(p => p.id !== coloriageId && p.statut === 'termine')
     .sort((a, b) => (b.date_fin || '').localeCompare(a.date_fin || ''))[0];
 
+  /* Les couleurs d'un code viennent de la page « Mon nuancier » de la planche.
+     L'accès reste offert une fois le relevé fait : un mauvais cadrage se voit
+     souvent après coup, et il faut pouvoir le refaire. */
+  const relever = n.entrees.length
+    ? h('button', {
+        class: 'bouton--secondaire',
+        onclick: () => naviguer(`#/planche/${coloriageId}/nuancier`)
+      }, n.entrees.some(e => !e.pastille_hex) ? 'Relever le nuancier en photo' : 'Refaire le relevé en photo')
+    : null;
+
   const reprise = derniereFinie && manquantes.length
     ? h('button', {
         class: 'bouton--secondaire',
@@ -200,9 +210,10 @@ export async function monter(coloriageId) {
         }
       }, 'Terminé ✦');
 
-  const actions = h('div', { class: `actions${reprise ? ' actions--colonne' : ''}` },
-    reprise,
-    reprise
+  const secondaires = [relever, reprise].filter(Boolean);
+  const actions = h('div', { class: `actions${secondaires.length ? ' actions--colonne' : ''}` },
+    secondaires,
+    secondaires.length
       ? h('div', { class: 'actions__ligne' }, boutonChrono, boutonTerminer)
       : [boutonChrono, boutonTerminer]);
 

@@ -51,13 +51,22 @@ function echantillonner(image, points) {
   return [medianeCanal(r), medianeCanal(v), medianeCanal(b)];
 }
 
-/* Chaque pastille est percée en son centre : on échantillonne un anneau
-   rectangulaire autour du trou, et la médiane absorbe ce qui traverse. */
-function pointsPastille(m, colonne, rangee, colonnes, rangees) {
-  const u = colonnes > 1 ? colonne / (colonnes - 1) : 0.5;
-  const v = rangees > 1 ? rangee / (rangees - 1) : 0.5;
-  const pasU = colonnes > 1 ? 1 / (colonnes - 1) : 1;
-  const pasV = rangees > 1 ? 1 / (rangees - 1) : 1;
+/* Deux conventions de repérage. Sur la planche de feutres, les quatre repères
+   sont posés au centre des pastilles extrêmes ; sur la bande du livre, aux
+   quatre coins de la bande, dont les bords imprimés sont bien plus nets à
+   viser que le centre d'une case de trente pixels. Chacune rend la position
+   du centre de la case et le pas de la grille. */
+const GRILLES = {
+  centres: (i, n) => n > 1 ? [i / (n - 1), 1 / (n - 1)] : [0.5, 1],
+  bords: (i, n) => [(i + 0.5) / n, 1 / n]
+};
+
+/* On échantillonne un anneau rectangulaire, jamais le centre : sur la planche
+   de feutres il est percé, sur la bande du livre il porte le caractère du
+   code. La médiane absorbe ce qui traverse. */
+function pointsPastille(m, grille, colonne, rangee, colonnes, rangees) {
+  const [u, pasU] = grille(colonne, colonnes);
+  const [v, pasV] = grille(rangee, rangees);
 
   const points = [];
   for (let du = -0.30; du <= 0.301; du += 0.05) {
@@ -69,18 +78,17 @@ function pointsPastille(m, colonne, rangee, colonnes, rangees) {
   return points;
 }
 
-export function extraire(image, coins, colonnes, rangees) {
+export function extraire(image, coins, colonnes, rangees, repere) {
   const m = homographie(coins);
   if (!m) return null;
+  const grille = GRILLES[repere];
   const cases = [];
   for (let rangee = 0; rangee < rangees; rangee++) {
     for (let colonne = 0; colonne < colonnes; colonne++) {
       cases.push({
         colonne, rangee,
-        brut: echantillonner(image, pointsPastille(m, colonne, rangee, colonnes, rangees)),
-        centre: projeter(m,
-          colonnes > 1 ? colonne / (colonnes - 1) : 0.5,
-          rangees > 1 ? rangee / (rangees - 1) : 0.5)
+        brut: echantillonner(image, pointsPastille(m, grille, colonne, rangee, colonnes, rangees)),
+        centre: projeter(m, grille(colonne, colonnes)[0], grille(rangee, rangees)[0])
       });
     }
   }
@@ -118,11 +126,11 @@ export function qualite(blanc, gains) {
      surexposition : la correction tient encore. Deux, et le blanc est perdu. */
   const satures = blanc.filter(c => c >= 252).length;
   if (satures >= 2) {
-    alertes.push({ gravite: 'echec', texte: 'La feuille blanche est brûlée : la référence est perdue. Éloigne-toi de la lumière directe ou baisse l’exposition.' });
+    alertes.push({ gravite: 'echec', texte: 'Le blanc de référence est brûlé : les couleurs ne peuvent plus être corrigées. Éloigne-toi de la lumière directe ou baisse l’exposition.' });
   } else if (luminance < 0.25) {
-    alertes.push({ gravite: 'echec', texte: 'La feuille blanche est trop sombre : le repère est-il bien posé dessus ?' });
+    alertes.push({ gravite: 'echec', texte: 'Le blanc de référence est trop sombre : le repère est-il bien posé dessus ?' });
   } else if (satures === 1) {
-    alertes.push({ gravite: 'avertissement', texte: 'Un canal de couleur est au maximum sur la feuille blanche : les couleurs restent exploitables, mais une lumière plus neutre les rendrait plus justes.' });
+    alertes.push({ gravite: 'avertissement', texte: 'Un canal de couleur est au maximum sur le blanc de référence : les couleurs restent exploitables, mais une lumière plus neutre les rendrait plus justes.' });
   }
 
   const dominante = Math.max(...gains) / Math.min(...gains);

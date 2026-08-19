@@ -45,7 +45,6 @@ export async function posseder(livreId, nbColoriages, jeuCodes) {
     date_acquisition: new Date().toISOString(),
     nb_coloriages: nbColoriages,
     jeu_codes: jeuCodes || fiche?.jeu_codes || null,
-    teintes: fiche?.teintes || null,
     note: ''
   });
   const planches = Array.from({ length: nbColoriages }, (_, i) => ({
@@ -98,34 +97,30 @@ export const terminer = (id, sujetRevele) =>
 
 /* ---------- nuanciers ---------- */
 
-/* Les teintes du livre amorcent le nuancier : elles sont une propriété du livre,
-   relevées à l'œil sur sa légende, et destinées à être remplacées à la pipette.
-   SPECS §7. */
-export async function nuancier(coloriageId, jeuCodes, teintes) {
+/* Les cases naissent vides : la couleur d'un code change d'une planche à
+   l'autre, elle vient de la page « Mon nuancier » du livre relevée en photo.
+   Rien n'est amorcé depuis le catalogue — une couleur approchée serait plus
+   trompeuse qu'une case grise. */
+export async function nuancier(coloriageId, jeuCodes) {
   const existant = await base.lire('nuanciers', coloriageId);
   if (existant) return existant;
   return {
     coloriage_id: coloriageId,
     entrees: (jeuCodes || []).map(code => ({
       code,
-      pastille_hex: teintes?.[code]?.hex || null,
-      teinte: teintes?.[code]?.nom || '',
+      pastille_hex: null,
       feutres: [],
       note: ''
     }))
   };
 }
 
-/* Jeu de codes et teintes viennent du livre ; la possession en garde une copie
-   pour que l'app reste juste même si le catalogue est remplacé. */
+/* Le jeu de codes vient du livre ; la possession en garde une copie pour que
+   l'app reste juste même si le catalogue est remplacé. */
 export async function contexteNuancier(livreId) {
   const [fiche, liste] = await Promise.all([livre(livreId), possessions()]);
   const p = liste.find(x => x.livre_id === livreId);
-  return {
-    fiche,
-    jeu: p?.jeu_codes || fiche?.jeu_codes || [],
-    teintes: p?.teintes || fiche?.teintes || null
-  };
+  return { fiche, jeu: p?.jeu_codes || fiche?.jeu_codes || [] };
 }
 
 export async function enregistrerNuancier(n) {
@@ -134,30 +129,38 @@ export async function enregistrerNuancier(n) {
 }
 
 export async function attribuer(coloriageId, code, feutreIds, contexte) {
-  const n = await nuancier(coloriageId, contexte.jeu, contexte.teintes);
+  const n = await nuancier(coloriageId, contexte.jeu);
   const entree = n.entrees.find(e => e.code === code);
   if (entree) entree.feutres = feutreIds;
   return enregistrerNuancier(n);
 }
 
 export async function pipetter(coloriageId, code, hex, contexte) {
-  const n = await nuancier(coloriageId, contexte.jeu, contexte.teintes);
+  const n = await nuancier(coloriageId, contexte.jeu);
   const entree = n.entrees.find(e => e.code === code);
   if (entree) entree.pastille_hex = hex;
   return enregistrerNuancier(n);
 }
 
-/* Copie les correspondances d'une autre planche du même album. SPECS §5. */
+/* Le relevé photo de la page « Mon nuancier » du livre : toutes les couleurs
+   de la planche d'un coup, les codes absents de la photo restant intacts. */
+export async function releverPastilles(coloriageId, couleurs, contexte) {
+  const n = await nuancier(coloriageId, contexte.jeu);
+  for (const entree of n.entrees) {
+    if (couleurs[entree.code]) entree.pastille_hex = couleurs[entree.code];
+  }
+  return enregistrerNuancier(n);
+}
+
+/* Copie les correspondances d'une autre planche du même album. SPECS §5.
+   Les feutres seulement : les couleurs imprimées appartiennent à la planche. */
 export async function reprendreNuancier(sourceId, cibleId, contexte) {
   const source = await base.lire('nuanciers', sourceId);
   if (!source) return null;
-  const cible = await nuancier(cibleId, contexte.jeu, contexte.teintes);
+  const cible = await nuancier(cibleId, contexte.jeu);
   for (const entree of cible.entrees) {
     const modele = source.entrees.find(e => e.code === entree.code);
-    if (modele && modele.feutres.length) {
-      entree.feutres = [...modele.feutres];
-      if (!entree.pastille_hex) entree.pastille_hex = modele.pastille_hex;
-    }
+    if (modele && modele.feutres.length) entree.feutres = [...modele.feutres];
   }
   return enregistrerNuancier(cible);
 }

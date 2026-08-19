@@ -41,6 +41,7 @@ app/
   couleur.js            encre sur pastille, sRGB → Lab, ΔE76
   photo.js              compression 1600 px / qualité 0.8
   nuancier-photo.js     homographie, échantillonnage, correction du blanc
+  viseur.js             pose des repères au doigt, loupe ×5
   zip.js                écriture et lecture ZIP en mode stored
   partage.js            navigator.share avec légende
   paliers.js            seuils des paliers Winx
@@ -48,7 +49,7 @@ app/
   rendu.js              fabrique d'éléments, icônes, dégradés de repli
   vues/                 un module par écran
 data/
-  catalogue.json        129 livres relevés chez l'éditeur
+  catalogue.json        129 livres relevés chez l'éditeur, sans couleurs
   nuanciers/            nuanciers de référence livrés avec l'app
   couvertures/          vignettes locales, hors dépôt
 polices/                Baloo 2 et Space Grotesk en woff2 (SIL OFL)
@@ -83,6 +84,7 @@ premier affichage, repli sur un dégradé de couleur.
 | Catalogue | Les 129 livres, recherche, coche d'un album |
 | Album | Grille des planches — pas commencée, en cours, terminée avec sa photo |
 | **Fiche coloriage** | L'écran de travail : les codes du livre et leurs feutres |
+| Relevé du nuancier | Les couleurs d'une planche, lues sur sa page « Mon nuancier » |
 | Attribution | Feutres d'un code, superposition ordonnée, recherche, propositions ΔE |
 | Pipette | Relevé d'une couleur du livre sur photo de légende |
 | Feutres | Inventaire, états, couleurs |
@@ -102,9 +104,10 @@ auteur, EAN13, année, nombre de pages, couverture locale. Le **nombre de
 planches n'existe nulle part chez l'éditeur** : il est demandé à la coche d'un
 album, le nombre de pages servant de repère.
 
-Le livre Winx Club porte en plus son **jeu de 31 codes** et les **teintes** de sa
-légende. Le jeu de codes est une propriété du livre, jamais une constante
-globale — un autre album aura un autre jeu.
+Le livre Winx Club porte en plus son **jeu de 31 codes**. Le jeu de codes est une
+propriété du livre, jamais une constante globale — un autre album aura un autre
+jeu. Il ne porte **aucune couleur** : la palette change d'une planche à l'autre,
+elle se relève sur la page « Mon nuancier » de chaque planche.
 
 ```
 1 2 3 4 5 6 7 8 9 0 a b c d e f h k m n p q r t u v x y z ◊ Δ
@@ -120,7 +123,30 @@ nuancier papier. Les hexadécimaux sont vides : ils se relèvent depuis l'app.
 
 ---
 
-## Relever les couleurs d'un nuancier
+## Relever le nuancier d'une planche
+
+Fiche coloriage → *Relever le nuancier en photo*.
+
+Chaque planche du livre a sa page « Mon nuancier #N », où la bande des 31 codes
+est imprimée avec **les couleurs de cette planche-là**. Le jeu de codes ne bouge
+pas d'une planche à l'autre, les couleurs si — d'où le relevé planche par
+planche. Tant qu'une planche n'a pas été relevée, ses cases restent grises.
+
+Quatre repères aux **coins de la bande** donnent l'homographie, un cinquième sur
+le blanc de la page donne la référence colorimétrique. Ici, aucune feuille à
+ajouter dans le cadre : la page est déjà blanche. Les coins de la bande se
+visent bien mieux qu'un centre de case sur une colonne large de trente pixels.
+
+Le relevé reste accessible une fois fait : un mauvais cadrage se voit souvent
+après coup.
+
+Mesuré sur des bandes de synthèse projetées en perspective — de face, inclinée
+à 20°, inclinée et pivotée, en gros plan à 32° — les 31 couleurs sortent
+exactes. La pose des repères tolère environ quatre pixels d'écart ; au-delà, les
+rangées commencent à baver l'une sur l'autre, ce que l'écran de vérification
+montre avant l'enregistrement.
+
+## Relever les couleurs d'un nuancier de feutres
 
 Feutres → *Relever les couleurs sur photo*.
 
@@ -174,6 +200,8 @@ service worker.
 
 - **Les hexadécimaux des 360 feutres** ne sont pas renseignés. À relever planche
   par planche depuis l'app.
+- **Les palettes des planches** ne sont pas relevées : chaque planche demande la
+  photo de sa page « Mon nuancier ».
 - **Les seuils des paliers Winx** (`app/paliers.js`) sont posés par déduction,
   calés pour que 37 planches donnent Believix comme la maquette. À valider.
 - **Les six couleurs de fées** (`--fee-*` dans `app/styles.css`) sont déduites,
