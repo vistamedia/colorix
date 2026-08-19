@@ -29,6 +29,11 @@ function verdict(id, etat, texte) {
 
 function journaliser(id, texte) {
   sections.get(id).querySelector('.journal').textContent = texte;
+  ecrireRapport();
+}
+
+function vider(id) {
+  sections.get(id).querySelector('dl').replaceChildren();
 }
 
 function surAction(nom, traitement) {
@@ -197,7 +202,6 @@ surAction('ecrire-50mo', async bouton => {
     await transiger(base, ['meta'], 'readwrite', t =>
       t.objectStore('meta').put({ date: Date.now(), blocs: NB_BLOCS }, 'ecriture'));
     journaliser('v3', `${NB_BLOCS} Mo écrits en ${duree(Date.now() - debut)}. Ferme l’app et reviens dans 72 h.`);
-    await etatPersistance();
     await relirePersistance();
   } catch (erreur) {
     journaliser('v3', `Écriture interrompue : ${erreur.message}`);
@@ -210,6 +214,9 @@ surAction('ecrire-50mo', async bouton => {
 async function relirePersistance() {
   const base = await ouvrirBase();
   const marque = await transiger(base, ['meta'], 'readonly', t => lire(t.objectStore('meta'), 'ecriture'));
+
+  vider('v3');
+  await etatPersistance();
 
   if (!marque) {
     poser('v3', 'écriture', 'aucune');
@@ -262,7 +269,6 @@ surAction('effacer', async bouton => {
   base.close();
   journaliser('v3', 'Effacé.');
   await relirePersistance();
-  await etatPersistance();
   bouton.disabled = false;
 });
 
@@ -458,9 +464,14 @@ surAction('copier', async () => {
 
 /* ---------- démarrage ---------- */
 
+if (modeAffichage() === 'onglet Safari') {
+  const bandeau = document.getElementById('avertissement');
+  bandeau.textContent = 'Tu es dans Safari : V2, V3 et V6 ne peuvent pas se valider ici. Partager → Sur l’écran d’accueil, puis rouvre depuis l’icône.';
+  bandeau.hidden = false;
+}
+
 verifierHebergement();
 await verifierServiceWorker();
-await etatPersistance();
 await relirePersistance();
 poser('v6', 'affichage', modeAffichage());
 poser('v6', 'API', 'wakeLock' in navigator ? 'disponible' : 'absente');
