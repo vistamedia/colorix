@@ -1,0 +1,11 @@
+AddType application/manifest+json .webmanifest
+
+# Le service worker et le manifeste ne doivent jamais être servis depuis un cache
+# intermédiaire, sinon une mise à jour de la coquille n'atteint jamais l'appareil.
+<FilesMatch "(sw\.js|manifest\.webmanifest)$">
+  <IfModule mod_headers.c>
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+  </IfModule>
+</FilesMatch>
+
+Options -Indexes

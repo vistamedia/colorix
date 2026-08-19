@@ -90,7 +90,6 @@ async function verifierServiceWorker() {
     const inscription = await navigator.serviceWorker.register('./sw.js', { scope: './' });
     poser('v2', 'portée', inscription.scope);
     await navigator.serviceWorker.ready;
-    poser('v2', 'contrôleur', navigator.serviceWorker.controller ? 'actif' : 'absent — recharge la page');
 
     const cles = await caches.keys();
     poser('v2', 'caches', cles.join(', ') || 'aucun');
@@ -99,8 +98,12 @@ async function verifierServiceWorker() {
       poser('v2', 'entrées', String(entrees.length));
     }
 
-    verdict('v2', navigator.serviceWorker.controller ? 'ok' : 'attente',
-      navigator.serviceWorker.controller ? 'OK' : 'RECHARGER');
+    const etatControleur = () => poser('v2', 'contrôleur',
+      navigator.serviceWorker.controller ? 'actif' : 'absent — recharge la page');
+    navigator.serviceWorker.addEventListener('controllerchange', etatControleur);
+    etatControleur();
+
+    verdict('v2', 'attente', 'À TESTER');
   } catch (erreur) {
     verdict('v2', 'echec', 'ÉCHEC');
     poser('v2', 'cause', erreur.message);
@@ -113,9 +116,14 @@ surAction('sonder-cache', async bouton => {
     const reponse = await fetch('./sonde.txt', { cache: 'no-store' });
     const origine = reponse.headers.get('X-Colorix-Origine') || 'inconnue';
     poser('v2', 'sonde', `${(await reponse.text()).trim()} — via ${origine}`);
-    journaliser('v2', origine === 'cache'
-      ? 'Servi par le service worker depuis le cache : le mode avion tiendra.'
-      : `Servi depuis « ${origine} ». Refais ce test en mode avion.`);
+    const horsLigne = !navigator.onLine;
+    verdict('v2', origine === 'cache' && horsLigne ? 'ok' : 'attente',
+      origine === 'cache' && horsLigne ? 'OK' : 'À TESTER');
+    journaliser('v2', origine !== 'cache'
+      ? `Servi depuis « ${origine} » : le cache ne couvre pas cette ressource.`
+      : horsLigne
+        ? 'Servi depuis le cache, en mode avion : la vérification est remplie.'
+        : 'Servi depuis le cache, mais tu es en ligne. Repasse en mode avion et refais ce test.');
   } catch (erreur) {
     poser('v2', 'sonde', `échec — ${erreur.message}`);
     journaliser('v2', 'Rien n’a été servi : le cache ne couvre pas cette ressource.');
