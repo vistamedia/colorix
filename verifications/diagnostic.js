@@ -287,38 +287,37 @@ function signature(donnees) {
   return { hexa, format };
 }
 
+const voiesTestees = new Map();
+
 async function analyserFichier(fichier, voie) {
   journaliser('v4', `Analyse de « ${fichier.name} »…`);
-  poser('v4', 'voie', voie);
-  poser('v4', 'nom', fichier.name);
-  poser('v4', 'type MIME', fichier.type || '(vide)');
-  poser('v4', 'taille', octets(fichier.size));
 
   const entete = new Uint8Array(await fichier.slice(0, 16).arrayBuffer());
   const { hexa, format } = signature(entete);
-  poser('v4', 'octets', hexa);
-  poser('v4', 'format réel', format);
 
   const debut = performance.now();
   try {
     const image = await createImageBitmap(fichier);
-    poser('v4', 'décodage', `${image.width} × ${image.height} en ${Math.round(performance.now() - debut)} ms`);
+    const msDecodage = Math.round(performance.now() - debut);
 
-    const facteur = 1600 / Math.max(image.width, image.height);
-    const largeur = Math.round(image.width * Math.min(1, facteur));
-    const hauteur = Math.round(image.height * Math.min(1, facteur));
+    const facteur = Math.min(1, 1600 / Math.max(image.width, image.height));
+    const largeur = Math.round(image.width * facteur);
+    const hauteur = Math.round(image.height * facteur);
     const toile = new OffscreenCanvas(largeur, hauteur);
     toile.getContext('2d').drawImage(image, 0, 0, largeur, hauteur);
     const jpeg = await toile.convertToBlob({ type: 'image/jpeg', quality: 0.8 });
+
+    poser('v4', voie, `${format} · ${fichier.type || 'type vide'} · ${image.width}×${image.height}`
+      + ` en ${msDecodage} ms → ${largeur}×${hauteur}, ${octets(jpeg.size)}`);
     image.close();
 
-    poser('v4', 'ré-encodage', `${largeur} × ${hauteur} JPEG, ${octets(jpeg.size)}`);
-    verdict('v4', 'ok', 'OK');
-    journaliser('v4', format === 'JPEG'
-      ? 'Safari livre du JPEG et le canvas le relit : le pipeline photo est direct, aucun décodeur à embarquer.'
-      : `Le fichier brut est en ${format}, mais le canvas le relit et le ré-encode en JPEG. Aucun décodeur à embarquer.`);
+    voiesTestees.set(voie, format);
+    verdict('v4', 'ok', `OK ${voiesTestees.size}/3`);
+    journaliser('v4', [...voiesTestees.values()].every(f => f === 'JPEG')
+      ? `Safari livre du JPEG et le canvas le relit : pipeline direct, aucun décodeur à embarquer. Octets : ${hexa}`
+      : `Formats bruts mêlés (${[...voiesTestees.values()].join(', ')}), mais le canvas les relit tous. Aucun décodeur à embarquer.`);
   } catch (erreur) {
-    poser('v4', 'décodage', `échec — ${erreur.message}`);
+    poser('v4', voie, `${format} — décodage impossible : ${erreur.message}`);
     verdict('v4', 'echec', 'ÉCHEC');
     journaliser('v4', `Le canvas ne sait pas lire ce fichier (${format}). Il faudra décoder côté client, ce qui change l’architecture des photos.`);
   }
