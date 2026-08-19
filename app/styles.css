@@ -163,6 +163,20 @@ button, input, textarea, select {
 }
 .entete--decor .sur-titre { color: rgba(255,255,255,.74); }
 
+/* Seule sortie de la fiche coloriage : elle n'a pas d'onglets. Le padding
+   porte la cible tactile à 44 px sans rien prendre à la liste. */
+.sur-titre--retour {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  align-self: flex-start;
+  padding: 14px 10px 14px 0;
+  margin: -14px 0;
+  max-width: 100%;
+}
+.sur-titre--retour:active { color: var(--magenta); }
+.entete--decor .sur-titre--retour:active { color: #FFF; }
+
 .retour {
   display: flex;
   align-items: center;
