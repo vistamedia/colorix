@@ -675,3 +675,51 @@ button, input, textarea, select {
 .reglages__album-titre { flex: 1; min-width: 0; font: 700 14px/1.2 'Baloo 2', sans-serif; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .reglages__retirer { flex: none; padding: 7px 12px; border-radius: 999px; background: #FDECEF; color: #B4162F; font: 600 12px 'Space Grotesk', sans-serif; }
 .rappel { margin: 0; padding: 12px 14px; border-radius: 14px; background: var(--encours-fond); color: var(--encours-texte); font: 600 14px 'Space Grotesk', sans-serif; }
+
+/* ---------- import d'un nuancier depuis une photo ---------- */
+
+.feutres__actions { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.bouton--secondaire--lien { display: flex; align-items: center; padding: 0 14px; flex: none; }
+.champ--select { -webkit-appearance: none; appearance: none; }
+
+.corps--import { padding: 16px 20px calc(var(--safe-bas) + 16px); display: flex; flex-direction: column; gap: 12px; }
+.import__scene { position: relative; border-radius: 16px; overflow: hidden; background: var(--separateur); min-height: 120px; touch-action: none; }
+.import__scene--chargee { background: none; }
+.import__toile { display: block; width: 100%; height: auto; }
+.import__calques { position: absolute; inset: 0; }
+
+.repere {
+  position: absolute;
+  width: 40px; height: 40px;
+  margin: -20px 0 0 -20px;
+  border-radius: 999px;
+  border: 3px solid #FFF;
+  background: rgba(196,33,143,.85);
+  color: #FFF;
+  font: 700 15px 'Space Grotesk', sans-serif;
+  box-shadow: 0 2px 8px rgba(0,0,0,.45);
+  touch-action: none;
+}
+.repere--blanc { background: rgba(255,194,46,.92); color: #2A1B36; }
+
+.mire {
+  position: absolute;
+  width: 8px; height: 8px;
+  margin: -4px 0 0 -4px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.85);
+  box-shadow: 0 0 0 1.5px rgba(20,10,28,.55);
+  pointer-events: none;
+}
+
+.import__apercu { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.import__case { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.import__pastille {
+  width: 100%; aspect-ratio: 3/2; border-radius: 10px;
+  box-shadow: var(--liseré-pastille);
+  background: var(--separateur);
+  display: flex; align-items: center; justify-content: center;
+  font: 700 14px 'Space Grotesk', sans-serif; color: var(--encre-3);
+}
+.import__ref { font: 700 12px 'Space Grotesk', sans-serif; font-variant-numeric: tabular-nums; }
+.import__nom { font-size: 9px; color: var(--encre-2); text-align: center; line-height: 1.15; }

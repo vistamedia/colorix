@@ -96,7 +96,10 @@ export async function monter() {
         oninput: (e) => { filtre = e.target.value; dessiner(); }
       }),
       filtres,
-      compte));
+      h('div', { class: 'feutres__actions' },
+        compte,
+        h('a', { class: 'bouton--secondaire bouton--secondaire--lien', href: '#/feutres/importer' },
+          'Relever les couleurs sur photo'))));
 
   dessiner();
   return { element: h('div', { class: 'vue' }, entete, liste) };
@@ -118,6 +121,9 @@ function ecranAmorcage() {
       h('span', { class: 'carte-amorcage__titre' }, nuancier.nom),
       h('span', { class: 'carte-amorcage__note' }, `${nuancier.feutres} feutres · référence et nom`)));
   }
+
+  zone.append(h('a', { class: 'bouton--pointille', href: '#/feutres/importer' },
+    'Importer un nuancier depuis une photo'));
 
   return h('div', { class: 'vue' },
     h('header', { class: 'entete entete--sobre' },

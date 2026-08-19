@@ -8,2161 +8,2923 @@
    "reference": "600",
    "nom": "White",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 8,
+   "position": 4
   },
   {
    "reference": "601",
    "nom": "Sky blue",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 23
   },
   {
    "reference": "602",
    "nom": "Lake green",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 26
   },
   {
    "reference": "603",
    "nom": "Yellow",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 5,
+   "position": 32
   },
   {
    "reference": "604",
    "nom": "Orange",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 6,
+   "position": 40
   },
   {
    "reference": "605",
    "nom": "Red",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 37
   },
   {
    "reference": "606",
    "nom": "Rose red",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 45
   },
   {
    "reference": "607",
    "nom": "Lilac purple",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 44
   },
   {
    "reference": "608",
    "nom": "Royal blue",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 31
   },
   {
    "reference": "609",
    "nom": "Green",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 36
   },
   {
    "reference": "610",
    "nom": "Gray",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 8,
+   "position": 16
   },
   {
    "reference": "611",
    "nom": "Black",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 8,
+   "position": 39
   },
   {
    "reference": "612",
    "nom": "Pink",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 16
   },
   {
    "reference": "613",
    "nom": "Grape purple",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 43
   },
   {
    "reference": "614",
    "nom": "Emerald green",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 27
   },
   {
    "reference": "615",
    "nom": "Bright yellow",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 5,
+   "position": 36
   },
   {
    "reference": "616",
    "nom": "Dazzle blue",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 34
   },
   {
    "reference": "617",
    "nom": "Ink blue",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 26
   },
   {
    "reference": "618",
    "nom": "Amber",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 6,
+   "position": 19
   },
   {
    "reference": "619",
    "nom": "Carmine",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 7,
+   "position": 25
   },
   {
    "reference": "620",
    "nom": "Coffee",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 7,
+   "position": 32
   },
   {
    "reference": "621",
    "nom": "Indigo blue",
    "pack": 240,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 38
   },
   {
    "reference": "622",
    "nom": "Pine green",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 33
   },
   {
    "reference": "623",
    "nom": "Wisteria",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 22
   },
   {
    "reference": "624",
    "nom": "Pomelo pink",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 8
   },
   {
    "reference": "625",
    "nom": "Cinnamon",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 7
   },
   {
    "reference": "626",
    "nom": "Rice white",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 5,
+   "position": 4
   },
   {
    "reference": "627",
    "nom": "Mint green",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 12
   },
   {
    "reference": "628",
    "nom": "Milk blue",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 7
   },
   {
    "reference": "629",
    "nom": "Taro purple",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 9
   },
   {
    "reference": "630",
    "nom": "Bean paste pink",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 7,
+   "position": 16
   },
   {
    "reference": "631",
    "nom": "Vermilion",
    "pack": 200,
-   "hex": null
+   "hex": null,
+   "planche": 7,
+   "position": 29
   },
   {
    "reference": "632",
    "nom": "Apple red",
    "pack": 200,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 31
   },
   {
    "reference": "633",
    "nom": "Haze blue",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 35
   },
   {
    "reference": "634",
    "nom": "Forest green",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 50
   },
   {
    "reference": "635",
    "nom": "Purple",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 17
   },
   {
    "reference": "636",
    "nom": "Bicheng blue",
    "pack": 240,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 32
   },
   {
    "reference": "637",
    "nom": "Local green",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 5,
+   "position": 26
   },
   {
    "reference": "638",
    "nom": "Curious mind",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 5,
+   "position": 14
   },
   {
    "reference": "639",
    "nom": "Grounded red",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 6,
+   "position": 35
   },
   {
    "reference": "640",
    "nom": "Spring green",
    "pack": 240,
-   "hex": null
+   "hex": null,
+   "planche": 5,
+   "position": 25
   },
   {
    "reference": "641",
    "nom": "Celadon",
    "pack": 240,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 23
   },
   {
    "reference": "642",
    "nom": "Verdant hills green",
    "pack": 240,
-   "hex": null
+   "hex": null,
+   "planche": 8,
+   "position": 32
   },
   {
    "reference": "643",
    "nom": "Russet",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 7,
+   "position": 28
   },
   {
    "reference": "644",
    "nom": "Clay colour",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 6,
+   "position": 31
   },
   {
    "reference": "645",
    "nom": "Medieval yellow",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 6,
+   "position": 14
   },
   {
    "reference": "646",
    "nom": "Humus",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 8,
+   "position": 5
   },
   {
    "reference": "647",
    "nom": "Bamboo shoot green",
    "pack": 240,
-   "hex": null
+   "hex": null,
+   "planche": 5,
+   "position": 21
   },
   {
    "reference": "648",
    "nom": "Sprout green",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 10
   },
   {
    "reference": "649",
    "nom": "Light orange",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 6,
+   "position": 12
   },
   {
    "reference": "650",
    "nom": "Blue",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 16
   },
   {
    "reference": "651",
    "nom": "Violet",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 29
   },
   {
    "reference": "652",
    "nom": "Primrose green",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 5,
+   "position": 23
   },
   {
    "reference": "653",
    "nom": "Bluish green",
    "pack": 240,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 31
   },
   {
    "reference": "654",
    "nom": "Flesh color",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 7,
+   "position": 11
   },
   {
    "reference": "655",
    "nom": "Rose",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 20
   },
   {
    "reference": "656",
    "nom": "Earthy yellow",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 5,
+   "position": 40
   },
   {
    "reference": "657",
    "nom": "Bishan green",
    "pack": 240,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 35
   },
   {
    "reference": "658",
    "nom": "Light pink",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 15
   },
   {
    "reference": "659",
    "nom": "Dark blue",
    "pack": 168,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 21
   },
   {
    "reference": "660",
    "nom": "Heartbeat pink",
    "pack": 200,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 24
   },
   {
    "reference": "661",
    "nom": "Vibrant red",
    "pack": 200,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 16
   },
   {
    "reference": "662",
    "nom": "Vibrant green",
    "pack": 240,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 14
   },
   {
    "reference": "663",
    "nom": "Reddish orange",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 7,
+   "position": 13
   },
   {
    "reference": "664",
    "nom": "Bright red",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 41
   },
   {
    "reference": "665",
    "nom": "Leaf green",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 45
   },
   {
    "reference": "666",
    "nom": "Purplish red",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 32
   },
   {
    "reference": "667",
    "nom": "Thin red",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 7,
+   "position": 21
   },
   {
    "reference": "668",
    "nom": "Stone cyan",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 32
   },
   {
    "reference": "669",
    "nom": "Grass green",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 19
   },
   {
    "reference": "670",
    "nom": "Rattan",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 24
   },
   {
    "reference": "671",
    "nom": "Wine red",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 36
   },
   {
    "reference": "672",
    "nom": "Brownish red",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 7,
+   "position": 34
   },
   {
    "reference": "673",
    "nom": "Klein blue",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 30
   },
   {
    "reference": "674",
    "nom": "Strong brown",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 38
   },
   {
    "reference": "675",
    "nom": "Sauce purple",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 47
   },
   {
    "reference": "676",
    "nom": "Dark green",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 38
   },
   {
    "reference": "677",
    "nom": "Peach red",
    "pack": 200,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 17
   },
   {
    "reference": "678",
    "nom": "Dark purple",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 50
   },
   {
    "reference": "679",
    "nom": "Grayish red",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 8,
+   "position": 34
   },
   {
    "reference": "680",
    "nom": "Stone gray",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 8,
+   "position": 31
   },
   {
    "reference": "681",
    "nom": "Group cyan",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 6
   },
   {
    "reference": "682",
    "nom": "Bamboo green",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 40
   },
   {
    "reference": "683",
    "nom": "Creamy white",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 5,
+   "position": 16
   },
   {
    "reference": "684",
    "nom": "Apricot yellow",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 6,
+   "position": 11
   },
   {
    "reference": "685",
    "nom": "Onion green",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 22
   },
   {
    "reference": "686",
    "nom": "Light gray",
    "pack": 72,
-   "hex": null
+   "hex": null,
+   "planche": 8,
+   "position": 12
   },
   {
    "reference": "687",
    "nom": "Bright green",
    "pack": 120,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 34
   },
   {
    "reference": "688",
    "nom": "Dark cyan",
    "pack": 120,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 37
   },
   {
    "reference": "689",
    "nom": "Porcelain blue",
    "pack": 120,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 11
   },
   {
    "reference": "690",
    "nom": "Green blue",
    "pack": 120,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 25
   },
   {
    "reference": "691",
    "nom": "Coral powder",
    "pack": 120,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 22
   },
   {
    "reference": "692",
    "nom": "Purple light",
    "pack": 200,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 29
   },
   {
    "reference": "693",
    "nom": "Blue grey",
    "pack": 120,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 43
   },
   {
    "reference": "694",
    "nom": "Soft jade",
    "pack": 120,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 50
   },
   {
    "reference": "695",
    "nom": "French green",
    "pack": 120,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 45
   },
   {
    "reference": "696",
    "nom": "Fruit green",
    "pack": 120,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 28
   },
   {
    "reference": "697",
    "nom": "Pine green",
    "pack": 120,
-   "hex": null
+   "hex": null,
+   "planche": 5,
+   "position": 37
   },
   {
    "reference": "698",
    "nom": "Sweat purple",
    "pack": 200,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 12
   },
   {
    "reference": "699",
    "nom": "Felongrass purple",
    "pack": 200,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 28
   },
   {
    "reference": "700",
    "nom": "Cream yellow",
    "pack": 120,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 5
   },
   {
    "reference": "701",
    "nom": "Light apricot",
    "pack": 120,
-   "hex": null
+   "hex": null,
+   "planche": 6,
+   "position": 7
   },
   {
    "reference": "702",
    "nom": "Pomelo",
    "pack": 120,
-   "hex": null
+   "hex": null,
+   "planche": 6,
+   "position": 8
   },
   {
    "reference": "703",
    "nom": "Ivory orange",
    "pack": 120,
-   "hex": null
+   "hex": null,
+   "planche": 7,
+   "position": 2
   },
   {
    "reference": "704",
    "nom": "Red lip",
    "pack": 120,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 12
   },
   {
    "reference": "705",
    "nom": "Cornel purple",
    "pack": 240,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 46
   },
   {
    "reference": "706",
    "nom": "White cyan",
    "pack": 120,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 1
   },
   {
    "reference": "707",
    "nom": "Magnolia",
    "pack": 120,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 15
   },
   {
    "reference": "708",
    "nom": "Sooty red",
    "pack": 200,
-   "hex": null
+   "hex": null,
+   "planche": 8,
+   "position": 30
   },
   {
    "reference": "709",
    "nom": "Brown black",
    "pack": 200,
-   "hex": null
+   "hex": null,
+   "planche": 8,
+   "position": 38
   },
   {
    "reference": "710",
    "nom": "Changchun",
    "pack": 200,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 27
   },
   {
    "reference": "711",
    "nom": "Lipstick pink",
    "pack": 240,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 21
   },
   {
    "reference": "712",
    "nom": "Fluorescent rose",
    "pack": 168,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 30
   },
   {
    "reference": "713",
    "nom": "Nelumbo red",
    "pack": 200,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 39
   },
   {
    "reference": "714",
    "nom": "Blackish red",
    "pack": 200,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 44
   },
   {
    "reference": "715",
    "nom": "Bright red",
    "pack": 200,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 36
   },
   {
    "reference": "716",
    "nom": "Peach pink",
    "pack": 200,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 13
   },
   {
    "reference": "717",
    "nom": "Shallow camel",
    "pack": 120,
-   "hex": null
+   "hex": null,
+   "planche": 6,
+   "position": 29
   },
   {
    "reference": "718",
    "nom": "Turmeric",
    "pack": 288,
-   "hex": null
+   "hex": null,
+   "planche": 5,
+   "position": 24
   },
   {
    "reference": "719",
    "nom": "Cheese yellow",
    "pack": 120,
-   "hex": null
+   "hex": null,
+   "planche": 5,
+   "position": 20
   },
   {
    "reference": "720",
    "nom": "Bean yellow",
    "pack": 200,
-   "hex": null
+   "hex": null,
+   "planche": 6,
+   "position": 17
   },
   {
    "reference": "721",
    "nom": "Water pink",
    "pack": 240,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 2
   },
   {
    "reference": "722",
    "nom": "Turquoise blue",
    "pack": 240,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 29
   },
   {
    "reference": "723",
    "nom": "Sakura",
    "pack": 120,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 10
   },
   {
    "reference": "724",
    "nom": "Light beige",
    "pack": 240,
-   "hex": null
+   "hex": null,
+   "planche": 6,
+   "position": 13
   },
   {
    "reference": "725",
    "nom": "Fresh orange",
    "pack": 120,
-   "hex": null
+   "hex": null,
+   "planche": 7,
+   "position": 9
   },
   {
    "reference": "726",
    "nom": "Imperial purple",
    "pack": 240,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 37
   },
   {
    "reference": "727",
    "nom": "Willow green",
    "pack": 120,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 25
   },
   {
    "reference": "728",
    "nom": "Viridity",
    "pack": 120,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 37
   },
   {
    "reference": "729",
    "nom": "Grey yellow",
    "pack": 120,
-   "hex": null
+   "hex": null,
+   "planche": 5,
+   "position": 6
   },
   {
    "reference": "730",
    "nom": "Jade white",
    "pack": 120,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 3
   },
   {
    "reference": "731",
    "nom": "Sand dust",
    "pack": 120,
-   "hex": null
+   "hex": null,
+   "planche": 8,
+   "position": 13
   },
   {
    "reference": "732",
    "nom": "Velvet yellow",
    "pack": 120,
-   "hex": null
+   "hex": null,
+   "planche": 5,
+   "position": 8
   },
   {
    "reference": "733",
    "nom": "Light yellow",
    "pack": 120,
-   "hex": null
+   "hex": null,
+   "planche": 5,
+   "position": 28
   },
   {
    "reference": "734",
    "nom": "Pink purple",
    "pack": 120,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 7
   },
   {
    "reference": "735",
    "nom": "Pea green",
    "pack": 120,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 30
   },
   {
    "reference": "736",
    "nom": "Pale white",
    "pack": 120,
-   "hex": null
+   "hex": null,
+   "planche": 8,
+   "position": 7
   },
   {
    "reference": "737",
    "nom": "Bluish green",
    "pack": 120,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 16
   },
   {
    "reference": "738",
    "nom": "Onyx",
    "pack": 120,
-   "hex": null
+   "hex": null,
+   "planche": 8,
+   "position": 1
   },
   {
    "reference": "739",
    "nom": "Ormosia",
    "pack": 120,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 41
   },
   {
    "reference": "740",
    "nom": "Verdant",
    "pack": 120,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 44
   },
   {
    "reference": "741",
    "nom": "Dull green",
    "pack": 120,
-   "hex": null
+   "hex": null,
+   "planche": 5,
+   "position": 33
   },
   {
    "reference": "742",
    "nom": "Flower purple",
    "pack": 120,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 49
   },
   {
    "reference": "743",
    "nom": "Aubergine",
    "pack": 120,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 45
   },
   {
    "reference": "744",
    "nom": "Lavender",
    "pack": 120,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 3
   },
   {
    "reference": "745",
    "nom": "Light rattan",
    "pack": 120,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 19
   },
   {
    "reference": "746",
    "nom": "Fotou blue",
    "pack": 240,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 41
   },
   {
    "reference": "747",
    "nom": "Quetou blue",
    "pack": 240,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 25
   },
   {
    "reference": "748",
    "nom": "Tianqing blue",
    "pack": 240,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 39
   },
   {
    "reference": "749",
    "nom": "Light rattan",
    "pack": 240,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 15
   },
   {
    "reference": "750",
    "nom": "Kongqing blue",
    "pack": 240,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 20
   },
   {
    "reference": "751",
    "nom": "Chalky white",
    "pack": 240,
-   "hex": null
+   "hex": null,
+   "planche": 8,
+   "position": 6
   },
   {
    "reference": "752",
    "nom": "Lotus root gray",
    "pack": 240,
-   "hex": null
+   "hex": null,
+   "planche": 7,
+   "position": 20
   },
   {
    "reference": "753",
    "nom": "Jade color",
    "pack": 200,
-   "hex": null
+   "hex": null,
+   "planche": 8,
+   "position": 10
   },
   {
    "reference": "754",
    "nom": "Pinkish red",
    "pack": 240,
-   "hex": null
+   "hex": null,
+   "planche": 7,
+   "position": 19
   },
   {
    "reference": "755",
    "nom": "Xianchi red",
    "pack": 200,
-   "hex": null
+   "hex": null,
+   "planche": 7,
+   "position": 22
   },
   {
    "reference": "756",
    "nom": "Light red",
    "pack": 200,
-   "hex": null
+   "hex": null,
+   "planche": 7,
+   "position": 26
   },
   {
    "reference": "757",
    "nom": "Chestnut brown",
    "pack": 240,
-   "hex": null
+   "hex": null,
+   "planche": 6,
+   "position": 30
   },
   {
    "reference": "758",
    "nom": "Agilawood",
    "pack": 240,
-   "hex": null
+   "hex": null,
+   "planche": 8,
+   "position": 22
   },
   {
    "reference": "759",
    "nom": "Sandstone yellow",
    "pack": 240,
-   "hex": null
+   "hex": null,
+   "planche": 8,
+   "position": 26
   },
   {
    "reference": "760",
    "nom": "Tomato red",
    "pack": 200,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 46
   },
   {
    "reference": "761",
    "nom": "Lychee pink",
    "pack": 240,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 34
   },
   {
    "reference": "762",
    "nom": "Vibrant pink",
    "pack": 200,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 19
   },
   {
    "reference": "763",
    "nom": "Ink blue black",
    "pack": 200,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 47
   },
   {
    "reference": "764",
    "nom": "Smoke-purple black",
    "pack": 240,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 46
   },
   {
    "reference": "765",
    "nom": "Happy yellow",
    "pack": 200,
-   "hex": null
+   "hex": null,
+   "planche": 5,
+   "position": 15
   },
   {
    "reference": "766",
    "nom": "Jasmine yellow",
    "pack": 200,
-   "hex": null
+   "hex": null,
+   "planche": 5,
+   "position": 7
   },
   {
    "reference": "767",
    "nom": "Cloud blue",
    "pack": 168,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 40
   },
   {
    "reference": "768",
    "nom": "Mountain blue",
    "pack": 168,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 15
   },
   {
    "reference": "769",
    "nom": "Volcanic brown",
    "pack": 168,
-   "hex": null
+   "hex": null,
+   "planche": 7,
+   "position": 27
   },
   {
    "reference": "770",
    "nom": "Grayish purple",
    "pack": 168,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 33
   },
   {
    "reference": "771",
    "nom": "Milk coffee",
    "pack": 168,
-   "hex": null
+   "hex": null,
+   "planche": 7,
+   "position": 12
   },
   {
    "reference": "772",
    "nom": "Camellia",
    "pack": 168,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 23
   },
   {
    "reference": "773",
    "nom": "Vintage purple",
    "pack": 168,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 13
   },
   {
    "reference": "774",
    "nom": "Navy blue",
    "pack": 168,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 49
   },
   {
    "reference": "775",
    "nom": "Spray green",
    "pack": 168,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 8
   },
   {
    "reference": "776",
    "nom": "Brownish black",
    "pack": 168,
-   "hex": null
+   "hex": null,
+   "planche": 7,
+   "position": 31
   },
   {
    "reference": "777",
    "nom": "Pure yellow",
    "pack": 168,
-   "hex": null
+   "hex": null,
+   "planche": 5,
+   "position": 19
   },
   {
    "reference": "778",
    "nom": "Gentian violet",
    "pack": 168,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 48
   },
   {
    "reference": "779",
    "nom": "Black coffee",
    "pack": 168,
-   "hex": null
+   "hex": null,
+   "planche": 7,
+   "position": 39
   },
   {
    "reference": "780",
    "nom": "Brownish red",
    "pack": 168,
-   "hex": null
+   "hex": null,
+   "planche": 7,
+   "position": 38
   },
   {
    "reference": "781",
    "nom": "Deep red",
    "pack": 168,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 43
   },
   {
    "reference": "782",
    "nom": "Bright red",
    "pack": 168,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 26
   },
   {
    "reference": "783",
    "nom": "Orange red",
    "pack": 168,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 21
   },
   {
    "reference": "784",
    "nom": "Dull red",
    "pack": 168,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 47
   },
   {
    "reference": "785",
    "nom": "Vermilion",
    "pack": 168,
-   "hex": null
+   "hex": null,
+   "planche": 7,
+   "position": 37
   },
   {
    "reference": "786",
    "nom": "Yellow orange",
    "pack": 168,
-   "hex": null
+   "hex": null,
+   "planche": 6,
+   "position": 32
   },
   {
    "reference": "787",
    "nom": "Straw yellow",
    "pack": 168,
-   "hex": null
+   "hex": null,
+   "planche": 5,
+   "position": 17
   },
   {
    "reference": "788",
    "nom": "Native yellow",
    "pack": 168,
-   "hex": null
+   "hex": null,
+   "planche": 5,
+   "position": 22
   },
   {
    "reference": "789",
    "nom": "Brownish green",
    "pack": 168,
-   "hex": null
+   "hex": null,
+   "planche": 5,
+   "position": 34
   },
   {
    "reference": "790",
    "nom": "Olive green",
    "pack": 168,
-   "hex": null
+   "hex": null,
+   "planche": 5,
+   "position": 38
   },
   {
    "reference": "791",
    "nom": "Black green",
    "pack": 168,
-   "hex": null
+   "hex": null,
+   "planche": 8,
+   "position": 40
   },
   {
    "reference": "792",
    "nom": "Old green",
    "pack": 168,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 39
   },
   {
    "reference": "793",
    "nom": "Moss green",
    "pack": 168,
-   "hex": null
+   "hex": null,
+   "planche": 5,
+   "position": 30
   },
   {
    "reference": "794",
    "nom": "Turquoise green",
    "pack": 168,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 43
   },
   {
    "reference": "795",
    "nom": "Dark green",
    "pack": 168,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 47
   },
   {
    "reference": "796",
    "nom": "Aquamarine",
    "pack": 168,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 48
   },
   {
    "reference": "797",
    "nom": "Dark cyan",
    "pack": 168,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 46
   },
   {
    "reference": "798",
    "nom": "Dark teal",
    "pack": 168,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 44
   },
   {
    "reference": "799",
    "nom": "Peacock green",
    "pack": 168,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 24
   },
   {
    "reference": "800",
    "nom": "Deepsea green",
    "pack": 168,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 41
   },
   {
    "reference": "801",
    "nom": "Feather white",
    "pack": 200,
-   "hex": null
+   "hex": null,
+   "planche": 8,
+   "position": 2
   },
   {
    "reference": "802",
    "nom": "Mango Yellow",
    "pack": 120,
-   "hex": null
+   "hex": null,
+   "planche": 6,
+   "position": 16
   },
   {
    "reference": "803",
    "nom": "Light cloud white",
    "pack": 240,
-   "hex": null
+   "hex": null,
+   "planche": 8,
+   "position": 3
   },
   {
    "reference": "804",
    "nom": "Pewter",
    "pack": 240,
-   "hex": null
+   "hex": null,
+   "planche": 8,
+   "position": 11
   },
   {
    "reference": "805",
    "nom": "Coal gray",
    "pack": 200,
-   "hex": null
+   "hex": null,
+   "planche": 8,
+   "position": 23
   },
   {
    "reference": "806",
    "nom": "Faded red",
    "pack": 240,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 48
   },
   {
    "reference": "807",
    "nom": "Cool black",
    "pack": 240,
-   "hex": null
+   "hex": null,
+   "planche": 8,
+   "position": 35
   },
   {
    "reference": "808",
    "nom": "Grayish purple",
    "pack": 200,
-   "hex": null
+   "hex": null,
+   "planche": 7,
+   "position": 35
   },
   {
    "reference": "809",
    "nom": "Hazy green",
    "pack": 168,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 7
   },
   {
    "reference": "810",
    "nom": "Light grass yellow",
    "pack": 240,
-   "hex": null
+   "hex": null,
+   "planche": 5,
+   "position": 10
   },
   {
    "reference": "811",
    "nom": "Straw color",
    "pack": 240,
-   "hex": null
+   "hex": null,
+   "planche": 5,
+   "position": 31
   },
   {
    "reference": "812",
    "nom": "Khaki green",
    "pack": 240,
-   "hex": null
+   "hex": null,
+   "planche": 5,
+   "position": 39
   },
   {
    "reference": "813",
    "nom": "Grass yellow",
    "pack": 200,
-   "hex": null
+   "hex": null,
+   "planche": 5,
+   "position": 27
   },
   {
    "reference": "814",
    "nom": "Sandalwood yellow",
    "pack": 240,
-   "hex": null
+   "hex": null,
+   "planche": 6,
+   "position": 33
   },
   {
    "reference": "815",
    "nom": "Canghuang",
    "pack": 240,
-   "hex": null
+   "hex": null,
+   "planche": 6,
+   "position": 18
   },
   {
    "reference": "816",
    "nom": "Dark chartreuse",
    "pack": 200,
-   "hex": null
+   "hex": null,
+   "planche": 6,
+   "position": 26
   },
   {
    "reference": "817",
    "nom": "Juyi yellow",
    "pack": 200,
-   "hex": null
+   "hex": null,
+   "planche": 8,
+   "position": 25
   },
   {
    "reference": "818",
    "nom": "Water blue",
    "pack": 168,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 6
   },
   {
    "reference": "819",
    "nom": "Crystal blue",
    "pack": 120,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 9
   },
   {
    "reference": "820",
    "nom": "Peacock blue",
    "pack": 120,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 14
   },
   {
    "reference": "821",
    "nom": "Ice blue",
    "pack": 168,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 2
   },
   {
    "reference": "822",
    "nom": "Light blue",
    "pack": 120,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 17
   },
   {
    "reference": "823",
    "nom": "Lake blue",
    "pack": 120,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 27
   },
   {
    "reference": "824",
    "nom": "Midnight blue",
    "pack": 120,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 42
   },
   {
    "reference": "825",
    "nom": "Purple smoke color",
    "pack": 240,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 8
   },
   {
    "reference": "826",
    "nom": "Purple lotus",
    "pack": 200,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 18
   },
   {
    "reference": "827",
    "nom": "Grayish purple",
    "pack": 240,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 23
   },
   {
    "reference": "828",
    "nom": "Aster purple",
    "pack": 200,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 39
   },
   {
    "reference": "829",
    "nom": "Sand purple",
    "pack": 288,
-   "hex": null
+   "hex": null,
+   "planche": 7,
+   "position": 8
   },
   {
    "reference": "830",
    "nom": "Smoke purple",
    "pack": 288,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 4
   },
   {
    "reference": "831",
    "nom": "Dusk purple",
    "pack": 288,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 42
   },
   {
    "reference": "832",
    "nom": "Amethyst",
    "pack": 120,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 33
   },
   {
    "reference": "833",
    "nom": "Rose purple",
    "pack": 168,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 27
   },
   {
    "reference": "834",
    "nom": "Peach powder",
    "pack": 288,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 1
   },
   {
    "reference": "835",
    "nom": "Satin grey powder",
    "pack": 288,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 6
   },
   {
    "reference": "836",
    "nom": "Soft pink",
    "pack": 168,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 4
   },
   {
    "reference": "837",
    "nom": "Rose pink",
    "pack": 240,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 3
   },
   {
    "reference": "838",
    "nom": "Moonlit powder",
    "pack": 288,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 5
   },
   {
    "reference": "839",
    "nom": "Moon white",
    "pack": 288,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 18
   },
   {
    "reference": "840",
    "nom": "Ceramic powder",
    "pack": 288,
-   "hex": null
+   "hex": null,
+   "planche": 7,
+   "position": 7
   },
   {
    "reference": "841",
    "nom": "Hazy blue",
    "pack": 288,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 4
   },
   {
    "reference": "842",
    "nom": "Azure",
    "pack": 288,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 8
   },
   {
    "reference": "843",
    "nom": "Smoke cyan",
    "pack": 288,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 17
   },
   {
    "reference": "844",
    "nom": "Cold frost cyan",
    "pack": 288,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 20
   },
   {
    "reference": "845",
    "nom": "Bright green",
    "pack": 288,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 29
   },
   {
    "reference": "846",
    "nom": "Wood green",
    "pack": 288,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 24
   },
   {
    "reference": "847",
    "nom": "Willow yellow",
    "pack": 288,
-   "hex": null
+   "hex": null,
+   "planche": 5,
+   "position": 1
   },
   {
    "reference": "848",
    "nom": "Grey frost green",
    "pack": 288,
-   "hex": null
+   "hex": null,
+   "planche": 5,
+   "position": 2
   },
   {
    "reference": "849",
    "nom": "Wasabi green",
    "pack": 288,
-   "hex": null
+   "hex": null,
+   "planche": 5,
+   "position": 18
   },
   {
    "reference": "850",
    "nom": "Turquoise green",
    "pack": 288,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 21
   },
   {
    "reference": "851",
    "nom": "Nordic green",
    "pack": 288,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 13
   },
   {
    "reference": "852",
    "nom": "Khaki green",
    "pack": 288,
-   "hex": null
+   "hex": null,
+   "planche": 5,
+   "position": 29
   },
   {
    "reference": "853",
    "nom": "Rice grey",
    "pack": 120,
-   "hex": null
+   "hex": null,
+   "planche": 8,
+   "position": 9
   },
   {
    "reference": "854",
    "nom": "Fluorescent pink",
    "pack": 168,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 11
   },
   {
    "reference": "855",
    "nom": "Fluorescent yellow",
    "pack": 168,
-   "hex": null
+   "hex": null,
+   "planche": 5,
+   "position": 3
   },
   {
    "reference": "856",
    "nom": "Fluorescent green",
    "pack": 168,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 9
   },
   {
    "reference": "857",
    "nom": "Cement blue",
    "pack": 288,
-   "hex": null
+   "hex": null,
+   "planche": 8,
+   "position": 28
   },
   {
    "reference": "858",
    "nom": "Wind chime grey",
    "pack": 288,
-   "hex": null
+   "hex": null,
+   "planche": 5,
+   "position": 13
   },
   {
    "reference": "859",
    "nom": "Fluorescent orange",
    "pack": 168,
-   "hex": null
+   "hex": null,
+   "planche": 7,
+   "position": 1
   },
   {
    "reference": "860",
    "nom": "Graphite ash",
    "pack": 288,
-   "hex": null
+   "hex": null,
+   "planche": 8,
+   "position": 36
   },
   {
    "reference": "861",
    "nom": "Mountain ash",
    "pack": 288,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 18
   },
   {
    "reference": "862",
    "nom": "Rouge grey",
    "pack": 288,
-   "hex": null
+   "hex": null,
+   "planche": 7,
+   "position": 4
   },
   {
    "reference": "863",
    "nom": "Cinnamon brown",
    "pack": 288,
-   "hex": null
+   "hex": null,
+   "planche": 6,
+   "position": 39
   },
   {
    "reference": "864",
    "nom": "Walnut brown",
    "pack": 288,
-   "hex": null
+   "hex": null,
+   "planche": 7,
+   "position": 40
   },
   {
    "reference": "865",
    "nom": "Elegant brown",
    "pack": 288,
-   "hex": null
+   "hex": null,
+   "planche": 8,
+   "position": 21
   },
   {
    "reference": "866",
    "nom": "Ebony palm",
    "pack": 288,
-   "hex": null
+   "hex": null,
+   "planche": 6,
+   "position": 34
   },
   {
    "reference": "867",
    "nom": "Caramel brown",
    "pack": 288,
-   "hex": null
+   "hex": null,
+   "planche": 7,
+   "position": 36
   },
   {
    "reference": "868",
    "nom": "Dry leaf brown",
    "pack": 288,
-   "hex": null
+   "hex": null,
+   "planche": 6,
+   "position": 37
   },
   {
    "reference": "869",
    "nom": "Chocolate brown",
    "pack": 168,
-   "hex": null
+   "hex": null,
+   "planche": 7,
+   "position": 23
   },
   {
    "reference": "870",
    "nom": "Clay brown",
    "pack": 288,
-   "hex": null
+   "hex": null,
+   "planche": 8,
+   "position": 17
   },
   {
    "reference": "871",
    "nom": "Almond brown",
    "pack": 288,
-   "hex": null
+   "hex": null,
+   "planche": 6,
+   "position": 6
   },
   {
    "reference": "872",
    "nom": "Rouge powder",
    "pack": 168,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 9
   },
   {
    "reference": "873",
    "nom": "Ballet pink",
    "pack": 168,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 11
   },
   {
    "reference": "874",
    "nom": "Light sand yellow",
    "pack": 288,
-   "hex": null
+   "hex": null,
+   "planche": 6,
+   "position": 21
   },
   {
    "reference": "875",
    "nom": "Honey brown",
    "pack": 288,
-   "hex": null
+   "hex": null,
+   "planche": 7,
+   "position": 30
   },
   {
    "reference": "876",
    "nom": "Willow bud white",
    "pack": 288,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 4
   },
   {
    "reference": "877",
    "nom": "Jasmine white",
    "pack": 288,
-   "hex": null
+   "hex": null,
+   "planche": 6,
+   "position": 9
   },
   {
    "reference": "878",
    "nom": "Ice white",
    "pack": 288,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 3
   },
   {
    "reference": "879",
    "nom": "Water white",
    "pack": 288,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 5
   },
   {
    "reference": "880",
    "nom": "Purple mist white",
    "pack": 288,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 2
   },
   {
    "reference": "881",
    "nom": "Makeup white",
    "pack": 288,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 1
   },
   {
    "reference": "882",
    "nom": "Pink white",
    "pack": 288,
-   "hex": null
+   "hex": null,
+   "planche": 6,
+   "position": 2
   },
   {
    "reference": "883",
    "nom": "Gardenia white",
    "pack": 288,
-   "hex": null
+   "hex": null,
+   "planche": 6,
+   "position": 5
   },
   {
    "reference": "884",
    "nom": "Matte white",
    "pack": 288,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 5
   },
   {
    "reference": "885",
    "nom": "Lanbai",
    "pack": 288,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 11
   },
   {
    "reference": "886",
    "nom": "Snow green white",
    "pack": 288,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 2
   },
   {
    "reference": "887",
    "nom": "Snow white",
    "pack": 288,
-   "hex": null
+   "hex": null,
+   "planche": 5,
+   "position": 12
   },
   {
    "reference": "888",
    "nom": "Azure blue",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 1
   },
   {
    "reference": "889",
    "nom": "Cloud blue",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 12
   },
   {
    "reference": "890",
    "nom": "Sea wave blue",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 13
   },
   {
    "reference": "891",
    "nom": "Crystal blue",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 18
   },
   {
    "reference": "892",
    "nom": "Sea cyan",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 19
   },
   {
    "reference": "893",
    "nom": "Sapphire blue",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 22
   },
   {
    "reference": "894",
    "nom": "Classic blue",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 28
   },
   {
    "reference": "895",
    "nom": "Prussian blue",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 33
   },
   {
    "reference": "896",
    "nom": "Aegean sea blue",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 36
   },
   {
    "reference": "897",
    "nom": "Nightfall blue",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 35
   },
   {
    "reference": "898",
    "nom": "Light ice blue",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 10
   },
   {
    "reference": "899",
    "nom": "Indigo purple",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 14
   },
   {
    "reference": "900",
    "nom": "Agate purple",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 34
   },
   {
    "reference": "901",
    "nom": "Cyanoze",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 40
   },
   {
    "reference": "902",
    "nom": "Morning glory purple",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 38
   },
   {
    "reference": "903",
    "nom": "Litmus red",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 14
   },
   {
    "reference": "904",
    "nom": "Glow red",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 25
   },
   {
    "reference": "905",
    "nom": "Lotus pink",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 35
   },
   {
    "reference": "906",
    "nom": "Redbud red",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 40
   },
   {
    "reference": "907",
    "nom": "Chinese rose red",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 50
   },
   {
    "reference": "908",
    "nom": "Magenta red",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 26
   },
   {
    "reference": "909",
    "nom": "Saffron red",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 2,
+   "position": 31
   },
   {
    "reference": "910",
    "nom": "Crimson",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 49
   },
   {
    "reference": "911",
    "nom": "Cream orange",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 6,
+   "position": 3
   },
   {
    "reference": "912",
    "nom": "Pomelo skin",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 7,
+   "position": 6
   },
   {
    "reference": "913",
    "nom": "Jade pink",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 7,
+   "position": 10
   },
   {
    "reference": "914",
    "nom": "Peach blush",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 6,
+   "position": 15
   },
   {
    "reference": "915",
    "nom": "Deer skin brown",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 7,
+   "position": 14
   },
   {
    "reference": "916",
    "nom": "Crab shell red",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 6,
+   "position": 36
   },
   {
    "reference": "917",
    "nom": "Light coral",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 6
   },
   {
    "reference": "918",
    "nom": "Hawthorn red",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 7,
+   "position": 18
   },
   {
    "reference": "919",
    "nom": "Faro red",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 28
   },
   {
    "reference": "920",
    "nom": "Sunset glow red",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 32
   },
   {
    "reference": "921",
    "nom": "Cocoa red",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 7,
+   "position": 33
   },
   {
    "reference": "922",
    "nom": "Lava red",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 42
   },
   {
    "reference": "923",
    "nom": "Harrier crest",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 1,
+   "position": 48
   },
   {
    "reference": "924",
    "nom": "Pale white",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 6,
+   "position": 1
   },
   {
    "reference": "925",
    "nom": "Soy milk beige",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 6,
+   "position": 25
   },
   {
    "reference": "926",
    "nom": "Lotus seed white",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 7,
+   "position": 3
   },
   {
    "reference": "927",
    "nom": "Wheat hull beige",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 6,
+   "position": 10
   },
   {
    "reference": "928",
    "nom": "Hump brown",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 7,
+   "position": 15
   },
   {
    "reference": "929",
    "nom": "Almond yellow",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 6,
+   "position": 4
   },
   {
    "reference": "930",
    "nom": "Ginkgo orange",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 6,
+   "position": 28
   },
   {
    "reference": "931",
    "nom": "Suede brown",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 6,
+   "position": 23
   },
   {
    "reference": "932",
    "nom": "Coconut brown",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 6,
+   "position": 27
   },
   {
    "reference": "933",
    "nom": "Lemon yellow",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 5,
+   "position": 11
   },
   {
    "reference": "934",
    "nom": "Papaya yellow",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 6,
+   "position": 24
   },
   {
    "reference": "935",
    "nom": "Moonlight orange",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 6,
+   "position": 20
   },
   {
    "reference": "936",
    "nom": "Glazed orange",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 7,
+   "position": 5
   },
   {
    "reference": "937",
    "nom": "Vibrant orange",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 7,
+   "position": 17
   },
   {
    "reference": "938",
    "nom": "Vanilla green",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 5,
+   "position": 9
   },
   {
    "reference": "939",
    "nom": "Apple green",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 5,
+   "position": 5
   },
   {
    "reference": "940",
    "nom": "Jade green",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 20
   },
   {
    "reference": "941",
    "nom": "Agate green",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 49
   },
   {
    "reference": "942",
    "nom": "Enamel green",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 4,
+   "position": 42
   },
   {
    "reference": "943",
    "nom": "Silk yellow",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 5,
+   "position": 35
   },
   {
    "reference": "944",
    "nom": "Reed green",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 6,
+   "position": 22
   },
   {
    "reference": "945",
    "nom": "Shark cyan",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 8,
+   "position": 29
   },
   {
    "reference": "946",
    "nom": "Pond green",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 8,
+   "position": 33
   },
   {
    "reference": "947",
    "nom": "Turtle shell",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 6,
+   "position": 38
   },
   {
    "reference": "948",
    "nom": "Palm green",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 8,
+   "position": 37
   },
   {
    "reference": "949",
    "nom": "Frost white",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 8,
+   "position": 8
   },
   {
    "reference": "950",
    "nom": "Moon shadow gray",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 8,
+   "position": 20
   },
   {
    "reference": "951",
    "nom": "Cool grayt",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 8,
+   "position": 15
   },
   {
    "reference": "952",
    "nom": "Warship gray",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 8,
+   "position": 19
   },
   {
    "reference": "953",
    "nom": "Smoke gray",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 8,
+   "position": 27
   },
   {
    "reference": "954",
    "nom": "Crab shell cyan",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 30
   },
   {
    "reference": "955",
    "nom": "Sea foam green",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 3,
+   "position": 10
   },
   {
    "reference": "956",
    "nom": "Matte gray",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 8,
+   "position": 24
   },
   {
    "reference": "957",
    "nom": "Seagull gray",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 8,
+   "position": 14
   },
   {
    "reference": "958",
    "nom": "Red gray",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 7,
+   "position": 24
   },
   {
    "reference": "959",
    "nom": "Wild goose gray",
    "pack": 360,
-   "hex": null
+   "hex": null,
+   "planche": 8,
+   "position": 18
+  }
+ ],
+ "planches": [
+  {
+   "numero": 1,
+   "colonnes": 5,
+   "rangees": 10
+  },
+  {
+   "numero": 2,
+   "colonnes": 5,
+   "rangees": 10
+  },
+  {
+   "numero": 3,
+   "colonnes": 5,
+   "rangees": 10
+  },
+  {
+   "numero": 4,
+   "colonnes": 5,
+   "rangees": 10
+  },
+  {
+   "numero": 5,
+   "colonnes": 4,
+   "rangees": 10
+  },
+  {
+   "numero": 6,
+   "colonnes": 4,
+   "rangees": 10
+  },
+  {
+   "numero": 7,
+   "colonnes": 4,
+   "rangees": 10
+  },
+  {
+   "numero": 8,
+   "colonnes": 4,
+   "rangees": 10
   }
  ]
 }
