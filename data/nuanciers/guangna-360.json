@@ -1,0 +1,2168 @@
+{
+ "marque": "GuangNa",
+ "set": "Pack 360",
+ "nb_feutres": 360,
+ "source": "Nuancier papier photographié, transcrit le 19/08/2026. Hexadécimaux à pipetter.",
+ "feutres": [
+  {
+   "reference": "600",
+   "nom": "White",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "601",
+   "nom": "Sky blue",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "602",
+   "nom": "Lake green",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "603",
+   "nom": "Yellow",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "604",
+   "nom": "Orange",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "605",
+   "nom": "Red",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "606",
+   "nom": "Rose red",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "607",
+   "nom": "Lilac purple",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "608",
+   "nom": "Royal blue",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "609",
+   "nom": "Green",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "610",
+   "nom": "Gray",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "611",
+   "nom": "Black",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "612",
+   "nom": "Pink",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "613",
+   "nom": "Grape purple",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "614",
+   "nom": "Emerald green",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "615",
+   "nom": "Bright yellow",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "616",
+   "nom": "Dazzle blue",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "617",
+   "nom": "Ink blue",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "618",
+   "nom": "Amber",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "619",
+   "nom": "Carmine",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "620",
+   "nom": "Coffee",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "621",
+   "nom": "Indigo blue",
+   "pack": 240,
+   "hex": null
+  },
+  {
+   "reference": "622",
+   "nom": "Pine green",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "623",
+   "nom": "Wisteria",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "624",
+   "nom": "Pomelo pink",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "625",
+   "nom": "Cinnamon",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "626",
+   "nom": "Rice white",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "627",
+   "nom": "Mint green",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "628",
+   "nom": "Milk blue",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "629",
+   "nom": "Taro purple",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "630",
+   "nom": "Bean paste pink",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "631",
+   "nom": "Vermilion",
+   "pack": 200,
+   "hex": null
+  },
+  {
+   "reference": "632",
+   "nom": "Apple red",
+   "pack": 200,
+   "hex": null
+  },
+  {
+   "reference": "633",
+   "nom": "Haze blue",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "634",
+   "nom": "Forest green",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "635",
+   "nom": "Purple",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "636",
+   "nom": "Bicheng blue",
+   "pack": 240,
+   "hex": null
+  },
+  {
+   "reference": "637",
+   "nom": "Local green",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "638",
+   "nom": "Curious mind",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "639",
+   "nom": "Grounded red",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "640",
+   "nom": "Spring green",
+   "pack": 240,
+   "hex": null
+  },
+  {
+   "reference": "641",
+   "nom": "Celadon",
+   "pack": 240,
+   "hex": null
+  },
+  {
+   "reference": "642",
+   "nom": "Verdant hills green",
+   "pack": 240,
+   "hex": null
+  },
+  {
+   "reference": "643",
+   "nom": "Russet",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "644",
+   "nom": "Clay colour",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "645",
+   "nom": "Medieval yellow",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "646",
+   "nom": "Humus",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "647",
+   "nom": "Bamboo shoot green",
+   "pack": 240,
+   "hex": null
+  },
+  {
+   "reference": "648",
+   "nom": "Sprout green",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "649",
+   "nom": "Light orange",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "650",
+   "nom": "Blue",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "651",
+   "nom": "Violet",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "652",
+   "nom": "Primrose green",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "653",
+   "nom": "Bluish green",
+   "pack": 240,
+   "hex": null
+  },
+  {
+   "reference": "654",
+   "nom": "Flesh color",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "655",
+   "nom": "Rose",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "656",
+   "nom": "Earthy yellow",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "657",
+   "nom": "Bishan green",
+   "pack": 240,
+   "hex": null
+  },
+  {
+   "reference": "658",
+   "nom": "Light pink",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "659",
+   "nom": "Dark blue",
+   "pack": 168,
+   "hex": null
+  },
+  {
+   "reference": "660",
+   "nom": "Heartbeat pink",
+   "pack": 200,
+   "hex": null
+  },
+  {
+   "reference": "661",
+   "nom": "Vibrant red",
+   "pack": 200,
+   "hex": null
+  },
+  {
+   "reference": "662",
+   "nom": "Vibrant green",
+   "pack": 240,
+   "hex": null
+  },
+  {
+   "reference": "663",
+   "nom": "Reddish orange",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "664",
+   "nom": "Bright red",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "665",
+   "nom": "Leaf green",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "666",
+   "nom": "Purplish red",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "667",
+   "nom": "Thin red",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "668",
+   "nom": "Stone cyan",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "669",
+   "nom": "Grass green",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "670",
+   "nom": "Rattan",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "671",
+   "nom": "Wine red",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "672",
+   "nom": "Brownish red",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "673",
+   "nom": "Klein blue",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "674",
+   "nom": "Strong brown",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "675",
+   "nom": "Sauce purple",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "676",
+   "nom": "Dark green",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "677",
+   "nom": "Peach red",
+   "pack": 200,
+   "hex": null
+  },
+  {
+   "reference": "678",
+   "nom": "Dark purple",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "679",
+   "nom": "Grayish red",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "680",
+   "nom": "Stone gray",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "681",
+   "nom": "Group cyan",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "682",
+   "nom": "Bamboo green",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "683",
+   "nom": "Creamy white",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "684",
+   "nom": "Apricot yellow",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "685",
+   "nom": "Onion green",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "686",
+   "nom": "Light gray",
+   "pack": 72,
+   "hex": null
+  },
+  {
+   "reference": "687",
+   "nom": "Bright green",
+   "pack": 120,
+   "hex": null
+  },
+  {
+   "reference": "688",
+   "nom": "Dark cyan",
+   "pack": 120,
+   "hex": null
+  },
+  {
+   "reference": "689",
+   "nom": "Porcelain blue",
+   "pack": 120,
+   "hex": null
+  },
+  {
+   "reference": "690",
+   "nom": "Green blue",
+   "pack": 120,
+   "hex": null
+  },
+  {
+   "reference": "691",
+   "nom": "Coral powder",
+   "pack": 120,
+   "hex": null
+  },
+  {
+   "reference": "692",
+   "nom": "Purple light",
+   "pack": 200,
+   "hex": null
+  },
+  {
+   "reference": "693",
+   "nom": "Blue grey",
+   "pack": 120,
+   "hex": null
+  },
+  {
+   "reference": "694",
+   "nom": "Soft jade",
+   "pack": 120,
+   "hex": null
+  },
+  {
+   "reference": "695",
+   "nom": "French green",
+   "pack": 120,
+   "hex": null
+  },
+  {
+   "reference": "696",
+   "nom": "Fruit green",
+   "pack": 120,
+   "hex": null
+  },
+  {
+   "reference": "697",
+   "nom": "Pine green",
+   "pack": 120,
+   "hex": null
+  },
+  {
+   "reference": "698",
+   "nom": "Sweat purple",
+   "pack": 200,
+   "hex": null
+  },
+  {
+   "reference": "699",
+   "nom": "Felongrass purple",
+   "pack": 200,
+   "hex": null
+  },
+  {
+   "reference": "700",
+   "nom": "Cream yellow",
+   "pack": 120,
+   "hex": null
+  },
+  {
+   "reference": "701",
+   "nom": "Light apricot",
+   "pack": 120,
+   "hex": null
+  },
+  {
+   "reference": "702",
+   "nom": "Pomelo",
+   "pack": 120,
+   "hex": null
+  },
+  {
+   "reference": "703",
+   "nom": "Ivory orange",
+   "pack": 120,
+   "hex": null
+  },
+  {
+   "reference": "704",
+   "nom": "Red lip",
+   "pack": 120,
+   "hex": null
+  },
+  {
+   "reference": "705",
+   "nom": "Cornel purple",
+   "pack": 240,
+   "hex": null
+  },
+  {
+   "reference": "706",
+   "nom": "White cyan",
+   "pack": 120,
+   "hex": null
+  },
+  {
+   "reference": "707",
+   "nom": "Magnolia",
+   "pack": 120,
+   "hex": null
+  },
+  {
+   "reference": "708",
+   "nom": "Sooty red",
+   "pack": 200,
+   "hex": null
+  },
+  {
+   "reference": "709",
+   "nom": "Brown black",
+   "pack": 200,
+   "hex": null
+  },
+  {
+   "reference": "710",
+   "nom": "Changchun",
+   "pack": 200,
+   "hex": null
+  },
+  {
+   "reference": "711",
+   "nom": "Lipstick pink",
+   "pack": 240,
+   "hex": null
+  },
+  {
+   "reference": "712",
+   "nom": "Fluorescent rose",
+   "pack": 168,
+   "hex": null
+  },
+  {
+   "reference": "713",
+   "nom": "Nelumbo red",
+   "pack": 200,
+   "hex": null
+  },
+  {
+   "reference": "714",
+   "nom": "Blackish red",
+   "pack": 200,
+   "hex": null
+  },
+  {
+   "reference": "715",
+   "nom": "Bright red",
+   "pack": 200,
+   "hex": null
+  },
+  {
+   "reference": "716",
+   "nom": "Peach pink",
+   "pack": 200,
+   "hex": null
+  },
+  {
+   "reference": "717",
+   "nom": "Shallow camel",
+   "pack": 120,
+   "hex": null
+  },
+  {
+   "reference": "718",
+   "nom": "Turmeric",
+   "pack": 288,
+   "hex": null
+  },
+  {
+   "reference": "719",
+   "nom": "Cheese yellow",
+   "pack": 120,
+   "hex": null
+  },
+  {
+   "reference": "720",
+   "nom": "Bean yellow",
+   "pack": 200,
+   "hex": null
+  },
+  {
+   "reference": "721",
+   "nom": "Water pink",
+   "pack": 240,
+   "hex": null
+  },
+  {
+   "reference": "722",
+   "nom": "Turquoise blue",
+   "pack": 240,
+   "hex": null
+  },
+  {
+   "reference": "723",
+   "nom": "Sakura",
+   "pack": 120,
+   "hex": null
+  },
+  {
+   "reference": "724",
+   "nom": "Light beige",
+   "pack": 240,
+   "hex": null
+  },
+  {
+   "reference": "725",
+   "nom": "Fresh orange",
+   "pack": 120,
+   "hex": null
+  },
+  {
+   "reference": "726",
+   "nom": "Imperial purple",
+   "pack": 240,
+   "hex": null
+  },
+  {
+   "reference": "727",
+   "nom": "Willow green",
+   "pack": 120,
+   "hex": null
+  },
+  {
+   "reference": "728",
+   "nom": "Viridity",
+   "pack": 120,
+   "hex": null
+  },
+  {
+   "reference": "729",
+   "nom": "Grey yellow",
+   "pack": 120,
+   "hex": null
+  },
+  {
+   "reference": "730",
+   "nom": "Jade white",
+   "pack": 120,
+   "hex": null
+  },
+  {
+   "reference": "731",
+   "nom": "Sand dust",
+   "pack": 120,
+   "hex": null
+  },
+  {
+   "reference": "732",
+   "nom": "Velvet yellow",
+   "pack": 120,
+   "hex": null
+  },
+  {
+   "reference": "733",
+   "nom": "Light yellow",
+   "pack": 120,
+   "hex": null
+  },
+  {
+   "reference": "734",
+   "nom": "Pink purple",
+   "pack": 120,
+   "hex": null
+  },
+  {
+   "reference": "735",
+   "nom": "Pea green",
+   "pack": 120,
+   "hex": null
+  },
+  {
+   "reference": "736",
+   "nom": "Pale white",
+   "pack": 120,
+   "hex": null
+  },
+  {
+   "reference": "737",
+   "nom": "Bluish green",
+   "pack": 120,
+   "hex": null
+  },
+  {
+   "reference": "738",
+   "nom": "Onyx",
+   "pack": 120,
+   "hex": null
+  },
+  {
+   "reference": "739",
+   "nom": "Ormosia",
+   "pack": 120,
+   "hex": null
+  },
+  {
+   "reference": "740",
+   "nom": "Verdant",
+   "pack": 120,
+   "hex": null
+  },
+  {
+   "reference": "741",
+   "nom": "Dull green",
+   "pack": 120,
+   "hex": null
+  },
+  {
+   "reference": "742",
+   "nom": "Flower purple",
+   "pack": 120,
+   "hex": null
+  },
+  {
+   "reference": "743",
+   "nom": "Aubergine",
+   "pack": 120,
+   "hex": null
+  },
+  {
+   "reference": "744",
+   "nom": "Lavender",
+   "pack": 120,
+   "hex": null
+  },
+  {
+   "reference": "745",
+   "nom": "Light rattan",
+   "pack": 120,
+   "hex": null
+  },
+  {
+   "reference": "746",
+   "nom": "Fotou blue",
+   "pack": 240,
+   "hex": null
+  },
+  {
+   "reference": "747",
+   "nom": "Quetou blue",
+   "pack": 240,
+   "hex": null
+  },
+  {
+   "reference": "748",
+   "nom": "Tianqing blue",
+   "pack": 240,
+   "hex": null
+  },
+  {
+   "reference": "749",
+   "nom": "Light rattan",
+   "pack": 240,
+   "hex": null
+  },
+  {
+   "reference": "750",
+   "nom": "Kongqing blue",
+   "pack": 240,
+   "hex": null
+  },
+  {
+   "reference": "751",
+   "nom": "Chalky white",
+   "pack": 240,
+   "hex": null
+  },
+  {
+   "reference": "752",
+   "nom": "Lotus root gray",
+   "pack": 240,
+   "hex": null
+  },
+  {
+   "reference": "753",
+   "nom": "Jade color",
+   "pack": 200,
+   "hex": null
+  },
+  {
+   "reference": "754",
+   "nom": "Pinkish red",
+   "pack": 240,
+   "hex": null
+  },
+  {
+   "reference": "755",
+   "nom": "Xianchi red",
+   "pack": 200,
+   "hex": null
+  },
+  {
+   "reference": "756",
+   "nom": "Light red",
+   "pack": 200,
+   "hex": null
+  },
+  {
+   "reference": "757",
+   "nom": "Chestnut brown",
+   "pack": 240,
+   "hex": null
+  },
+  {
+   "reference": "758",
+   "nom": "Agilawood",
+   "pack": 240,
+   "hex": null
+  },
+  {
+   "reference": "759",
+   "nom": "Sandstone yellow",
+   "pack": 240,
+   "hex": null
+  },
+  {
+   "reference": "760",
+   "nom": "Tomato red",
+   "pack": 200,
+   "hex": null
+  },
+  {
+   "reference": "761",
+   "nom": "Lychee pink",
+   "pack": 240,
+   "hex": null
+  },
+  {
+   "reference": "762",
+   "nom": "Vibrant pink",
+   "pack": 200,
+   "hex": null
+  },
+  {
+   "reference": "763",
+   "nom": "Ink blue black",
+   "pack": 200,
+   "hex": null
+  },
+  {
+   "reference": "764",
+   "nom": "Smoke-purple black",
+   "pack": 240,
+   "hex": null
+  },
+  {
+   "reference": "765",
+   "nom": "Happy yellow",
+   "pack": 200,
+   "hex": null
+  },
+  {
+   "reference": "766",
+   "nom": "Jasmine yellow",
+   "pack": 200,
+   "hex": null
+  },
+  {
+   "reference": "767",
+   "nom": "Cloud blue",
+   "pack": 168,
+   "hex": null
+  },
+  {
+   "reference": "768",
+   "nom": "Mountain blue",
+   "pack": 168,
+   "hex": null
+  },
+  {
+   "reference": "769",
+   "nom": "Volcanic brown",
+   "pack": 168,
+   "hex": null
+  },
+  {
+   "reference": "770",
+   "nom": "Grayish purple",
+   "pack": 168,
+   "hex": null
+  },
+  {
+   "reference": "771",
+   "nom": "Milk coffee",
+   "pack": 168,
+   "hex": null
+  },
+  {
+   "reference": "772",
+   "nom": "Camellia",
+   "pack": 168,
+   "hex": null
+  },
+  {
+   "reference": "773",
+   "nom": "Vintage purple",
+   "pack": 168,
+   "hex": null
+  },
+  {
+   "reference": "774",
+   "nom": "Navy blue",
+   "pack": 168,
+   "hex": null
+  },
+  {
+   "reference": "775",
+   "nom": "Spray green",
+   "pack": 168,
+   "hex": null
+  },
+  {
+   "reference": "776",
+   "nom": "Brownish black",
+   "pack": 168,
+   "hex": null
+  },
+  {
+   "reference": "777",
+   "nom": "Pure yellow",
+   "pack": 168,
+   "hex": null
+  },
+  {
+   "reference": "778",
+   "nom": "Gentian violet",
+   "pack": 168,
+   "hex": null
+  },
+  {
+   "reference": "779",
+   "nom": "Black coffee",
+   "pack": 168,
+   "hex": null
+  },
+  {
+   "reference": "780",
+   "nom": "Brownish red",
+   "pack": 168,
+   "hex": null
+  },
+  {
+   "reference": "781",
+   "nom": "Deep red",
+   "pack": 168,
+   "hex": null
+  },
+  {
+   "reference": "782",
+   "nom": "Bright red",
+   "pack": 168,
+   "hex": null
+  },
+  {
+   "reference": "783",
+   "nom": "Orange red",
+   "pack": 168,
+   "hex": null
+  },
+  {
+   "reference": "784",
+   "nom": "Dull red",
+   "pack": 168,
+   "hex": null
+  },
+  {
+   "reference": "785",
+   "nom": "Vermilion",
+   "pack": 168,
+   "hex": null
+  },
+  {
+   "reference": "786",
+   "nom": "Yellow orange",
+   "pack": 168,
+   "hex": null
+  },
+  {
+   "reference": "787",
+   "nom": "Straw yellow",
+   "pack": 168,
+   "hex": null
+  },
+  {
+   "reference": "788",
+   "nom": "Native yellow",
+   "pack": 168,
+   "hex": null
+  },
+  {
+   "reference": "789",
+   "nom": "Brownish green",
+   "pack": 168,
+   "hex": null
+  },
+  {
+   "reference": "790",
+   "nom": "Olive green",
+   "pack": 168,
+   "hex": null
+  },
+  {
+   "reference": "791",
+   "nom": "Black green",
+   "pack": 168,
+   "hex": null
+  },
+  {
+   "reference": "792",
+   "nom": "Old green",
+   "pack": 168,
+   "hex": null
+  },
+  {
+   "reference": "793",
+   "nom": "Moss green",
+   "pack": 168,
+   "hex": null
+  },
+  {
+   "reference": "794",
+   "nom": "Turquoise green",
+   "pack": 168,
+   "hex": null
+  },
+  {
+   "reference": "795",
+   "nom": "Dark green",
+   "pack": 168,
+   "hex": null
+  },
+  {
+   "reference": "796",
+   "nom": "Aquamarine",
+   "pack": 168,
+   "hex": null
+  },
+  {
+   "reference": "797",
+   "nom": "Dark cyan",
+   "pack": 168,
+   "hex": null
+  },
+  {
+   "reference": "798",
+   "nom": "Dark teal",
+   "pack": 168,
+   "hex": null
+  },
+  {
+   "reference": "799",
+   "nom": "Peacock green",
+   "pack": 168,
+   "hex": null
+  },
+  {
+   "reference": "800",
+   "nom": "Deepsea green",
+   "pack": 168,
+   "hex": null
+  },
+  {
+   "reference": "801",
+   "nom": "Feather white",
+   "pack": 200,
+   "hex": null
+  },
+  {
+   "reference": "802",
+   "nom": "Mango Yellow",
+   "pack": 120,
+   "hex": null
+  },
+  {
+   "reference": "803",
+   "nom": "Light cloud white",
+   "pack": 240,
+   "hex": null
+  },
+  {
+   "reference": "804",
+   "nom": "Pewter",
+   "pack": 240,
+   "hex": null
+  },
+  {
+   "reference": "805",
+   "nom": "Coal gray",
+   "pack": 200,
+   "hex": null
+  },
+  {
+   "reference": "806",
+   "nom": "Faded red",
+   "pack": 240,
+   "hex": null
+  },
+  {
+   "reference": "807",
+   "nom": "Cool black",
+   "pack": 240,
+   "hex": null
+  },
+  {
+   "reference": "808",
+   "nom": "Grayish purple",
+   "pack": 200,
+   "hex": null
+  },
+  {
+   "reference": "809",
+   "nom": "Hazy green",
+   "pack": 168,
+   "hex": null
+  },
+  {
+   "reference": "810",
+   "nom": "Light grass yellow",
+   "pack": 240,
+   "hex": null
+  },
+  {
+   "reference": "811",
+   "nom": "Straw color",
+   "pack": 240,
+   "hex": null
+  },
+  {
+   "reference": "812",
+   "nom": "Khaki green",
+   "pack": 240,
+   "hex": null
+  },
+  {
+   "reference": "813",
+   "nom": "Grass yellow",
+   "pack": 200,
+   "hex": null
+  },
+  {
+   "reference": "814",
+   "nom": "Sandalwood yellow",
+   "pack": 240,
+   "hex": null
+  },
+  {
+   "reference": "815",
+   "nom": "Canghuang",
+   "pack": 240,
+   "hex": null
+  },
+  {
+   "reference": "816",
+   "nom": "Dark chartreuse",
+   "pack": 200,
+   "hex": null
+  },
+  {
+   "reference": "817",
+   "nom": "Juyi yellow",
+   "pack": 200,
+   "hex": null
+  },
+  {
+   "reference": "818",
+   "nom": "Water blue",
+   "pack": 168,
+   "hex": null
+  },
+  {
+   "reference": "819",
+   "nom": "Crystal blue",
+   "pack": 120,
+   "hex": null
+  },
+  {
+   "reference": "820",
+   "nom": "Peacock blue",
+   "pack": 120,
+   "hex": null
+  },
+  {
+   "reference": "821",
+   "nom": "Ice blue",
+   "pack": 168,
+   "hex": null
+  },
+  {
+   "reference": "822",
+   "nom": "Light blue",
+   "pack": 120,
+   "hex": null
+  },
+  {
+   "reference": "823",
+   "nom": "Lake blue",
+   "pack": 120,
+   "hex": null
+  },
+  {
+   "reference": "824",
+   "nom": "Midnight blue",
+   "pack": 120,
+   "hex": null
+  },
+  {
+   "reference": "825",
+   "nom": "Purple smoke color",
+   "pack": 240,
+   "hex": null
+  },
+  {
+   "reference": "826",
+   "nom": "Purple lotus",
+   "pack": 200,
+   "hex": null
+  },
+  {
+   "reference": "827",
+   "nom": "Grayish purple",
+   "pack": 240,
+   "hex": null
+  },
+  {
+   "reference": "828",
+   "nom": "Aster purple",
+   "pack": 200,
+   "hex": null
+  },
+  {
+   "reference": "829",
+   "nom": "Sand purple",
+   "pack": 288,
+   "hex": null
+  },
+  {
+   "reference": "830",
+   "nom": "Smoke purple",
+   "pack": 288,
+   "hex": null
+  },
+  {
+   "reference": "831",
+   "nom": "Dusk purple",
+   "pack": 288,
+   "hex": null
+  },
+  {
+   "reference": "832",
+   "nom": "Amethyst",
+   "pack": 120,
+   "hex": null
+  },
+  {
+   "reference": "833",
+   "nom": "Rose purple",
+   "pack": 168,
+   "hex": null
+  },
+  {
+   "reference": "834",
+   "nom": "Peach powder",
+   "pack": 288,
+   "hex": null
+  },
+  {
+   "reference": "835",
+   "nom": "Satin grey powder",
+   "pack": 288,
+   "hex": null
+  },
+  {
+   "reference": "836",
+   "nom": "Soft pink",
+   "pack": 168,
+   "hex": null
+  },
+  {
+   "reference": "837",
+   "nom": "Rose pink",
+   "pack": 240,
+   "hex": null
+  },
+  {
+   "reference": "838",
+   "nom": "Moonlit powder",
+   "pack": 288,
+   "hex": null
+  },
+  {
+   "reference": "839",
+   "nom": "Moon white",
+   "pack": 288,
+   "hex": null
+  },
+  {
+   "reference": "840",
+   "nom": "Ceramic powder",
+   "pack": 288,
+   "hex": null
+  },
+  {
+   "reference": "841",
+   "nom": "Hazy blue",
+   "pack": 288,
+   "hex": null
+  },
+  {
+   "reference": "842",
+   "nom": "Azure",
+   "pack": 288,
+   "hex": null
+  },
+  {
+   "reference": "843",
+   "nom": "Smoke cyan",
+   "pack": 288,
+   "hex": null
+  },
+  {
+   "reference": "844",
+   "nom": "Cold frost cyan",
+   "pack": 288,
+   "hex": null
+  },
+  {
+   "reference": "845",
+   "nom": "Bright green",
+   "pack": 288,
+   "hex": null
+  },
+  {
+   "reference": "846",
+   "nom": "Wood green",
+   "pack": 288,
+   "hex": null
+  },
+  {
+   "reference": "847",
+   "nom": "Willow yellow",
+   "pack": 288,
+   "hex": null
+  },
+  {
+   "reference": "848",
+   "nom": "Grey frost green",
+   "pack": 288,
+   "hex": null
+  },
+  {
+   "reference": "849",
+   "nom": "Wasabi green",
+   "pack": 288,
+   "hex": null
+  },
+  {
+   "reference": "850",
+   "nom": "Turquoise green",
+   "pack": 288,
+   "hex": null
+  },
+  {
+   "reference": "851",
+   "nom": "Nordic green",
+   "pack": 288,
+   "hex": null
+  },
+  {
+   "reference": "852",
+   "nom": "Khaki green",
+   "pack": 288,
+   "hex": null
+  },
+  {
+   "reference": "853",
+   "nom": "Rice grey",
+   "pack": 120,
+   "hex": null
+  },
+  {
+   "reference": "854",
+   "nom": "Fluorescent pink",
+   "pack": 168,
+   "hex": null
+  },
+  {
+   "reference": "855",
+   "nom": "Fluorescent yellow",
+   "pack": 168,
+   "hex": null
+  },
+  {
+   "reference": "856",
+   "nom": "Fluorescent green",
+   "pack": 168,
+   "hex": null
+  },
+  {
+   "reference": "857",
+   "nom": "Cement blue",
+   "pack": 288,
+   "hex": null
+  },
+  {
+   "reference": "858",
+   "nom": "Wind chime grey",
+   "pack": 288,
+   "hex": null
+  },
+  {
+   "reference": "859",
+   "nom": "Fluorescent orange",
+   "pack": 168,
+   "hex": null
+  },
+  {
+   "reference": "860",
+   "nom": "Graphite ash",
+   "pack": 288,
+   "hex": null
+  },
+  {
+   "reference": "861",
+   "nom": "Mountain ash",
+   "pack": 288,
+   "hex": null
+  },
+  {
+   "reference": "862",
+   "nom": "Rouge grey",
+   "pack": 288,
+   "hex": null
+  },
+  {
+   "reference": "863",
+   "nom": "Cinnamon brown",
+   "pack": 288,
+   "hex": null
+  },
+  {
+   "reference": "864",
+   "nom": "Walnut brown",
+   "pack": 288,
+   "hex": null
+  },
+  {
+   "reference": "865",
+   "nom": "Elegant brown",
+   "pack": 288,
+   "hex": null
+  },
+  {
+   "reference": "866",
+   "nom": "Ebony palm",
+   "pack": 288,
+   "hex": null
+  },
+  {
+   "reference": "867",
+   "nom": "Caramel brown",
+   "pack": 288,
+   "hex": null
+  },
+  {
+   "reference": "868",
+   "nom": "Dry leaf brown",
+   "pack": 288,
+   "hex": null
+  },
+  {
+   "reference": "869",
+   "nom": "Chocolate brown",
+   "pack": 168,
+   "hex": null
+  },
+  {
+   "reference": "870",
+   "nom": "Clay brown",
+   "pack": 288,
+   "hex": null
+  },
+  {
+   "reference": "871",
+   "nom": "Almond brown",
+   "pack": 288,
+   "hex": null
+  },
+  {
+   "reference": "872",
+   "nom": "Rouge powder",
+   "pack": 168,
+   "hex": null
+  },
+  {
+   "reference": "873",
+   "nom": "Ballet pink",
+   "pack": 168,
+   "hex": null
+  },
+  {
+   "reference": "874",
+   "nom": "Light sand yellow",
+   "pack": 288,
+   "hex": null
+  },
+  {
+   "reference": "875",
+   "nom": "Honey brown",
+   "pack": 288,
+   "hex": null
+  },
+  {
+   "reference": "876",
+   "nom": "Willow bud white",
+   "pack": 288,
+   "hex": null
+  },
+  {
+   "reference": "877",
+   "nom": "Jasmine white",
+   "pack": 288,
+   "hex": null
+  },
+  {
+   "reference": "878",
+   "nom": "Ice white",
+   "pack": 288,
+   "hex": null
+  },
+  {
+   "reference": "879",
+   "nom": "Water white",
+   "pack": 288,
+   "hex": null
+  },
+  {
+   "reference": "880",
+   "nom": "Purple mist white",
+   "pack": 288,
+   "hex": null
+  },
+  {
+   "reference": "881",
+   "nom": "Makeup white",
+   "pack": 288,
+   "hex": null
+  },
+  {
+   "reference": "882",
+   "nom": "Pink white",
+   "pack": 288,
+   "hex": null
+  },
+  {
+   "reference": "883",
+   "nom": "Gardenia white",
+   "pack": 288,
+   "hex": null
+  },
+  {
+   "reference": "884",
+   "nom": "Matte white",
+   "pack": 288,
+   "hex": null
+  },
+  {
+   "reference": "885",
+   "nom": "Lanbai",
+   "pack": 288,
+   "hex": null
+  },
+  {
+   "reference": "886",
+   "nom": "Snow green white",
+   "pack": 288,
+   "hex": null
+  },
+  {
+   "reference": "887",
+   "nom": "Snow white",
+   "pack": 288,
+   "hex": null
+  },
+  {
+   "reference": "888",
+   "nom": "Azure blue",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "889",
+   "nom": "Cloud blue",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "890",
+   "nom": "Sea wave blue",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "891",
+   "nom": "Crystal blue",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "892",
+   "nom": "Sea cyan",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "893",
+   "nom": "Sapphire blue",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "894",
+   "nom": "Classic blue",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "895",
+   "nom": "Prussian blue",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "896",
+   "nom": "Aegean sea blue",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "897",
+   "nom": "Nightfall blue",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "898",
+   "nom": "Light ice blue",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "899",
+   "nom": "Indigo purple",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "900",
+   "nom": "Agate purple",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "901",
+   "nom": "Cyanoze",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "902",
+   "nom": "Morning glory purple",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "903",
+   "nom": "Litmus red",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "904",
+   "nom": "Glow red",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "905",
+   "nom": "Lotus pink",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "906",
+   "nom": "Redbud red",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "907",
+   "nom": "Chinese rose red",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "908",
+   "nom": "Magenta red",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "909",
+   "nom": "Saffron red",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "910",
+   "nom": "Crimson",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "911",
+   "nom": "Cream orange",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "912",
+   "nom": "Pomelo skin",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "913",
+   "nom": "Jade pink",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "914",
+   "nom": "Peach blush",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "915",
+   "nom": "Deer skin brown",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "916",
+   "nom": "Crab shell red",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "917",
+   "nom": "Light coral",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "918",
+   "nom": "Hawthorn red",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "919",
+   "nom": "Faro red",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "920",
+   "nom": "Sunset glow red",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "921",
+   "nom": "Cocoa red",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "922",
+   "nom": "Lava red",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "923",
+   "nom": "Harrier crest",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "924",
+   "nom": "Pale white",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "925",
+   "nom": "Soy milk beige",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "926",
+   "nom": "Lotus seed white",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "927",
+   "nom": "Wheat hull beige",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "928",
+   "nom": "Hump brown",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "929",
+   "nom": "Almond yellow",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "930",
+   "nom": "Ginkgo orange",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "931",
+   "nom": "Suede brown",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "932",
+   "nom": "Coconut brown",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "933",
+   "nom": "Lemon yellow",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "934",
+   "nom": "Papaya yellow",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "935",
+   "nom": "Moonlight orange",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "936",
+   "nom": "Glazed orange",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "937",
+   "nom": "Vibrant orange",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "938",
+   "nom": "Vanilla green",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "939",
+   "nom": "Apple green",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "940",
+   "nom": "Jade green",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "941",
+   "nom": "Agate green",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "942",
+   "nom": "Enamel green",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "943",
+   "nom": "Silk yellow",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "944",
+   "nom": "Reed green",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "945",
+   "nom": "Shark cyan",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "946",
+   "nom": "Pond green",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "947",
+   "nom": "Turtle shell",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "948",
+   "nom": "Palm green",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "949",
+   "nom": "Frost white",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "950",
+   "nom": "Moon shadow gray",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "951",
+   "nom": "Cool grayt",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "952",
+   "nom": "Warship gray",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "953",
+   "nom": "Smoke gray",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "954",
+   "nom": "Crab shell cyan",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "955",
+   "nom": "Sea foam green",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "956",
+   "nom": "Matte gray",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "957",
+   "nom": "Seagull gray",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "958",
+   "nom": "Red gray",
+   "pack": 360,
+   "hex": null
+  },
+  {
+   "reference": "959",
+   "nom": "Wild goose gray",
+   "pack": 360,
+   "hex": null
+  }
+ ]
+}
