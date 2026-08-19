@@ -45,6 +45,20 @@ V4 est le plus important : si Safari livre du HEIC brut, il faut un décodage
 côté client, ce qui est coûteux. Le comportement attendu est une conversion
 automatique en JPEG, à confirmer.
 
+### Résultats relevés sur l'appareil
+
+iPhone, iOS 18.7, Safari 26.6.1, web app installée sur l'écran d'accueil.
+Page de diagnostic : `verifications/`.
+
+| # | Résultat |
+|---|---|
+| V1 | **OK.** HTTPS Let's Encrypt valide, contexte sûr. |
+| V2 | **OK.** Service worker actif, sonde servie depuis le cache en mode avion. |
+| V3 | **En attente.** 50 Mo écrits et relus intacts, quota annoncé **39,3 Go**. Le verdict à 72 h reste à relever. `navigator.storage.persist()` est **refusé**, y compris en web app installée : la conservation n'est donc garantie par aucun contrat, seulement observée. C'est ce qui donne son poids à l'export du §9. |
+| V4 | **OK — pas de HEIC.** Safari livre du JPEG (`ff d8 ff e0`, JFIF), décodé en 57 ms et ré-encodé sans difficulté. **Aucun décodeur à embarquer**, le pipeline du §8 s'écrit tel quel. Une réserve : le ré-encodage 1600 px / qualité 0.8 pèse **548 Ko**, pas les ~300 Ko annoncés au §8 — soit ~275 Mo pour 500 planches, sans conséquence face au quota. |
+| V5 | **OK.** `canShare({files})` accepté, feuille de partage validée avec le fichier image. |
+| V6 | **Partiel.** L'API existe et le verrou est accordé en web app installée. Le verrou se relâche au passage en arrière-plan — comportement normal de l'API. La durée de maintien écran allumé reste à mesurer. |
+
 ---
 
 ## 3. Architecture
@@ -289,6 +303,24 @@ les transitions.
 **Le jalon 2 est déjà utilisable au quotidien** — il remplace le carnet, ce qui
 est l'objectif. Le jalon 3 fait gagner du temps, les suivants font plaisir.
 
+### État
+
+Jalons 0 à 6 construits et déployés. Le jalon 0 reste ouvert sur V3 et V6, qui
+demandent du temps d'observation et non du code.
+
+Deux écarts assumés par rapport à ce document :
+
+- Les **couvertures d'album sont embarquées** (`data/couvertures/`) plutôt que
+  chargées depuis l'éditeur comme le prévoit le §4.1, pour que le catalogue
+  reste consultable en mode avion. Le repli de couleur demeure pour ce qui
+  manque. Elles restent hors du dépôt tant qu'il est public.
+- Le **nombre de planches d'un livre** n'est pas dans le catalogue : l'éditeur
+  ne publie que le nombre de pages. Il est demandé à la coche d'un album.
+
+Les propositions automatiques du §6.2 sont écrites et branchées, mais restent
+muettes tant que les feutres n'ont pas d'hexadécimal — proposer sur des couleurs
+fausses serait pire que ne rien proposer.
+
 ---
 
 ## 14. Limites connues
@@ -304,8 +336,13 @@ est l'objectif. Le jalon 3 fait gagner du temps, les suivants font plaisir.
 
 ## 15. Évolutions envisageables
 
-- Reconnaissance automatique de la grille sur une photo de nuancier papier, pour
-  pipetter les 360 aplats d'un coup
+- ~~Reconnaissance automatique de la grille sur une photo de nuancier papier, pour
+  pipetter les 360 aplats d'un coup~~ — **fait.** Écran « Importer un nuancier » :
+  quatre repères posés au doigt sur les pastilles des coins donnent
+  l'homographie, un cinquième sur une feuille de papier blanc donne la référence
+  colorimétrique. Le papier de la carte étant lui-même coloré, il ne peut pas
+  servir de blanc : sans référence neutre dans le cadre, teinte du papier,
+  température de la lumière et gradient d'éclairage sont indissociables.
 - Filtre « planches réalisables avec ce que je possède », et liste des feutres
   manquants pour les autres
 - Détection du numéro de planche par OCR sur la photo de la légende
