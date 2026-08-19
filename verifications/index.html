@@ -181,7 +181,7 @@
 
   <section id="v4">
     <div class="entete"><h2>V4 · Format livré par la photo</h2><span class="verdict" data-etat="attente">…</span></div>
-    <p class="consigne">Fais les trois, dans l’ordre. La ligne qui compte est la dernière : si le canvas relit l’image, le format brut n’a plus d’importance.</p>
+    <p class="consigne">Fais les trois : chacune ajoute sa ligne, et le verdict compte les voies testées. Ce qui décide est la fin de chaque ligne : si le ré-encodage aboutit, le format brut n’a plus d’importance.</p>
     <label class="fichier">Appareil photo<input type="file" accept="image/*" capture="environment" data-voie="appareil photo"></label>
     <label class="fichier">Photothèque<input type="file" accept="image/*" data-voie="photothèque"></label>
     <label class="fichier">Sélecteur large<input type="file" data-voie="sélecteur large"></label>
@@ -199,7 +199,7 @@
 
   <section id="v6">
     <div class="entete"><h2>V6 · Wake Lock</h2><span class="verdict" data-etat="attente">…</span></div>
-    <p class="consigne">À faire depuis l’icône de l’écran d’accueil, pas dans Safari. Pose le téléphone et attends plus longtemps que ton délai de verrouillage automatique.</p>
+    <p class="consigne">Demande le verrou, pose le téléphone et <strong>ne quitte pas l’app</strong> : le verrou se relâche dès qu’elle passe en arrière-plan, et le test ne prouve plus rien. Attends plus longtemps que ton délai de verrouillage automatique, et regarde simplement si l’écran s’éteint.</p>
     <dl></dl>
     <button data-action="verrou">Demander le verrou</button>
     <button data-action="relacher" disabled>Relâcher</button>

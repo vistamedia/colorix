@@ -1,4 +1,4 @@
-const CACHE = 'colorix-verifs-5';
+const CACHE = 'colorix-verifs-6';
 const COQUILLE = [
   './',
   './index.html',
