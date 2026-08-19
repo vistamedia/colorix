@@ -91,10 +91,20 @@
 
 * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
 
-html, body { height: 100%; }
+/* Les cartes, tuiles et onglets sont des liens : sans cette remise à zéro
+   ils héritent du bleu souligné du navigateur. */
+a { color: inherit; text-decoration: none; }
+
+html {
+  height: 100%;
+  background: var(--surface);
+}
 
 body {
   margin: 0;
+  /* 100% ne remplit pas la fenêtre en web app installée : la barre d'onglets
+     s'arrête avant le bas et laisse paraître le fond. */
+  height: 100dvh;
   display: flex;
   flex-direction: column;
   background: var(--fond);
@@ -103,6 +113,7 @@ body {
   overscroll-behavior: none;
   user-select: none;
   -webkit-user-select: none;
+  -webkit-touch-callout: none;
   -webkit-text-size-adjust: 100%;
 }
 
