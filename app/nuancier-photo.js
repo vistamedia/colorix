@@ -114,10 +114,15 @@ export function qualite(blanc, gains) {
   const alertes = [];
   const luminance = (0.299 * blanc[0] + 0.587 * blanc[1] + 0.114 * blanc[2]) / 255;
 
-  if (blanc.some(c => c >= 253)) {
-    alertes.push({ gravite: 'echec', texte: 'La feuille blanche est brûlée : la référence est perdue. Éloigne-toi de la lumière directe.' });
+  /* Un seul canal au plafond, c'est la dominante de la lumière, pas une
+     surexposition : la correction tient encore. Deux, et le blanc est perdu. */
+  const satures = blanc.filter(c => c >= 252).length;
+  if (satures >= 2) {
+    alertes.push({ gravite: 'echec', texte: 'La feuille blanche est brûlée : la référence est perdue. Éloigne-toi de la lumière directe ou baisse l’exposition.' });
   } else if (luminance < 0.25) {
     alertes.push({ gravite: 'echec', texte: 'La feuille blanche est trop sombre : le repère est-il bien posé dessus ?' });
+  } else if (satures === 1) {
+    alertes.push({ gravite: 'avertissement', texte: 'Un canal de couleur est au maximum sur la feuille blanche : les couleurs restent exploitables, mais une lumière plus neutre les rendrait plus justes.' });
   }
 
   const dominante = Math.max(...gains) / Math.min(...gains);
