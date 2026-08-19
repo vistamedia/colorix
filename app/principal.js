@@ -6,6 +6,7 @@ import * as fiche from './vues/fiche.js';
 import * as attribution from './vues/attribution.js';
 import * as pipette from './vues/pipette.js';
 import * as feutres from './vues/feutres.js';
+import * as importerNuancier from './vues/importer-nuancier.js';
 import * as stats from './vues/stats.js';
 import * as reglages from './vues/reglages.js';
 
@@ -17,6 +18,7 @@ const ROUTES = [
   [/^\/planche\/([^/]+)\/code\/(.+)$/, attribution, null],
   [/^\/pipette\/([^/]+)\/(.+)$/, pipette, null],
   [/^\/feutres$/, feutres, 'feutres'],
+  [/^\/feutres\/importer$/, importerNuancier, 'feutres'],
   [/^\/stats$/, stats, 'stats'],
   [/^\/reglages$/, reglages, 'reglages']
 ];

@@ -218,6 +218,8 @@ export async function amorcerSet(chemin) {
       reference: f.reference,
       nom: f.nom,
       pack: f.pack,
+      planche: f.planche,
+      position: f.position,
       hex: ancien?.hex ?? f.hex,
       etat: ancien?.etat ?? 'possede'
     };
