@@ -1,4 +1,4 @@
-const CACHE = 'colorix-verifs-1';
+const CACHE = 'colorix-verifs-4';
 const COQUILLE = [
   './',
   './index.html',
@@ -11,7 +11,9 @@ const COQUILLE = [
 
 self.addEventListener('install', evenement => {
   evenement.waitUntil(
-    caches.open(CACHE).then(cache => cache.addAll(COQUILLE)).then(() => self.skipWaiting())
+    caches.open(CACHE)
+      .then(cache => cache.addAll(COQUILLE.map(url => new Request(url, { cache: 'reload' }))))
+      .then(() => self.skipWaiting())
   );
 });
 
