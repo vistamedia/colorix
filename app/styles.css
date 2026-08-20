@@ -507,6 +507,7 @@ button, input, textarea, select {
   -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
   -webkit-mask-position: center; mask-position: center;
 }
+.rang-case { font-size: .62em; opacity: .8; font-variant-numeric: tabular-nums; }
 .pastille .glyphe { width: 46%; height: 40%; }
 .bande .glyphe { width: 34%; height: 34%; }
 .pastille-manquante .glyphe { width: 46%; height: 40%; }
