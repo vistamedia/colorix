@@ -19,8 +19,18 @@ Ouvrir l'URL dans Safari, puis Partager → **Sur l'écran d'accueil**. L'app
 s'ouvre ensuite en plein écran depuis son icône, sans barre Safari, et
 fonctionne en mode avion.
 
-Après un déploiement, fermer complètement l'app depuis le sélecteur avant de la
-rouvrir : le service worker n'installe le nouveau cache qu'au lancement suivant.
+Après un déploiement : **Réglages → Actualiser l'app**. Le bouton cherche la
+nouvelle version, l'installe et recharge. La section affiche au-dessus la
+version en place (`colorix-8`, `colorix-9`…), ce qui permet de vérifier que la
+mise à jour a bien pris.
+
+Sans le bouton, la nouvelle coquille arrive quand même, mais au **deuxième**
+lancement : le service worker s'installe au premier, la page n'en profite qu'au
+suivant.
+
+**Ne jamais retirer l'app de l'écran d'accueil pour la mettre à jour.** iOS
+efface alors son IndexedDB, et tout le travail part avec — c'est ce qui obligeait
+à exporter et restaurer à chaque fois.
 
 ---
 
@@ -46,6 +56,7 @@ app/
   partage.js            navigator.share avec légende
   paliers.js            seuils des paliers Winx
   preferences.js        localStorage
+  maj.js                version installée, mise à jour à la demande
   rendu.js              fabrique d'éléments, icônes, dégradés de repli
   vues/                 un module par écran
 data/
@@ -90,7 +101,7 @@ premier affichage, repli sur un dégradé de couleur.
 | Feutres | Inventaire, états, couleurs |
 | Import de nuancier | Relevé des couleurs d'une planche entière sur photo |
 | Statistiques | Progression, paliers, calendrier, mosaïque, palmarès, liste de courses |
-| Réglages | Export et import, mise en page de la fiche, albums, stockage |
+| Réglages | Export et import, version et mise à jour, mise en page, albums, stockage |
 
 La fiche coloriage n'a pas de barre d'onglets : c'est un écran de travail. On en
 sort par le sur-titre, qui ramène à l'album.
