@@ -4,6 +4,7 @@ import * as catalogue from './vues/catalogue.js';
 import * as album from './vues/album.js';
 import * as fiche from './vues/fiche.js';
 import * as releverNuancier from './vues/relever-nuancier.js';
+import * as proposer from './vues/proposer.js';
 import * as attribution from './vues/attribution.js';
 import * as pipette from './vues/pipette.js';
 import * as feutres from './vues/feutres.js';
@@ -17,6 +18,7 @@ const ROUTES = [
   [/^\/album\/(.+)$/, album, 'albums'],
   [/^\/planche\/([^/]+)$/, fiche, null],
   [/^\/planche\/([^/]+)\/nuancier$/, releverNuancier, null],
+  [/^\/planche\/([^/]+)\/proposer$/, proposer, null],
   [/^\/planche\/([^/]+)\/code\/(.+)$/, attribution, null],
   [/^\/pipette\/([^/]+)\/(.+)$/, pipette, null],
   [/^\/feutres$/, feutres, 'feutres'],

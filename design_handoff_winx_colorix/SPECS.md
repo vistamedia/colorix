@@ -249,6 +249,14 @@ face à l'imprécision d'une photo prise à la lumière du salon.
 **La proposition est toujours validée par elle.** Jamais d'attribution automatique
 silencieuse : l'éclairage fausse tout, et c'est son œil qui décide.
 
+**Une passe globale** propose un feutre pour tous les codes à pourvoir d'une
+planche, chaque rangée montrant la couleur du livre, celle du feutre et l'écart.
+Elle en écarte ce qu'elle veut, puis valide le reste d'un bouton — quarante-cinq
+allers-retours deviennent un écran. La règle du paragraphe précédent tient
+toujours : chaque ligne reste visible et refusable avant l'enregistrement, un
+code déjà pourvu n'est jamais proposé donc jamais écrasé, et au-delà de ΔE 25
+rien n'est retenu d'avance.
+
 **6.3 Saisie directe.** Recherche par référence (« 792 ») ou par nom
 (« leaf green »), avec filtre sur le set. Nécessaire pour les feutres qu'elle
 connaît par cœur.

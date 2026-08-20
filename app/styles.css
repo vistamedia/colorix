@@ -717,6 +717,49 @@ button, input, textarea, select {
 .reglages__retirer { flex: none; padding: 7px 12px; border-radius: 999px; background: #FDECEF; color: #B4162F; font: 600 12px 'Space Grotesk', sans-serif; }
 .rappel { margin: 0; padding: 12px 14px; border-radius: 14px; background: var(--encours-fond); color: var(--encours-texte); font: 600 14px 'Space Grotesk', sans-serif; }
 
+/* ---------- passe de propositions ---------- */
+
+.corps--propositions { padding-bottom: calc(var(--safe-bas) + 16px); }
+.corps--propositions .section__note { padding: 0 20px; }
+.corps--propositions .section__note:first-child { padding-top: 14px; }
+
+.proposition {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 20px;
+  background: var(--fond);
+  border-bottom: 1px solid var(--separateur);
+  text-align: left;
+}
+.proposition:active { background: var(--presse); }
+.proposition--ecartee { opacity: .42; }
+.proposition__couleurs { flex: none; display: flex; align-items: center; gap: 5px; }
+.proposition__livre {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  box-shadow: var(--liseré-pastille);
+  display: flex; align-items: center; justify-content: center;
+  font: 700 19px 'Space Grotesk', sans-serif;
+}
+.proposition__livre .glyphe { width: 46%; height: 40%; }
+.proposition__feutre { width: 24px; height: 44px; border-radius: 8px; box-shadow: var(--liseré-pastille); }
+.proposition__texte { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+.proposition__ref { font: 700 24px 'Space Grotesk', sans-serif; font-variant-numeric: tabular-nums; }
+.proposition__nom {
+  font-size: 12px; color: var(--encre-2);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.proposition__ecart {
+  flex: none;
+  font: 600 13px 'Space Grotesk', sans-serif;
+  font-variant-numeric: tabular-nums;
+  color: var(--encre-3);
+}
+.proposition__ecart--loin { color: var(--magenta); }
+.proposition__coche { flex: none; width: 22px; text-align: center; font-size: 17px; color: var(--magenta); }
+
 /* ---------- import d'un nuancier depuis une photo ---------- */
 
 .feutres__actions { display: flex; align-items: center; justify-content: space-between; gap: 12px; }

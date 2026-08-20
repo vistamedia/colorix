@@ -141,6 +141,16 @@ export async function attribuer(coloriageId, code, feutreIds, contexte) {
   return enregistrerNuancier(n);
 }
 
+/* Une passe de propositions pose quarante feutres d'un écran : les écrire un
+   par un relirait le nuancier autant de fois. */
+export async function attribuerLot(coloriageId, parCode, contexte) {
+  const n = await nuancier(coloriageId, contexte.jeu);
+  for (const entree of n.entrees) {
+    if (parCode[entree.code]) entree.feutres = parCode[entree.code];
+  }
+  return enregistrerNuancier(n);
+}
+
 export async function pipetter(coloriageId, code, hex, contexte) {
   const n = await nuancier(coloriageId, contexte.jeu);
   const entree = n.entrees.find(e => e.code === code);

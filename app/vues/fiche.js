@@ -183,6 +183,16 @@ export async function monter(coloriageId) {
       }, n.entrees.some(e => !e.pastille_hex) ? 'Relever le nuancier en photo' : 'Refaire le relevé en photo')
     : null;
 
+  /* Offerte seulement quand elle a de quoi travailler : des codes colorés sans
+     feutre, et des feutres dont la couleur est relevée. */
+  const proposer = n.entrees.some(e => e.pastille_hex && !e.feutres.length)
+    && tousFeutres.some(f => f.hex && f.etat !== 'non_possede')
+    ? h('button', {
+        class: 'bouton--secondaire',
+        onclick: () => naviguer(`#/planche/${coloriageId}/proposer`)
+      }, 'Proposer les feutres manquants')
+    : null;
+
   const reprise = derniereFinie && manquantes.length
     ? h('button', {
         class: 'bouton--secondaire',
@@ -211,7 +221,7 @@ export async function monter(coloriageId) {
         }
       }, 'Terminé ✦');
 
-  const secondaires = [relever, reprise].filter(Boolean);
+  const secondaires = [relever, proposer, reprise].filter(Boolean);
   const actions = h('div', { class: `actions${secondaires.length ? ' actions--colonne' : ''}` },
     secondaires,
     secondaires.length
