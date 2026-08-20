@@ -6,6 +6,8 @@ Mono-utilisatrice, hors ligne, iPhone.
 **En ligne :** https://colorix.dananlab.fr/
 **Diagnostic du jalon 0 :** https://colorix.dananlab.fr/verifications/
 
+Pour reprendre le développement dans une session neuve : `REPRISE.md`.
+
 Les intentions et le modèle de données font foi dans
 `design_handoff_winx_colorix/SPECS.md`. Les valeurs visuelles — couleurs,
 typographie, rayons, espacements — sont dans `design_handoff_winx_colorix/README.md`.
