@@ -187,14 +187,14 @@ non.
 couleurs à elle. Le jeu de codes reste une propriété du livre, mais **une
 planche en prend le début, pas la totalité** : le nombre de nuances varie d'un
 coloriage à l'autre — 17 sur la planche 47, qui s'arrête à `h`, bien davantage
-sur la 50 — et jamais avec de trou au milieu. Aucune
-couleur n'est donc livrée avec le catalogue : tant qu'une planche n'a pas été
-relevée, ses cases sont grises — une couleur approchée serait plus trompeuse
-que rien.
+sur la 50 — et jamais avec de trou au milieu. Aucune couleur n'est donc livrée
+avec le catalogue : tant qu'une planche n'a pas été relevée, ses cases sont
+grises — une couleur approchée serait plus trompeuse que rien.
 
 **Contenu.** L'album et le numéro en en-tête. Puis la liste des codes du nuancier :
-pour chacun, la pastille de couleur du livre, le caractère du code, et la ou les
-références de feutre en très gros. Lisible à bout de bras, sur une table, sans
+pour chacun, la pastille de couleur du livre, le caractère du code — ou, au-delà
+de `z`, le symbole découpé sur la photo — et la ou les références de feutre en
+très gros. Lisible à bout de bras, sur une table, sans
 lunettes.
 
 **Comportements.**
@@ -224,16 +224,16 @@ donnent l'homographie, un cinquième sur le blanc de la page donne la référenc
 colorimétrique — la page étant elle-même blanche, aucune feuille n'est à
 ajouter dans le cadre. Chaque repère se pose au doigt sous une loupe grossie
 cinq fois, puis s'affine aux quatre flèches, un pixel par appui : le doigt
-masque ce qu'il vise, la flèche non. Les couleurs sont écrites d'un coup dans le nuancier de
-la planche.
+masque ce qu'il vise, la flèche non. Les couleurs sont ensuite écrites d'un coup
+dans le nuancier de la planche.
 
 **Le compte de cases vient de la page, jamais du jeu de codes.** Avant la photo,
 la série du livre est proposée et elle **tape le dernier code de la bande** ; le
 reste se grise. Si la bande continue au-delà de `z`, elle **compte les cases à
-symbole** au lieu de les nommer. Un compte faux ne donne pas un relevé incomplet mais un relevé
-**décalé** : l'homographie étalerait N cases sur K rangées et chaque couleur
-tomberait sur le mauvais code. Les codes au-delà restent gris, ils ne sont pas
-effacés.
+symbole** au lieu de les nommer. Un compte faux ne donne pas un relevé incomplet
+mais un relevé **décalé** : l'homographie étalerait N cases sur K rangées et
+chaque couleur tomberait sur le mauvais code. Les codes au-delà du dernier
+désigné restent gris, ils ne sont pas effacés.
 
 **6.1 Pipette.** Pour un code isolé, ou pour corriger. Elle photographie la
 bande de légende de la planche. L'app affiche la photo, elle tape sur une
@@ -376,8 +376,16 @@ est l'objectif. Le jalon 3 fait gagner du temps, les suivants font plaisir.
 Jalons 0 à 6 construits et déployés. Le jalon 0 reste ouvert sur V3 et V6, qui
 demandent du temps d'observation et non du code.
 
-Le §6.0 est venu après coup : le catalogue portait une palette unique, relevée
-à l'œil sur la planche 24 et servie à toutes les planches. Elle a été retirée.
+Le §6.0 est venu après coup, et en trois corrections successives — chacune née
+d'avoir pris une planche observée pour une règle du livre :
+
+1. Le catalogue portait une **palette unique**, relevée à l'œil sur la planche
+   24 et servie à toutes les planches. Retirée : la couleur d'un code appartient
+   à la planche.
+2. Le **nombre de nuances** était déduit du jeu de codes. Il vient désormais de
+   la page, car un compte faux ne tronque pas le relevé, il le décale.
+3. La **série de codes** finissait par `◊ Δ`. Seuls les vingt-neuf premiers rangs
+   sont stables ; au-delà, les symboles appartiennent à la planche.
 
 Deux écarts assumés par rapport à ce document :
 
@@ -404,6 +412,9 @@ fausses serait pire que ne rien proposer.
   en cache
 - Un seul profil, aucune synchronisation entre appareils
 - Safari iOS uniquement
+- La reconnaissance des symboles du §6.0 peut se tromper : deux candidats trop
+  proches sont laissés en image plutôt que départagés, mais une lecture fausse
+  reste possible. D'où le refus d'un tap sur l'écran de vérification
 
 ## 15. Évolutions envisageables
 
@@ -420,5 +431,7 @@ fausses serait pire que ne rien proposer.
   bords imprimés se visent bien mieux qu'un centre de case.
 - Filtre « planches réalisables avec ce que je possède », et liste des feutres
   manquants pour les autres
-- Détection du numéro de planche par OCR sur la photo de la légende
+- Détection du numéro de planche par OCR sur la photo de la légende — la
+  reconnaissance par gabarits du §6.0 pourrait y servir, le répertoire étant
+  alors les dix chiffres
 - Import du catalogue à jour depuis un fichier, sans réinstaller l'app
