@@ -124,6 +124,14 @@ rsync -az app data index.html sw.js manifest.webmanifest .htaccess polices icons
   contient `feutres\/importer`, que `grep 'feutres/importer'` ne trouve pas.
 - Pour tester dans le navigateur, **vide les caches et désenregistre le service
   worker** après chaque édition, sinon tu éprouves l'ancienne version.
+- **`node --check` ne parse pas un module ES** : il valide un fichier dont
+  `import()` échoue à la lecture. Vérifier avec
+  `node --input-type=module -e "import('./app/vues/x.js').catch(...)"`, sinon
+  une parenthèse mal placée part en production.
+- L'enregistrement du service worker est dans `index.html`, **hors du graphe de
+  modules** : ne pas le remettre dans `principal.js`. Une erreur de syntaxe y
+  rendrait l'écran blanc définitif, l'app ne pouvant plus recevoir son
+  correctif.
 - **Ne me dis jamais de retirer l'app de l'écran d'accueil** pour la mettre à
   jour : iOS efface son IndexedDB et tout le travail part avec.
 - **Ne pas écraser `/verifications/`** : c'est la page de diagnostic du jalon 0,

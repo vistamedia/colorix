@@ -28,9 +28,16 @@ que la mise à jour a bien pris.
 
 Sans le bouton, la nouvelle coquille arrive quand même au lancement suivant :
 le nouveau service worker s'installe au démarrage, prend la main, et la page se
-recharge d'elle-même (`controllerchange` dans `principal.js`). Sans ce
-rechargement, il fallait **deux** lancements — le worker s'installait au
-premier, la page n'en profitait qu'au second.
+recharge d'elle-même (`controllerchange`). Sans ce rechargement, il fallait
+**deux** lancements — le worker s'installait au premier, la page n'en profitait
+qu'au second.
+
+**Cet enregistrement vit dans `index.html`, en script classique, et non dans un
+module.** Une erreur de syntaxe dans n'importe quel module de l'app empêchait
+sinon le graphe entier de s'exécuter, donc l'enregistrement, donc l'arrivée du
+correctif : l'écran blanc devenait définitif, et la seule sortie — retirer la
+web app de l'écran d'accueil — efface son IndexedDB. Deux lignes hors du graphe
+valent mieux que cette impasse.
 
 **Ne jamais retirer l'app de l'écran d'accueil pour la mettre à jour.** iOS
 efface alors son IndexedDB, et tout le travail part avec — c'est ce qui obligeait
@@ -49,7 +56,7 @@ manifest.webmanifest
 sw.js                   service worker, cache-first sur la coquille
 app/
   styles.css            tous les jetons de design
-  principal.js          routeur par hash, démarrage
+  principal.js          routeur par hash, démarrage de l'affichage
   base.js               accès IndexedDB promisifié
   donnees.js            opérations métier
   couleur.js            encre sur pastille, sRGB → Lab, ΔE76

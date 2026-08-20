@@ -18,6 +18,27 @@
 <body>
 <div id="ecran"></div>
 <nav id="onglets" hidden></nav>
+<script>
+/* Le service worker s'enregistre ici, hors du graphe de modules, et non dans
+   `principal.js` : une erreur de syntaxe dans n'importe quel module empêchait
+   alors l'enregistrement, donc la réception du correctif. L'écran blanc
+   devenait définitif — sauf à retirer la web app de l'écran d'accueil, ce qui
+   efface son IndexedDB et tout le travail avec.
+
+   Le rechargement sur `controllerchange` évite qu'une mise à jour ne se voie
+   qu'au lancement suivant : le worker s'installe au premier, la page n'en
+   profiterait qu'au second. */
+if ('serviceWorker' in navigator) {
+  let recharge = false;
+  navigator.serviceWorker.addEventListener('controllerchange', function () {
+    if (recharge) return;
+    recharge = true;
+    location.reload();
+  });
+  navigator.serviceWorker.register('./sw.js', { scope: './' }).catch(function () {});
+}
+navigator.storage?.persist?.().catch(function () {});
+</script>
 <script type="module" src="./app/principal.js"></script>
 </body>
 </html>
