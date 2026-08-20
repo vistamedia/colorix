@@ -40,34 +40,34 @@ export async function monter(coloriageId) {
   const reperes = {};
   let image = null;
 
-  /* Une planche n'emploie pas forcément toutes les couleurs du livre : sa bande
-     ne compte que les siennes. Le nombre de cases doit donc venir de la page,
-     pas du jeu de codes — sans quoi l'homographie étale N cases sur K rangées
-     et décale tout le nuancier. Elle décoche les codes absents, l'ordre du
-     livre fait le reste. */
-  const retenus = new Set(codes);
-  const listeRetenue = () => codes.filter(code => retenus.has(code));
+  /* Une planche prend le début de la série, jamais un sous-ensemble à trous :
+     celle de 17 nuances va de « 1 » à « h », celle de 45 jusqu'au bout. Il
+     suffit donc de désigner le dernier code de la bande. Le compte doit être
+     juste — sans quoi l'homographie étale N cases sur K rangées et décale tout
+     le nuancier au lieu de l'écourter. */
+  let dernier = codes.length - 1;
+  const listeRetenue = () => codes.slice(0, dernier + 1);
 
   /* ---------- étape 1 : les codes de la bande, puis la photo ---------- */
 
   function etapeDepart() {
     const compte = h('p', { class: 'section__note section__note--compte' });
     const photo = h('button', { class: 'bouton--pointille' }, '＋ Photo de la page');
-    const majCompte = () => {
-      compte.textContent = `${retenus.size} case${retenus.size > 1 ? 's' : ''} sur la bande.`;
-      photo.disabled = !retenus.size;
-    };
 
-    const jetons = h('div', { class: 'bande-codes' }, codes.map(code => {
+    const tous = codes.map((code, rang) => {
       const jeton = h('button', { class: 'jeton-code' }, code);
-      jeton.addEventListener('click', () => {
-        retenus.has(code) ? retenus.delete(code) : retenus.add(code);
-        jeton.classList.toggle('jeton-code--absent', !retenus.has(code));
-        majCompte();
-      });
-      jeton.classList.toggle('jeton-code--absent', !retenus.has(code));
+      jeton.addEventListener('click', () => { dernier = rang; majCompte(); });
       return jeton;
-    }));
+    });
+    const jetons = h('div', { class: 'bande-codes' }, tous);
+
+    const majCompte = () => {
+      tous.forEach((jeton, rang) => {
+        jeton.classList.toggle('jeton-code--absent', rang > dernier);
+        jeton.classList.toggle('jeton-code--dernier', rang === dernier);
+      });
+      compte.textContent = `${dernier + 1} case${dernier ? 's' : ''} sur la bande, de « ${codes[0]} » à « ${codes[dernier]} ».`;
+    };
     majCompte();
 
     const entree = h('input', { type: 'file', accept: 'image/*', hidden: true });
@@ -83,8 +83,8 @@ export async function monter(coloriageId) {
     const corps = h('div', { class: 'corps corps--import' },
       h('h2', { class: 'section__titre' }, `La page « Mon nuancier #${courante.numero} »`),
       h('p', { class: 'section__note' },
-        'Compare la bande de la page à cette liste et décoche les codes qui n’y '
-        + 'sont pas. Le compte doit tomber juste : c’est lui qui découpe la photo.'),
+        'Tape le dernier code de la bande, celui du bas de la page. Le compte '
+        + 'doit tomber juste : c’est lui qui découpe la photo.'),
       jetons,
       compte,
       h('p', { class: 'section__note' },

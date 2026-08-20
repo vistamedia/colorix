@@ -38,13 +38,11 @@ export async function albumsPossedes() {
   return albums.sort((a, b) => (b.possession.date_acquisition || '').localeCompare(a.possession.date_acquisition || ''));
 }
 
-export async function posseder(livreId, nbColoriages, jeuCodes) {
-  const fiche = await livre(livreId);
+export async function posseder(livreId, nbColoriages) {
   await base.ecrire('possessions', {
     livre_id: livreId,
     date_acquisition: new Date().toISOString(),
     nb_coloriages: nbColoriages,
-    jeu_codes: jeuCodes || fiche?.jeu_codes || null,
     note: ''
   });
   const planches = Array.from({ length: nbColoriages }, (_, i) => ({
@@ -103,24 +101,23 @@ export const terminer = (id, sujetRevele) =>
    trompeuse qu'une case grise. */
 export async function nuancier(coloriageId, jeuCodes) {
   const existant = await base.lire('nuanciers', coloriageId);
-  if (existant) return existant;
-  return {
-    coloriage_id: coloriageId,
-    entrees: (jeuCodes || []).map(code => ({
-      code,
-      pastille_hex: null,
-      feutres: [],
-      note: ''
-    }))
-  };
+  const vide = (code) => ({ code, pastille_hex: null, feutres: [], note: '' });
+  if (!jeuCodes?.length) return existant || { coloriage_id: coloriageId, entrees: [] };
+  if (!existant) return { coloriage_id: coloriageId, entrees: jeuCodes.map(vide) };
+
+  /* La série du livre peut s'allonger d'une version du catalogue à l'autre :
+     les entrées déjà là gardent leur couleur et leurs feutres, les nouvelles
+     prennent leur rang. */
+  const parCode = new Map(existant.entrees.map(e => [e.code, e]));
+  return { ...existant, entrees: jeuCodes.map(code => parCode.get(code) || vide(code)) };
 }
 
-/* Le jeu de codes vient du livre ; la possession en garde une copie pour que
-   l'app reste juste même si le catalogue est remplacé. */
+/* Le jeu de codes vient du catalogue, et de lui seul : une copie figée à la
+   coche de l'album empêcherait toute correction de la série d'atteindre les
+   planches déjà ouvertes. */
 export async function contexteNuancier(livreId) {
-  const [fiche, liste] = await Promise.all([livre(livreId), possessions()]);
-  const p = liste.find(x => x.livre_id === livreId);
-  return { fiche, jeu: p?.jeu_codes || fiche?.jeu_codes || [] };
+  const fiche = await livre(livreId);
+  return { fiche, jeu: fiche?.jeu_codes || [] };
 }
 
 export async function enregistrerNuancier(n) {

@@ -771,6 +771,7 @@ button, input, textarea, select {
   color: #FFF;
   font: 700 16px 'Space Grotesk', sans-serif;
 }
+.jeton-code--dernier { box-shadow: 0 0 0 3px var(--magenta); }
 .jeton-code--absent {
   background: var(--surface);
   color: var(--encre-3);
