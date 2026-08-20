@@ -146,10 +146,20 @@ ressemblent — et le découpage l'emporte : un symbole en image vaut mieux qu'u
 mauvais caractère. Un tap sur une case de l'écran de vérification refuse le
 caractère reconnu et rend son image.
 
-Mesuré sur seize signes dessinés dans trois fontes étrangères aux gabarits :
-41 reconnus sur 48, 6 laissés en image, **une seule erreur** — un « φ » à
-empattements lu « ψ ». Sur onze signes absents du répertoire, 30 relevés sur 33
-sont correctement laissés en image.
+Le découpage se **borne à la case** avant de mesurer quoi que ce soit : on part
+de sa couleur relevée et on cherche ses bords, plutôt que de chercher le filet
+qui la sépare de la suivante. Chercher le filet reviendrait à parier sur son
+épaisseur, et sur une photo l'objectif l'adoucit jusqu'à le rendre indétectable.
+Les rangées et les colonnes ne se traitent pas pareil : une rangée qui coupe le
+code n'en contient qu'une faible part, donc celle du centre est fiable ; une
+colonne du centre suit la hampe du signe sur toute sa hauteur, donc on part des
+bords.
+
+Mesuré sur une bande photographiée de synthèse — filets adoucis, léger flou,
+JPEG — **10 symboles reconnus sur 16, aucune lecture fausse**. Sur des filets
+nets, 12 sur 16. En fonte à empattements, 7 sur 16. Sous un flou extrême, plus
+rien n'est reconnu et tout retombe sur l'image : la dégradation est muette,
+jamais fausse.
 
 **`data/nuanciers/guangna-360.json`** — les 360 feutres du Pack 360 :
 référence, nom, plus petit pack contenant le feutre, planche et position dans le
