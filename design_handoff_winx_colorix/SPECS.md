@@ -69,7 +69,9 @@ Page de diagnostic : `verifications/`.
 - Stockage : **IndexedDB** pour tout, y compris les photos (Blob)
 - `localStorage` réservé aux préférences légères (thème, dernier album ouvert)
 - Service worker en *cache-first* sur la coquille de l'app → fonctionnement
-  hors ligne intégral
+  hors ligne intégral. Un bouton **Actualiser** dans les réglages déclenche la
+  mise à jour et affiche la version en place : désinstaller la web app pour la
+  mettre à jour effacerait son IndexedDB
 - HTTPS obligatoire (exigence du service worker). N'importe quel hébergeur
   statique convient. L'app ne contient aucune donnée sensible : une URL non
   référencée suffit comme protection.

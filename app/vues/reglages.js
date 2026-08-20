@@ -3,6 +3,15 @@ import { exporter, importer, albumsPossedes, retirerAlbum } from '../donnees.js'
 import { creerZip, lireZip } from '../zip.js';
 import * as base from '../base.js';
 import { miseEnPage, definirMiseEnPage, marquerExport, joursDepuisExport, dernierExport } from '../preferences.js';
+import { versionInstallee, chercherMiseAJour } from '../maj.js';
+
+const MESSAGES = {
+  'a-jour': 'Tu as déjà la dernière version.',
+  'installee': 'Nouvelle version installée. Rechargement…',
+  'hors-ligne': 'Pas de réseau : impossible de vérifier.',
+  'echec': 'L’installation a échoué. Réessaie dans un moment.',
+  'sans-worker': 'Rechargement…'
+};
 
 const horodatage = () => new Date().toISOString().slice(0, 10);
 
@@ -46,6 +55,7 @@ export async function monter() {
   const albums = await albumsPossedes();
   const jours = joursDepuisExport();
   const estimation = await navigator.storage?.estimate?.();
+  const version = await versionInstallee();
 
   const journal = h('p', { class: 'section__note' });
 
@@ -64,6 +74,19 @@ export async function monter() {
       boutonExport.disabled = false;
     }
   }, 'Exporter tout');
+
+  const journalMaj = h('p', { class: 'section__note' });
+  const boutonMaj = h('button', {
+    class: 'bouton bouton--primaire',
+    onclick: async () => {
+      boutonMaj.disabled = true;
+      journalMaj.textContent = 'Recherche d’une nouvelle version…';
+      const issue = await chercherMiseAJour();
+      journalMaj.textContent = MESSAGES[issue];
+      if (issue === 'installee' || issue === 'sans-worker') location.reload();
+      else boutonMaj.disabled = false;
+    }
+  }, 'Actualiser l’app');
 
   const entreeImport = h('input', { type: 'file', accept: '.zip,.json,application/zip,application/json', hidden: true });
   entreeImport.addEventListener('change', async () => {
@@ -149,6 +172,14 @@ export async function monter() {
     h('button', { class: 'bouton--secondaire', onclick: () => entreeImport.click() }, 'Restaurer une sauvegarde'),
     entreeImport,
     journal,
+
+    h('h2', { class: 'section__titre' }, 'Version de l’app'),
+    h('p', { class: 'section__note' },
+      `${version || 'Version inconnue'} — cherche une nouvelle version et l’installe. `
+      + 'Tes données restent en place. Ne retire jamais l’app de l’écran d’accueil '
+      + 'pour la mettre à jour : iOS effacerait tout.'),
+    boutonMaj,
+    journalMaj,
 
     h('h2', { class: 'section__titre' }, 'Fiche coloriage'),
     h('p', { class: 'section__note' }, 'Deux mises en page, à choisir après essai sur l’appareil.'),
