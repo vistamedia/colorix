@@ -21,8 +21,8 @@ fonctionne en mode avion.
 
 Après un déploiement : **Réglages → Actualiser l'app**. Le bouton cherche la
 nouvelle version, l'installe et recharge. La section affiche au-dessus la
-version en place (`colorix-8`, `colorix-9`…), ce qui permet de vérifier que la
-mise à jour a bien pris.
+version en place — `colorix-15` au moment d'écrire — ce qui permet de vérifier
+que la mise à jour a bien pris.
 
 Sans le bouton, la nouvelle coquille arrive quand même au lancement suivant :
 le nouveau service worker s'installe au démarrage, prend la main, et la page se
@@ -78,6 +78,12 @@ IndexedDB pour tout, y compris les photos en `Blob` : `possessions`,
 `localStorage` uniquement pour les préférences légères — mise en page de la
 fiche, date du dernier export.
 
+Un `nuancier` porte la palette de sa planche : ses codes dans l'ordre, leur
+couleur relevée, les feutres attribués, et le masque des symboles que la
+reconnaissance n'a pas nommés. Ces masques sont de petites images encodées en
+`data:` — environ 1,5 Ko pièce — pour que l'export du §9 les emporte avec le
+reste plutôt que de les perdre à la sérialisation.
+
 ### Service worker
 
 Cache-first sur la coquille. Le précache force le réseau
@@ -102,7 +108,7 @@ premier affichage, repli sur un dégradé de couleur.
 | Attribution | Feutres d'un code, superposition ordonnée, recherche, propositions ΔE |
 | Pipette | Relevé d'une couleur du livre sur photo de légende |
 | Feutres | Inventaire, états, couleurs |
-| Import de nuancier | Relevé des couleurs d'une planche entière sur photo |
+| Import de nuancier | Relevé d'une planche du nuancier papier des feutres, sur photo |
 | Statistiques | Progression, paliers, calendrier, mosaïque, palmarès, liste de courses |
 | Réglages | Export et import, version et mise à jour, mise en page, albums, stockage |
 
@@ -134,12 +140,63 @@ jamais être proposés.
 **Ces vingt-neuf rangs sont les seuls stables.** Une planche qui a davantage de
 nuances les note avec des symboles, et ces symboles changent d'identité et
 d'ordre d'un coloriage à l'autre : ils appartiennent à la planche, pas au livre.
-Le catalogue ne les porte donc pas. Ils sont **découpés sur la photo** du
-nuancier de la planche, puis **reconnus par gabarits** : `app/symboles.js`
-dessine les candidats dans quatre fontes et compare les formes par indice de
-Jaccard. Reconnu, le symbole devient un vrai caractère ; sinon son découpage est
-gardé en masque, que les écrans peignent dans l'encre calculée comme ils
-peindraient un caractère.
+Le catalogue ne les porte donc pas — l'app les lit sur la photo, voir plus bas.
+
+**`data/nuanciers/guangna-360.json`** — les 360 feutres du Pack 360 :
+référence, nom, plus petit pack contenant le feutre, planche et position dans le
+nuancier papier. Les hexadécimaux sont vides : ils se relèvent depuis l'app.
+
+---
+
+## Relever le nuancier d'une planche
+
+Fiche coloriage → *Relever le nuancier en photo*.
+
+Chaque planche du livre a sa page « Mon nuancier #N », où sa bande de codes est
+imprimée avec **les couleurs de cette planche-là**. Le jeu de codes reste une
+propriété du livre, mais une planche en prend **le début, jamais un
+sous-ensemble à trous** : 17 nuances sur la planche 47, qui s'arrête à `h`,
+davantage sur la 50. Tant qu'une planche n'a pas été relevée, ses cases restent
+grises.
+
+Avant la photo, l'écran affiche la série et laisse **taper le dernier code de la
+bande** ; le reste se grise. Si la bande continue au-delà de `z`, un compteur
+demande **combien de cases à symbole** suivent — on ne les nomme pas, on les
+découpe. **C'est ce compte qui découpe la photo, pas le jeu de codes** : un
+compte faux ne donne pas un relevé incomplet mais un relevé décalé, chaque
+couleur tombant sur le mauvais code.
+
+Quatre repères aux **coins de la bande** donnent l'homographie, un cinquième sur
+le blanc de la page donne la référence colorimétrique. Aucune feuille à ajouter
+dans le cadre ici : la page est déjà blanche. Et les coins de la bande se visent
+bien mieux qu'un centre de case sur une colonne large de trente pixels.
+
+Chaque repère se pose au doigt sous une loupe grossie cinq fois, puis s'affine
+**aux quatre flèches**, un pixel d'image par appui — maintenir répète. La loupe
+reste ouverte pendant l'ajustement : à l'écran un pixel d'image ne se voit pas,
+dans la loupe il en vaut cinq, et le doigt posé sur la flèche ne masque plus la
+cible.
+
+Le relevé reste accessible une fois fait : un mauvais cadrage se voit souvent
+après coup.
+
+Mesuré sur des bandes de synthèse projetées en perspective — de face, inclinée
+à 20°, inclinée et pivotée, en gros plan à 32°, et sur des bandes de 31, 24, 17
+et 9 cases — les couleurs sortent exactes. La pose des repères tolère environ
+quatre pixels d'écart ; au-delà, les rangées commencent à baver l'une sur
+l'autre, ce que l'écran de vérification montre avant l'enregistrement.
+
+### Les symboles, au-delà de « z »
+
+Un symbole est **découpé sur la photo**, puis **reconnu par gabarits** :
+`app/symboles.js` dessine les candidats dans quatre fontes et compare les formes
+par indice de Jaccard. Un moteur d'OCR pèserait plusieurs mégaoctets de
+WebAssembly pour une quinzaine de signes, et lirait mal des caractères isolés et
+rares — il est entraîné à lire des mots.
+
+Reconnu, le symbole devient un vrai caractère ; sinon son découpage est gardé en
+masque, que les écrans peignent dans l'encre calculée comme ils peindraient un
+caractère.
 
 Deux candidats trop proches ne sont jamais départagés — « φ » et « ψ » se
 ressemblent — et le découpage l'emporte : un symbole en image vaut mieux qu'un
@@ -160,47 +217,6 @@ JPEG — **10 symboles reconnus sur 16, aucune lecture fausse**. Sur des filets
 nets, 12 sur 16. En fonte à empattements, 7 sur 16. Sous un flou extrême, plus
 rien n'est reconnu et tout retombe sur l'image : la dégradation est muette,
 jamais fausse.
-
-**`data/nuanciers/guangna-360.json`** — les 360 feutres du Pack 360 :
-référence, nom, plus petit pack contenant le feutre, planche et position dans le
-nuancier papier. Les hexadécimaux sont vides : ils se relèvent depuis l'app.
-
----
-
-## Relever le nuancier d'une planche
-
-Fiche coloriage → *Relever le nuancier en photo*.
-
-Chaque planche du livre a sa page « Mon nuancier #N », où sa bande de codes est
-imprimée avec **les couleurs de cette planche-là**. Le jeu de codes reste une
-propriété du livre, mais une planche en prend **le début, jamais un
-sous-ensemble à trous** : 17 nuances sur la planche 47, qui s'arrête à `h`, la
-davantage sur la 50. Tant qu'une planche n'a pas été relevée, ses cases
-restent grises.
-
-Avant la photo, l'écran affiche la série et laisse **taper le dernier code de la
-bande** ; le reste se grise. Si la bande continue au-delà de `z`, un compteur
-demande **combien de cases à symbole** suivent — on ne les nomme pas, on les
-découpe. **C'est ce compte qui découpe la photo, pas le jeu de codes** : un
-compte faux ne donne pas un relevé incomplet mais un relevé décalé, chaque
-couleur tombant sur le mauvais code.
-
-Quatre repères aux **coins de la bande** donnent l'homographie, un cinquième sur
-le blanc de la page donne la référence colorimétrique. Chacun se pose au doigt,
-sous une loupe grossie cinq fois, puis s'affine **aux quatre flèches**, un pixel
-par appui — maintenir répète. La loupe reste ouverte pendant l'ajustement :
-c'est le seul endroit où un pixel se voit, et le doigt n'y masque plus la cible. Ici, aucune feuille à
-ajouter dans le cadre : la page est déjà blanche. Les coins de la bande se
-visent bien mieux qu'un centre de case sur une colonne large de trente pixels.
-
-Le relevé reste accessible une fois fait : un mauvais cadrage se voit souvent
-après coup.
-
-Mesuré sur des bandes de synthèse projetées en perspective — de face, inclinée
-à 20°, inclinée et pivotée, en gros plan à 32°, et sur des bandes de 31, 24, 17
-et 9 cases — les couleurs sortent exactes. La pose des repères tolère environ
-quatre pixels d'écart ; au-delà, les rangées commencent à baver l'une sur
-l'autre, ce que l'écran de vérification montre avant l'enregistrement.
 
 ## Relever les couleurs d'un nuancier de feutres
 
