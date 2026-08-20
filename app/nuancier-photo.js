@@ -81,7 +81,7 @@ function pointsPastille(m, grille, colonne, rangee, colonnes, rangees) {
 /* Le code est imprimé au centre de la case : c'est cette zone qu'on découpe
    pour les symboles que le catalogue ne peut pas nommer. Assez large pour un
    « ¶ » ou un « » », assez étroite pour ne pas mordre sur la case voisine. */
-const PART_U = 0.34, PART_V = 0.36;
+const PART_U = 0.40, PART_V = 0.44;
 
 function cadreGlyphe(m, grille, colonne, rangee, colonnes, rangees) {
   const [u, pasU] = grille(colonne, colonnes);
@@ -112,19 +112,24 @@ export function extraire(image, coins, colonnes, rangees, repere) {
 
 const HAUTEUR_GLYPHE = 60;
 const ECART_MINIMAL = 40;
+const COUVERTURE_FILET = 0.7;
 
 /* Découpe le code imprimé et le rend en masque : opaque là où l'encre s'écarte
-   de la couleur de la case, transparent ailleurs. La fiche le peint ensuite
-   dans son encre calculée, comme elle peindrait un caractère. Les seuils sont
-   pris sur l'écart maximal de la case, non fixés : le contraste d'un symbole
-   blanc sur noir n'a rien de celui d'un symbole noir sur jaune. */
+   de la couleur de la case, transparent ailleurs. Les écrans le peignent
+   ensuite dans leur encre calculée, comme ils peindraient un caractère.
+
+   Les seuils sont pris sur l'écart maximal de la case, non fixés : le
+   contraste d'un symbole blanc sur noir n'a rien de celui d'un symbole noir
+   sur jaune. Et les filets qui séparent deux cases sont écartés d'abord — ils
+   traversent toute la largeur, ce qu'aucun symbole ne fait, et leur contraste
+   écraserait celui du code. */
 export function glypheDeCase(image, cadre, brut) {
   const [x0, y0, x1, y1] = cadre.map(Math.round);
   const L = x1 - x0, H = y1 - y0;
   if (!brut || L < 6 || H < 6) return null;
 
   const ecarts = new Float32Array(L * H);
-  let maximum = 0;
+  let sommet = 0;
   for (let y = 0; y < H; y++) {
     for (let x = 0; x < L; x++) {
       const px = x0 + x, py = y0 + y;
@@ -132,8 +137,24 @@ export function glypheDeCase(image, cadre, brut) {
       const i = (py * image.width + px) * 4;
       const d = Math.hypot(image.data[i] - brut[0], image.data[i + 1] - brut[1], image.data[i + 2] - brut[2]);
       ecarts[y * L + x] = d;
-      if (d > maximum) maximum = d;
+      if (d > sommet) sommet = d;
     }
+  }
+  if (sommet < ECART_MINIMAL) return null;
+
+  const rangeeVive = new Uint8Array(H).fill(1);
+  for (let y = 0; y < H; y++) {
+    let couverts = 0;
+    for (let x = 0; x < L; x++) if (ecarts[y * L + x] > sommet * 0.5) couverts++;
+    if (couverts > L * COUVERTURE_FILET) rangeeVive[y] = 0;
+  }
+
+  /* Le sommet se remesure sans les filets : sinon leur blanc fixe des seuils
+     que l'encre du symbole n'atteint jamais. */
+  let maximum = 0;
+  for (let y = 0; y < H; y++) {
+    if (!rangeeVive[y]) continue;
+    for (let x = 0; x < L; x++) if (ecarts[y * L + x] > maximum) maximum = ecarts[y * L + x];
   }
   if (maximum < ECART_MINIMAL) return null;
 
@@ -145,18 +166,22 @@ export function glypheDeCase(image, cadre, brut) {
   /* La découpe garde de la marge autour du code : on la resserre sur ce qui est
      opaque, sans quoi un symbole étroit s'afficherait plus petit qu'un large. */
   let xMin = L, yMin = H, xMax = -1, yMax = -1;
-  for (let i = 0; i < ecarts.length; i++) {
-    const alpha = Math.max(0, Math.min(1, (ecarts[i] - bas) / (haut - bas)));
-    zone.data[i * 4] = 255;
-    zone.data[i * 4 + 1] = 255;
-    zone.data[i * 4 + 2] = 255;
-    zone.data[i * 4 + 3] = Math.round(255 * alpha);
-    if (alpha > 0.5) {
-      const x = i % L, y = (i / L) | 0;
-      if (x < xMin) xMin = x;
-      if (x > xMax) xMax = x;
-      if (y < yMin) yMin = y;
-      if (y > yMax) yMax = y;
+  for (let y = 0; y < H; y++) {
+    for (let x = 0; x < L; x++) {
+      const i = y * L + x;
+      const alpha = rangeeVive[y]
+        ? Math.max(0, Math.min(1, (ecarts[i] - bas) / (haut - bas)))
+        : 0;
+      zone.data[i * 4] = 255;
+      zone.data[i * 4 + 1] = 255;
+      zone.data[i * 4 + 2] = 255;
+      zone.data[i * 4 + 3] = Math.round(255 * alpha);
+      if (alpha > 0.5) {
+        if (x < xMin) xMin = x;
+        if (x > xMax) xMax = x;
+        if (y < yMin) yMin = y;
+        if (y > yMax) yMax = y;
+      }
     }
   }
   if (xMax < 0) return null;

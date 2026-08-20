@@ -155,11 +155,20 @@ export async function pipetter(coloriageId, code, hex, contexte) {
 export async function releverPalette(coloriageId, releves, contexte) {
   const n = await nuancier(coloriageId, contexte.jeu);
   const parCode = new Map(n.entrees.map(e => [e.code, e]));
-  const entrees = releves.map(({ code, hex, glyphe }) => ({
-    ...(parCode.get(code) || { code, feutres: [], note: '' }),
-    pastille_hex: hex,
-    ...(glyphe ? { glyphe } : {})
-  }));
+  const memeLongueur = n.entrees.length === releves.length;
+  const entrees = releves.map(({ code, hex, glyphe }, rang) => {
+    /* Un symbole peut changer de nom d'un relevé à l'autre — reconnu cette
+       fois, découpé la précédente. À nombre de cases égal, le rang retrouve
+       ce qui avait été attribué. */
+    const ancienne = parCode.get(code) || (memeLongueur ? n.entrees[rang] : null);
+    return {
+      code,
+      feutres: ancienne?.feutres || [],
+      note: ancienne?.note || '',
+      pastille_hex: hex,
+      ...(glyphe ? { glyphe } : {})
+    };
+  });
   return enregistrerNuancier({ ...n, entrees, releve_le: new Date().toISOString() });
 }
 

@@ -4,6 +4,7 @@ import { planche, contexteNuancier, releverPalette } from '../donnees.js';
 import { compresser, versDonnees } from '../photo.js';
 import { extraire, mesurerBlanc, gainsDepuisBlanc, corriger, enHex, qualite, glypheDeCase, enDonnees } from '../nuancier-photo.js';
 import { ecranReperes } from '../viseur.js';
+import { reconnaitre } from '../symboles.js';
 
 /* La bande du livre n'a qu'une colonne : ses coins se visent bien mieux que le
    centre d'une case, d'où la convention « bords ». */
@@ -158,34 +159,61 @@ export async function monter(coloriageId) {
     corps.append(h('p', { class: 'section__note' }, 'Découpe des couleurs…'));
     vue.replaceChildren(entete('Résultat'), corps);
 
-    /* « s » est l'une des lettres que l'éditeur écarte : la clé d'un symbole ne
-       peut donc jamais heurter un code du livre. */
+    /* Un symbole est d'abord reconnu ; à défaut il garde son découpage et sa
+       clé de rang. « s » est l'une des lettres que l'éditeur écarte, la clé
+       d'un symbole ne peut donc jamais heurter un code du livre. */
+    const pris = new Set(codes);
     const releves = [];
     for (let i = 0; i < cases.length; i++) {
       if (!cases[i].brut) continue;
       const releve = { code: attendus[i], hex: enHex(corriger(cases[i].brut, gains)) };
       if (releve.code.startsWith('s')) {
         const decoupe = glypheDeCase(image, cases[i].cadre, cases[i].brut);
-        if (decoupe) releve.glyphe = await enDonnees(decoupe);
+        releve.decoupe = decoupe && await enDonnees(decoupe);
+        releve.rangCle = releve.code;
+        releve.reconnu = reconnaitre(decoupe, pris);
+        if (releve.reconnu) {
+          releve.code = releve.reconnu;
+          pris.add(releve.reconnu);
+        } else {
+          releve.glyphe = releve.decoupe;
+        }
       }
       releves.push(releve);
     }
     corps.replaceChildren();
 
+    const reconnus = releves.filter((r, i) => attendus[i]?.startsWith('s') && !r.glyphe).length;
     const avertissement = controle.alertes.find(a => a.gravite === 'avertissement');
 
     corps.append(
       h('p', { class: 'section__note' },
-        `${releves.length} couleurs relevées sur la page de la planche ${courante.numero}. `
-        + 'Compare chaque case à la bande du livre, code par code. Si tout est décalé '
+        `${releves.length} couleurs relevées sur la page de la planche ${courante.numero}`
+        + (reconnus ? `, dont ${reconnus} symbole${reconnus > 1 ? 's' : ''} reconnu${reconnus > 1 ? 's' : ''}` : '')
+        + '. Compare chaque case à la bande du livre, code par code. Un symbole mal '
+        + 'reconnu se refuse d’un tap : son image reprend sa place. Si tout est décalé '
         + 'd’un cran, c’est le compte de cases qui est faux : reviens le corriger.'),
       avertissement ? h('p', { class: 'alerte alerte--avertissement' }, avertissement.texte) : null,
-      h('div', { class: 'import__apercu' }, releves.map(releve =>
-        h('div', { class: 'import__case' },
-          h('span', {
-            class: 'import__pastille',
-            style: `background:${releve.hex};color:${encreSur(releve.hex)}`
-          }, marqueCode(releve, encreSur(releve.hex)))))));
+      h('div', { class: 'import__apercu' }, releves.map(releve => {
+        /* Un caractère reconnu se refuse d'un tap : le découpage reprend sa
+           place. C'est son œil qui tranche, jamais la ressemblance seule. */
+        const bascule = releve.reconnu && releve.decoupe;
+        const boite = h(bascule ? 'button' : 'div', { class: 'import__case' });
+        const peindre = () => boite.replaceChildren(h('span', {
+          class: 'import__pastille',
+          style: `background:${releve.hex};color:${encreSur(releve.hex)}`
+        }, marqueCode(releve, encreSur(releve.hex))));
+        if (bascule) {
+          boite.addEventListener('click', () => {
+            const refuse = !releve.glyphe;
+            releve.glyphe = refuse ? releve.decoupe : undefined;
+            releve.code = refuse ? releve.rangCle : releve.reconnu;
+            peindre();
+          });
+        }
+        peindre();
+        return boite;
+      })));
 
     const enregistrer = h('button', {
       class: 'bouton bouton--primaire',

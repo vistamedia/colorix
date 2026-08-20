@@ -1,4 +1,4 @@
-const CACHE = 'colorix-12';
+const CACHE = 'colorix-13';
 const CACHE_COUVERTURES = 'colorix-couvertures-1';
 
 const COQUILLE = [
@@ -17,6 +17,7 @@ const COQUILLE = [
   './app/nuancier-photo.js',
   './app/viseur.js',
   './app/maj.js',
+  './app/symboles.js',
   './app/paliers.js',
   './app/preferences.js',
   './app/vues/bibliotheque.js',
