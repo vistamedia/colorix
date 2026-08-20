@@ -58,6 +58,7 @@ app/
   partage.js            navigator.share avec légende
   paliers.js            seuils des paliers Winx
   preferences.js        localStorage
+  symboles.js           reconnaissance des symboles par gabarits
   maj.js                version installée, mise à jour à la demande
   rendu.js              fabrique d'éléments, icônes, dégradés de repli
   vues/                 un module par écran
@@ -133,9 +134,22 @@ jamais être proposés.
 **Ces vingt-neuf rangs sont les seuls stables.** Une planche qui a davantage de
 nuances les note avec des symboles, et ces symboles changent d'identité et
 d'ordre d'un coloriage à l'autre : ils appartiennent à la planche, pas au livre.
-Le catalogue ne les porte donc pas — ils sont **découpés sur la photo** du
-nuancier de la planche et gardés en masque, que les écrans peignent dans l'encre
-calculée comme ils peindraient un caractère.
+Le catalogue ne les porte donc pas. Ils sont **découpés sur la photo** du
+nuancier de la planche, puis **reconnus par gabarits** : `app/symboles.js`
+dessine les candidats dans quatre fontes et compare les formes par indice de
+Jaccard. Reconnu, le symbole devient un vrai caractère ; sinon son découpage est
+gardé en masque, que les écrans peignent dans l'encre calculée comme ils
+peindraient un caractère.
+
+Deux candidats trop proches ne sont jamais départagés — « φ » et « ψ » se
+ressemblent — et le découpage l'emporte : un symbole en image vaut mieux qu'un
+mauvais caractère. Un tap sur une case de l'écran de vérification refuse le
+caractère reconnu et rend son image.
+
+Mesuré sur seize signes dessinés dans trois fontes étrangères aux gabarits :
+41 reconnus sur 48, 6 laissés en image, **une seule erreur** — un « φ » à
+empattements lu « ψ ». Sur onze signes absents du répertoire, 30 relevés sur 33
+sont correctement laissés en image.
 
 **`data/nuanciers/guangna-360.json`** — les 360 feutres du Pack 360 :
 référence, nom, plus petit pack contenant le feutre, planche et position dans le

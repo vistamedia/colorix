@@ -153,13 +153,23 @@ propriété du livre mais de la planche, et le catalogue ne peut pas les porter.
 `Nuancier.entrees` tient la série du livre, puis ce que la planche a en propre,
 dans son ordre à elle.
 
-**Un symbole n'est pas nommé, il est découpé.** Le relevé du §6.0 connaît la
-position exacte de chaque case : il extrait le code imprimé et le garde en
-masque dans `Entree.glyphe`, que les écrans peignent dans l'encre calculée
-comme ils peindraient un caractère. Aucun répertoire de symboles à tenir, aucun
-clavier grec à installer, et ce qui s'affiche est exactement ce qui est imprimé.
-La clé `Entree.code` d'un symbole est son rang — `s30`, `s31` — ; `s` est l'une
-des lettres écartées par l'éditeur, la collision est donc impossible.
+**Un symbole est reconnu, ou à défaut découpé.** Le relevé du §6.0 connaît la
+position exacte de chaque case : il extrait le code imprimé, puis le compare à
+des gabarits qu'il dessine lui-même. Le répertoire de l'éditeur est court et ses
+glyphes sont nets — comparer des formes suffit, là où un moteur d'OCR pèserait
+plusieurs mégaoctets pour une quinzaine de signes, et lirait mal des caractères
+isolés et rares.
+
+Reconnu, le symbole devient un vrai caractère et `Entree.code` le porte. Sinon
+le découpage est gardé en masque dans `Entree.glyphe`, que les écrans peignent
+dans l'encre calculée comme ils peindraient un caractère, et la clé est le rang
+de la case — `s30`, `s31` ; `s` est l'une des lettres écartées par l'éditeur, la
+collision est donc impossible.
+
+**Deux candidats trop proches ne sont jamais départagés** : le découpage
+l'emporte. Un symbole en image vaut mieux qu'un mauvais caractère, et c'est le
+même principe qu'au §6.2 — l'app propose, son œil tranche. Sur l'écran de
+vérification, un tap sur une case refuse le caractère reconnu et rend son image.
 
 Le jeu de codes vient du catalogue seul : en garder une copie à la coche de
 l'album empêcherait toute correction de la série d'atteindre les planches déjà
