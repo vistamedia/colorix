@@ -65,6 +65,12 @@ async function transaction(magasins, mode, traitement) {
 export const lire = (magasin, cle) =>
   transaction(magasin, 'readonly', m => promettre(m.get(cle)));
 
+/* Plusieurs clés en une seule transaction : la grille d'un album interroge
+   cinquante nuanciers, et `lireTout` rapporterait au passage les masques de
+   symboles de tous les autres albums. */
+export const lirePlusieurs = (magasin, cles) =>
+  transaction(magasin, 'readonly', m => Promise.all(cles.map(cle => promettre(m.get(cle)))));
+
 export const lireTout = (magasin) =>
   transaction(magasin, 'readonly', m => promettre(m.getAll()));
 

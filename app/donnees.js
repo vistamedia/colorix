@@ -152,6 +152,20 @@ export async function renommerCode(coloriageId, ancien, nouveau, contexte) {
   return enregistrerNuancier(n);
 }
 
+/* Ce qui reste à pourvoir sur chaque planche, pour la grille de l'album :
+   `id → nombre de codes sans feutre`. Une planche absente de la table n'a pas
+   été relevée — elle n'a pas de palette, donc rien à compter, et la grille ne
+   montre rien plutôt qu'un zéro qui voudrait dire « complète ». */
+export async function avancementNuanciers(coloriageIds) {
+  const lus = await base.lirePlusieurs('nuanciers', coloriageIds);
+  const table = new Map();
+  lus.forEach((n, rang) => {
+    if (!n?.releve_le) return;
+    table.set(coloriageIds[rang], n.entrees.filter(e => !e.feutres.length).length);
+  });
+  return table;
+}
+
 export async function attribuer(coloriageId, code, feutreIds, contexte) {
   const n = await nuancier(coloriageId, contexte.jeu);
   const entree = n.entrees.find(e => e.code === code);
