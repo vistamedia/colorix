@@ -40,9 +40,36 @@ export async function monter(coloriageId) {
   const reperes = {};
   let image = null;
 
-  /* ---------- étape 1 : la photo de la page ---------- */
+  /* Une planche n'emploie pas forcément toutes les couleurs du livre : sa bande
+     ne compte que les siennes. Le nombre de cases doit donc venir de la page,
+     pas du jeu de codes — sans quoi l'homographie étale N cases sur K rangées
+     et décale tout le nuancier. Elle décoche les codes absents, l'ordre du
+     livre fait le reste. */
+  const retenus = new Set(codes);
+  const listeRetenue = () => codes.filter(code => retenus.has(code));
+
+  /* ---------- étape 1 : les codes de la bande, puis la photo ---------- */
 
   function etapeDepart() {
+    const compte = h('p', { class: 'section__note section__note--compte' });
+    const photo = h('button', { class: 'bouton--pointille' }, '＋ Photo de la page');
+    const majCompte = () => {
+      compte.textContent = `${retenus.size} case${retenus.size > 1 ? 's' : ''} sur la bande.`;
+      photo.disabled = !retenus.size;
+    };
+
+    const jetons = h('div', { class: 'bande-codes' }, codes.map(code => {
+      const jeton = h('button', { class: 'jeton-code' }, code);
+      jeton.addEventListener('click', () => {
+        retenus.has(code) ? retenus.delete(code) : retenus.add(code);
+        jeton.classList.toggle('jeton-code--absent', !retenus.has(code));
+        majCompte();
+      });
+      jeton.classList.toggle('jeton-code--absent', !retenus.has(code));
+      return jeton;
+    }));
+    majCompte();
+
     const entree = h('input', { type: 'file', accept: 'image/*', hidden: true });
     entree.addEventListener('change', async () => {
       const fichier = entree.files[0];
@@ -51,14 +78,20 @@ export async function monter(coloriageId) {
       image = await versDonnees(await compresser(fichier));
       etapeReperes(0);
     });
+    photo.addEventListener('click', () => entree.click());
 
     const corps = h('div', { class: 'corps corps--import' },
       h('h2', { class: 'section__titre' }, `La page « Mon nuancier #${courante.numero} »`),
       h('p', { class: 'section__note' },
-        'Photographie-la bien à plat, la bande de couleurs entière dans le cadre, '
+        'Compare la bande de la page à cette liste et décoche les codes qui n’y '
+        + 'sont pas. Le compte doit tomber juste : c’est lui qui découpe la photo.'),
+      jetons,
+      compte,
+      h('p', { class: 'section__note' },
+        'Photographie ensuite la page bien à plat, la bande entière dans le cadre, '
         + 'sans soleil direct ni flash. Le blanc de la page sert de référence : '
         + 'c’est lui qui rend les couleurs justes.'),
-      h('button', { class: 'bouton--pointille', onclick: () => entree.click() }, '＋ Photo de la page'),
+      photo,
       entree);
 
     vue.replaceChildren(entete('Relever le nuancier'), corps);
@@ -93,9 +126,10 @@ export async function monter(coloriageId) {
       return;
     }
 
-    const cases = extraire(image, [reperes.hg, reperes.hd, reperes.bd, reperes.bg], 1, codes.length, 'bords');
+    const attendus = listeRetenue();
+    const cases = extraire(image, [reperes.hg, reperes.hd, reperes.bd, reperes.bg], 1, attendus.length, 'bords');
     const releves = cases
-      .map((c, i) => ({ code: codes[i], hex: c.brut ? enHex(corriger(c.brut, gains)) : null }))
+      .map((c, i) => ({ code: attendus[i], hex: c.brut ? enHex(corriger(c.brut, gains)) : null }))
       .filter(x => x.hex);
 
     const avertissement = controle.alertes.find(a => a.gravite === 'avertissement');
@@ -103,8 +137,8 @@ export async function monter(coloriageId) {
     corps.append(
       h('p', { class: 'section__note' },
         `${releves.length} couleurs relevées sur la page de la planche ${courante.numero}. `
-        + 'Compare-les à la bande du livre, code par code. Si la bande a glissé, '
-        + 'reviens replacer les repères.'),
+        + 'Compare chaque case à la bande du livre, code par code. Si tout est décalé '
+        + 'd’un cran, c’est le compte de cases qui est faux : reviens le corriger.'),
       avertissement ? h('p', { class: 'alerte alerte--avertissement' }, avertissement.texte) : null,
       h('div', { class: 'import__apercu' }, releves.map(({ code, hex }) =>
         h('div', { class: 'import__case' },
@@ -126,9 +160,11 @@ export async function monter(coloriageId) {
     vue.replaceChildren(
       entete('Résultat'),
       corps,
-      h('div', { class: 'actions' },
-        h('button', { class: 'bouton bouton--chrono', onclick: () => etapeReperes(0) }, 'Repères'),
-        enregistrer));
+      h('div', { class: 'actions actions--colonne' },
+        h('button', { class: 'bouton--secondaire', onclick: () => etapeDepart() }, 'Corriger le compte de cases'),
+        h('div', { class: 'actions__ligne' },
+          h('button', { class: 'bouton bouton--chrono', onclick: () => etapeReperes(0) }, 'Repères'),
+          enregistrer)));
   }
 
   etapeDepart();

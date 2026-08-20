@@ -761,6 +761,24 @@ button, input, textarea, select {
 .alerte--echec { background: #FDECEF; color: #B4162F; }
 .alerte--avertissement { background: var(--encours-fond); color: var(--encours-texte); }
 
+/* Les codes de la bande, à décocher : une planche n'emploie pas forcément
+   toutes les couleurs du livre, et c'est le compte qui découpe la photo. */
+.bande-codes { display: grid; grid-template-columns: repeat(8, 1fr); gap: 6px; }
+.jeton-code {
+  height: 38px;
+  border-radius: 12px;
+  background: var(--encre);
+  color: #FFF;
+  font: 700 16px 'Space Grotesk', sans-serif;
+}
+.jeton-code--absent {
+  background: var(--surface);
+  color: var(--encre-3);
+  box-shadow: inset 0 0 0 2px var(--bordure-bouton);
+  text-decoration: line-through;
+}
+.section__note--compte { font-weight: 700; color: var(--encre); }
+
 .import__apercu { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
 .import__case { display: flex; flex-direction: column; align-items: center; gap: 2px; }
 .import__pastille {
