@@ -62,8 +62,10 @@
   --attribuer-bordure: #F6DCEA;
   --attribuer-anneau: #F0B7D4;
   --attribuer-texte: #B07398;
-  --superpose-fond: #F4ECF9;
-  --superpose-texte: #5B3A78;
+  /* Le handoff les nomme « badge feutre superposé » ; la superposition n'a pas
+     survécu, les deux teintes servent au badge des équivalents. */
+  --equivalent-fond: #F4ECF9;
+  --equivalent-texte: #5B3A78;
   --tuile-fond: #F4EEF8;
   --tuile-numero: #C9B6D8;
   --presse: #F6EFFA;
@@ -455,6 +457,19 @@ button, input, textarea, select {
 }
 .pastille--grande { width: 64px; height: 64px; border-radius: 18px; font-size: 28px; }
 
+/* La couleur du livre et celles des feutres, sans filet entre elles : l'œil ne
+   compare deux teintes qu'au contact. Un seul liseré, posé sur l'ensemble. */
+.comparateur {
+  flex: none;
+  display: flex;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--liseré-pastille);
+}
+.comparateur .pastille { border-radius: 0; box-shadow: none; }
+.comparateur__feutres { flex: none; width: 18px; display: flex; flex-direction: column; }
+.comparateur__feutre { flex: 1; min-height: 0; }
+
 .rangee__texte { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
 .rangee__ligne { display: flex; align-items: baseline; gap: 8px; min-width: 0; }
 
@@ -482,17 +497,20 @@ button, input, textarea, select {
   text-overflow: ellipsis;
 }
 
-.superpose {
+/* Les autres feutres retenus pour le même code : des équivalents, jamais des
+   couches. Le libellé est en tête, la liste dessous — au troisième feutre, une
+   mention par ligne ne dirait plus rien. */
+.equivalents {
   flex: none;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 2px;
-  padding-left: 6px;
+  gap: 1px;
+  padding-left: 8px;
   border-left: 2px solid var(--separateur);
 }
-.superpose__ref { font: 700 22px/1 'Space Grotesk', sans-serif; font-variant-numeric: tabular-nums; }
-.superpose__libelle { font: 600 10px 'Space Grotesk', sans-serif; letter-spacing: .08em; text-transform: uppercase; color: var(--encre-3); }
+.equivalents__ref { font: 700 22px/1 'Space Grotesk', sans-serif; font-variant-numeric: tabular-nums; color: var(--encre-2); }
+.equivalents__libelle { font: 600 10px 'Space Grotesk', sans-serif; letter-spacing: .08em; text-transform: uppercase; color: var(--encre-3); }
 
 .plus { flex: none; font-size: 26px; color: #E0AFCF; }
 
@@ -532,17 +550,20 @@ button, input, textarea, select {
   justify-content: space-between;
   gap: 10px;
 }
-.badge-superpose {
+.comparateur--bande { border-radius: 0; box-shadow: none; }
+.comparateur--bande .comparateur__feutres { width: 14px; }
+
+.badge-equivalents {
   flex: none;
   padding: 5px 10px;
   border-radius: 12px;
-  background: var(--superpose-fond);
+  background: var(--equivalent-fond);
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.badge-superpose__ref { font: 700 19px/1.1 'Space Grotesk', sans-serif; color: var(--superpose-texte); font-variant-numeric: tabular-nums; }
-.badge-superpose__libelle { font: 600 9px 'Space Grotesk', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: var(--encre-3); }
+.badge-equivalents__ref { font: 700 19px/1.1 'Space Grotesk', sans-serif; color: var(--equivalent-texte); font-variant-numeric: tabular-nums; }
+.badge-equivalents__libelle { font: 600 9px 'Space Grotesk', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: var(--encre-3); }
 
 .manquants { flex: none; padding: 14px 20px 16px; background: var(--attribuer-fond); border-bottom: 2px solid var(--attribuer-bordure); }
 .manquants__entete { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
@@ -654,9 +675,11 @@ button, input, textarea, select {
 .choisis { display: flex; flex-direction: column; gap: 8px; }
 .choisis__vide { margin: 0; font-size: 14px; color: var(--attribuer-texte); padding: 14px; background: var(--attribuer-fond); border-radius: 14px; }
 .choisi { display: flex; align-items: center; gap: 10px; padding: 10px 12px; background: var(--surface); border-radius: 14px; box-shadow: var(--ombre-carte); }
-.choisi__rang { flex: none; font: 600 10px 'Space Grotesk', sans-serif; letter-spacing: .08em; text-transform: uppercase; color: var(--encre-3); width: 52px; }
+.choisi__pastille { flex: none; width: 38px; height: 38px; border-radius: 12px; box-shadow: var(--liseré-pastille); background: var(--separateur); }
+.choisi__texte { flex: 1; min-width: 0; display: flex; flex-direction: column; }
 .choisi__ref { font: 700 26px/1 'Space Grotesk', sans-serif; font-variant-numeric: tabular-nums; }
-.choisi__nom { flex: 1; min-width: 0; font-size: 13px; color: var(--encre-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.choisi__nom { min-width: 0; font-size: 13px; color: var(--encre-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.choisi__ecart { flex: none; font: 600 12px 'Space Grotesk', sans-serif; color: var(--encre-3); font-variant-numeric: tabular-nums; }
 .choisi__retirer { flex: none; width: 34px; height: 34px; border-radius: 999px; background: var(--separateur); color: var(--encre-2); font-size: 15px; }
 
 .ligne-feutre { display: flex; align-items: center; gap: 12px; width: 100%; padding: 10px 12px; border-radius: 14px; background: var(--surface); box-shadow: var(--ombre-carte); text-align: left; }
@@ -785,7 +808,9 @@ button, input, textarea, select {
 /* ---------- import d'un nuancier depuis une photo ---------- */
 
 .feutres__actions { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-.bouton--secondaire--lien { display: flex; align-items: center; padding: 0 14px; flex: none; }
+/* Un `<a>` reste en ligne : sans ce modificateur il ignore la hauteur de 40 px
+   et son texte n'est pas centré dans le pointillé. */
+.bouton--secondaire--lien { display: flex; align-items: center; justify-content: center; padding: 0 16px; flex: none; }
 .champ--select { -webkit-appearance: none; appearance: none; }
 
 .corps--import { padding: 16px 20px calc(var(--safe-bas) + 16px); display: flex; flex-direction: column; gap: 12px; }

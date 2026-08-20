@@ -1,5 +1,5 @@
 import { h, naviguer, sansAccent, marqueCode } from '../rendu.js';
-import { encreSur, plusProches } from '../couleur.js';
+import { encreSur, plusProches, ecart } from '../couleur.js';
 import { planche, nuancier, attribuer, feutres, marques, majFeutre, contexteNuancier, cleDeRang, renommerCode } from '../donnees.js';
 import { panneauSymbole } from './nommer-symbole.js';
 
@@ -37,16 +37,23 @@ export async function monter(coloriageId, code) {
 
   function dessinerChoisis() {
     if (!choisis.length) {
-      zoneChoisis.replaceChildren(h('p', { class: 'choisis__vide' }, 'Aucun feutre. Choisis-en un ci-dessous.'));
+      zoneChoisis.replaceChildren(h('p', { class: 'choisis__vide' }, 'Aucun feutre retenu. Choisis-en un plus bas.'));
       return;
     }
     zoneChoisis.replaceChildren(...choisis.map((id, rang) => {
       const f = parId.get(id);
       if (!f) return null;
+      /* L'écart à la couleur du livre, sur la ligne même : c'est ce qui
+         distingue deux feutres retenus pour un même code. */
+      const distance = entree?.pastille_hex && f.hex
+        ? Math.round(ecart(entree.pastille_hex, f.hex))
+        : null;
       return h('div', { class: 'choisi' },
-        h('span', { class: 'choisi__rang' }, rang === 0 ? 'dessous' : 'dessus'),
-        h('span', { class: 'choisi__ref' }, f.reference),
-        h('span', { class: 'choisi__nom' }, `${nomMarque.get(f.marque_id) || ''} · ${f.nom}`),
+        h('span', { class: 'choisi__pastille', style: f.hex ? `background:${f.hex}` : '' }),
+        h('span', { class: 'choisi__texte' },
+          h('span', { class: 'choisi__ref' }, f.reference),
+          h('span', { class: 'choisi__nom' }, `${nomMarque.get(f.marque_id) || ''} · ${f.nom}`)),
+        distance !== null && h('span', { class: 'choisi__ecart' }, `ΔE ${distance}`),
         h('button', {
           class: 'choisi__retirer',
           onclick: async () => { choisis.splice(rang, 1); await enregistrer(); }
@@ -156,7 +163,10 @@ export async function monter(coloriageId, code) {
           h('h1', { class: 'titre-code' }, 'Code ', marqueCode(entree, 'var(--encre)')),
           h('p', { class: 'titre-code__note' },
             entree?.pastille_hex ? entree.pastille_hex : 'couleur du livre non relevée')),
-        h('a', { class: 'bouton--secondaire', href: `#/pipette/${coloriageId}/${encodeURIComponent(code)}` }, 'Pipetter'),
+        h('a', {
+          class: 'bouton--secondaire bouton--secondaire--lien',
+          href: `#/pipette/${coloriageId}/${encodeURIComponent(code)}`
+        }, 'Scanner'),
         nommer)));
 
   dessinerChoisis();
@@ -165,7 +175,10 @@ export async function monter(coloriageId, code) {
 
   const corps = h('div', { class: 'corps corps--attribution' },
     h('h2', { class: 'section__titre' }, 'Feutres de ce code'),
-    h('p', { class: 'section__note' }, 'L’ordre est la superposition : le premier est posé dessous.'),
+    h('p', { class: 'section__note' },
+      'Plusieurs feutres peuvent convenir au même code : garde-les tous, tu '
+      + 'prendras celui que tu veux. L’écart ΔE dit la distance à la couleur du '
+      + 'livre — plus il est petit, plus le feutre en est proche.'),
     zoneChoisis,
     zonePropositions,
     h('h2', { class: 'section__titre' }, 'Chercher un feutre'),

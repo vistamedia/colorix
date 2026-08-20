@@ -16,16 +16,35 @@ function relacherVerrou() {
   verrou = null;
 }
 
-/* Le sous-titre d'une rangée nomme les feutres posés, jamais la teinte du
-   livre : celle-ci change d'une planche à l'autre et n'est nulle part écrite. */
-const nomsFeutres = (attribues) => attribues.map(f => f.nom).filter(Boolean).join(' + ');
+/* Le sous-titre d'une rangée nomme les feutres retenus, jamais la teinte du
+   livre : celle-ci change d'une planche à l'autre et n'est nulle part écrite.
+   « ou », et non « + » : ce sont des équivalents pour un même code, pas des
+   couches à superposer. */
+const nomsFeutres = (attribues) => attribues.map(f => f.nom).filter(Boolean).join(' ou ');
+
+/* La couleur du livre et, collées à elle, celles des feutres retenus. Sans
+   écart : deux couleurs ne se comparent qu'au contact, un filet blanc entre
+   les deux suffit à fausser le jugement de l'œil. */
+function comparateur(entree, attribues, bande) {
+  const hex = entree.pastille_hex || '#EFE6F4';
+  const encre = encreSur(hex);
+  const teintes = attribues.filter(f => f.hex);
+  return h('span', { class: `comparateur${bande ? ' comparateur--bande' : ''}` },
+    h('span', {
+      class: bande ? 'bande' : 'pastille',
+      style: `background:${hex};color:${encre}`
+    }, marqueCode(entree, encre)),
+    teintes.length
+      ? h('span', { class: 'comparateur__feutres' },
+          teintes.map(f => h('span', { class: 'comparateur__feutre', style: `background:${f.hex}` })))
+      : null);
+}
 
 /* ---------- mise en page A : ordre du livre, sobre ---------- */
 
 function rangeeA(entree, attribues, ouvrir) {
-  const hex = entree.pastille_hex || '#EFE6F4';
   const principal = attribues[0];
-  const dessus = attribues[1];
+  const autres = attribues.slice(1);
 
   const reference = principal
     ? h('span', { class: 'reference' }, principal.reference)
@@ -33,39 +52,36 @@ function rangeeA(entree, attribues, ouvrir) {
   const noms = nomsFeutres(attribues);
 
   return h('button', { class: 'rangee', onclick: ouvrir },
-    h('span', {
-      class: 'pastille',
-      style: `background:${hex};color:${encreSur(hex)}`
-    }, marqueCode(entree, encreSur(hex))),
+    comparateur(entree, attribues, false),
     h('span', { class: 'rangee__texte' },
       h('span', { class: 'rangee__ligne' },
         reference,
         principal && h('span', { class: 'marque' }, principal.marque_nom)),
       noms ? h('span', { class: 'teinte' }, noms) : null),
-    dessus && h('span', { class: 'superpose' },
-      h('span', { class: 'superpose__ref' }, dessus.reference),
-      h('span', { class: 'superpose__libelle' }, '+ dessus')),
+    /* Les autres feutres du code sont des équivalents : « ou », et la liste
+       entière, sinon le troisième n'apparaîtrait nulle part. */
+    autres.length ? h('span', { class: 'equivalents' },
+      h('span', { class: 'equivalents__libelle' }, 'ou'),
+      autres.map(f => h('span', { class: 'equivalents__ref' }, f.reference))) : null,
     !principal && h('span', { class: 'plus' }, '＋'));
 }
 
 /* ---------- mise en page B : manquants en tête, bandes pleines ---------- */
 
 function rangeeB(entree, attribues, ouvrir) {
-  const hex = entree.pastille_hex || '#EFE6F4';
   const principal = attribues[0];
-  const dessus = attribues[1];
+  const autres = attribues.slice(1);
 
   return h('button', { class: 'rangee rangee--bande', onclick: ouvrir },
-    h('span', { class: 'bande', style: `background:${hex};color:${encreSur(hex)}` },
-      marqueCode(entree, encreSur(hex))),
+    comparateur(entree, attribues, true),
     h('span', { class: 'rangee__corps' },
       h('span', { class: 'rangee__texte' },
         h('span', { class: 'reference reference--large' }, principal.reference),
         h('span', { class: 'teinte' },
           [principal.marque_nom, nomsFeutres(attribues)].filter(Boolean).join(' · '))),
-      dessus && h('span', { class: 'badge-superpose' },
-        h('span', { class: 'badge-superpose__ref' }, dessus.reference),
-        h('span', { class: 'badge-superpose__libelle' }, 'dessus'))));
+      autres.length ? h('span', { class: 'badge-equivalents' },
+        h('span', { class: 'badge-equivalents__libelle' }, 'ou'),
+        autres.map(f => h('span', { class: 'badge-equivalents__ref' }, f.reference))) : null));
 }
 
 function bandeauManquants(manquants, ouvrir) {

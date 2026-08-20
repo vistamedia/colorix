@@ -125,7 +125,8 @@ Nuancier { coloriage_id, releve_le, entrees: [ Entree ] }
 Entree   { code: "1".."0" | "a".."z" | "s30".."sN" pour un symbole
            glyphe,              masque du symbole découpé sur la photo, s'il y en a un
            pastille_hex,        couleur imprimée sur cette planche-là, relevée
-           feutres: [feutre_id] ordonnés — superposition pour créer la nuance
+           feutres: [feutre_id] les feutres qui conviennent à ce code, le plus
+                                proche d'abord — des équivalents, pas des couches
            note }
 
 Marque   { id, nom }                          Posca, GuangNa, extensible
@@ -410,7 +411,15 @@ d'avoir pris une planche observée pour une règle du livre :
 3. La **série de codes** finissait par `◊ Δ`. Seuls les vingt-neuf premiers rangs
    sont stables ; au-delà, les symboles appartiennent à la planche.
 
-Deux écarts assumés par rapport à ce document :
+Trois écarts assumés par rapport à ce document :
+
+- **Les feutres d'un code sont des équivalents, pas une superposition.** Ce
+  document et le handoff décrivaient `feutres[]` comme l'ordre de pose de deux
+  encres l'une sur l'autre — lecture du carnet manuscrit, jamais confirmée.
+  L'usage réel est autre : ce sont les feutres qui conviennent à un même code,
+  trouvés par proximité de teinte, entre lesquels elle choisit. Les écrans
+  disent donc « ou », et chaque ligne porte son écart ΔE à la couleur du livre —
+  sans quoi rien ne distinguerait deux feutres retenus.
 
 - Les **couvertures d'album sont embarquées** (`data/couvertures/`) plutôt que
   chargées depuis l'éditeur comme le prévoit le §4.1, pour que le catalogue
