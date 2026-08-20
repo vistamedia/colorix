@@ -142,14 +142,15 @@ Fiche coloriage → *Relever le nuancier en photo*.
 
 Chaque planche du livre a sa page « Mon nuancier #N », où sa bande de codes est
 imprimée avec **les couleurs de cette planche-là**. Le jeu de codes reste une
-propriété du livre, mais une planche n'en emploie pas forcément la totalité : le
-nombre de nuances varie d'un coloriage à l'autre. Tant qu'une planche n'a pas
-été relevée, ses cases restent grises.
+propriété du livre, mais une planche en prend **le début, jamais un
+sous-ensemble à trous** : 17 nuances sur la planche 47, qui s'arrête à `h`, la
+série entière sur la 50. Tant qu'une planche n'a pas été relevée, ses cases
+restent grises.
 
-Avant la photo, l'écran propose les codes du livre et laisse décocher ceux qui
-ne sont pas sur la bande. **C'est ce compte qui découpe la photo, pas le jeu de
-codes** : un compte faux ne donne pas un relevé incomplet mais un relevé décalé,
-chaque couleur tombant sur le mauvais code.
+Avant la photo, l'écran affiche la série et laisse **taper le dernier code de la
+bande** ; le reste se grise. **C'est ce compte qui découpe la photo, pas le jeu
+de codes** : un compte faux ne donne pas un relevé incomplet mais un relevé
+décalé, chaque couleur tombant sur le mauvais code.
 
 Quatre repères aux **coins de la bande** donnent l'homographie, un cinquième sur
 le blanc de la page donne la référence colorimétrique. Ici, aucune feuille à
@@ -219,6 +220,11 @@ service worker.
 
 - **Les hexadécimaux des 360 feutres** ne sont pas renseignés. À relever planche
   par planche depuis l'app.
+- **La série de codes du livre est incomplète.** Le catalogue en porte 31, se
+  terminant par `◊ Δ` ; la planche 50 en montre nettement plus, avec une suite
+  de symboles après `z`. La lecture des glyphes doit être confirmée sur le livre
+  avant d'étendre `jeu_codes` : changer un caractère après coup orphelinerait
+  les couleurs déjà relevées sous l'ancien.
 - **Les palettes des planches** ne sont pas relevées : chaque planche demande la
   photo de sa page « Mon nuancier ».
 - **Les seuils des paliers Winx** (`app/paliers.js`) sont posés par déduction,
