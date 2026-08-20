@@ -134,6 +134,24 @@ export async function enregistrerNuancier(n) {
   return n;
 }
 
+/* La clé d'un symbole est son rang sur la bande — la seule chose qui ne bouge
+   pas d'une planche à l'autre. Elle se retrouve donc à la position de l'entrée,
+   ce qui permet de rendre son image à un symbole qu'on avait nommé. */
+export const cleDeRang = (rang) => `s${rang + 1}`;
+
+/* Nommer un symbole, ou lui rendre son découpage : le code change, le reste de
+   l'entrée ne bouge pas. Un doublon est refusé — deux entrées de même code
+   rendraient la seconde inatteignable, ici comme dans la route de
+   l'attribution. */
+export async function renommerCode(coloriageId, ancien, nouveau, contexte) {
+  const n = await nuancier(coloriageId, contexte.jeu);
+  if (n.entrees.some(e => e.code === nouveau)) return null;
+  const entree = n.entrees.find(e => e.code === ancien);
+  if (!entree) return null;
+  entree.code = nouveau;
+  return enregistrerNuancier(n);
+}
+
 export async function attribuer(coloriageId, code, feutreIds, contexte) {
   const n = await nuancier(coloriageId, contexte.jeu);
   const entree = n.entrees.find(e => e.code === code);

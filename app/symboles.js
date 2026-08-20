@@ -9,7 +9,9 @@
    Ce qui n'est pas reconnu reste découpé sur la photo : mieux vaut un symbole
    en image que le mauvais caractère. */
 
-const REPERTOIRE = ['ψ', 'Δ', '◊', '»', '?', '$', '¥', '≈', 'φ', '¶', '&', '#', '+', '£', 'œ', 'ж'];
+/* Ce répertoire sert deux fois : à reconnaître un symbole, et à l'offrir d'un
+   tap dans le panneau de nommage — le clavier iOS ne donne ni « Δ » ni « ψ ». */
+export const REPERTOIRE = ['ψ', 'Δ', '◊', '»', '?', '$', '¥', '≈', 'φ', '¶', '&', '#', '+', '£', 'œ', 'ж'];
 
 const COTE = 48;
 const SCORE_MINIMAL = 0.52;

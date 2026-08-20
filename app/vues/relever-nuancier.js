@@ -1,10 +1,11 @@
-import { h, naviguer, marqueCode } from '../rendu.js';
+import { h, ajouter, naviguer, marqueCode } from '../rendu.js';
 import { encreSur } from '../couleur.js';
-import { planche, contexteNuancier, releverPalette } from '../donnees.js';
+import { planche, contexteNuancier, releverPalette, cleDeRang } from '../donnees.js';
 import { compresser, versDonnees } from '../photo.js';
 import { extraire, mesurerBlanc, gainsDepuisBlanc, corriger, enHex, qualite, glypheDeCase, enDonnees } from '../nuancier-photo.js';
 import { ecranReperes } from '../viseur.js';
 import { reconnaitre } from '../symboles.js';
+import { panneauSymbole } from './nommer-symbole.js';
 
 /* La bande du livre n'a qu'une colonne : ses coins se visent bien mieux que le
    centre d'une case, d'où la convention « bords ». */
@@ -54,7 +55,7 @@ export async function monter(coloriageId) {
   let symboles = 0;
   const listeRetenue = () => [
     ...codes.slice(0, dernier + 1),
-    ...Array.from({ length: symboles }, (_, i) => `s${dernier + 2 + i}`)
+    ...Array.from({ length: symboles }, (_, i) => cleDeRang(dernier + 1 + i))
   ];
 
   /* ---------- étape 1 : les codes de la bande, puis la photo ---------- */
@@ -169,51 +170,53 @@ export async function monter(coloriageId) {
       const releve = { code: attendus[i], hex: enHex(corriger(cases[i].brut, gains)) };
       if (releve.code.startsWith('s')) {
         const decoupe = glypheDeCase(image, cases[i].cadre, cases[i].brut);
-        releve.decoupe = decoupe && await enDonnees(decoupe);
+        /* Le découpage est gardé même sur une case reconnue ou nommée : c'est
+           le code qui dit lequel des deux s'affiche, et se raviser plus tard ne
+           doit pas imposer de refaire la photo. */
+        releve.glyphe = decoupe && await enDonnees(decoupe);
         releve.rangCle = releve.code;
         releve.reconnu = reconnaitre(decoupe, pris);
         if (releve.reconnu) {
           releve.code = releve.reconnu;
           pris.add(releve.reconnu);
-        } else {
-          releve.glyphe = releve.decoupe;
         }
       }
       releves.push(releve);
     }
     corps.replaceChildren();
 
-    const reconnus = releves.filter((r, i) => attendus[i]?.startsWith('s') && !r.glyphe).length;
+    const reconnus = releves.filter(r => r.reconnu).length;
     const avertissement = controle.alertes.find(a => a.gravite === 'avertissement');
 
-    corps.append(
+    ajouter(corps, [
       h('p', { class: 'section__note' },
         `${releves.length} couleurs relevées sur la page de la planche ${courante.numero}`
         + (reconnus ? `, dont ${reconnus} symbole${reconnus > 1 ? 's' : ''} reconnu${reconnus > 1 ? 's' : ''}` : '')
-        + '. Compare chaque case à la bande du livre, code par code. Un symbole mal '
-        + 'reconnu se refuse d’un tap : son image reprend sa place. Si tout est décalé '
-        + 'd’un cran, c’est le compte de cases qui est faux : reviens le corriger.'),
+        + '. Compare chaque case à la bande du livre, code par code. Tape sur un '
+        + 'symbole pour le nommer toi-même, ou pour lui rendre son image. Si tout est '
+        + 'décalé d’un cran, c’est le compte de cases qui est faux : reviens le corriger.'),
       avertissement ? h('p', { class: 'alerte alerte--avertissement' }, avertissement.texte) : null,
       h('div', { class: 'import__apercu' }, releves.map(releve => {
-        /* Un caractère reconnu se refuse d'un tap : le découpage reprend sa
-           place. C'est son œil qui tranche, jamais la ressemblance seule. */
-        const bascule = releve.reconnu && releve.decoupe;
-        const boite = h(bascule ? 'button' : 'div', { class: 'import__case' });
+        /* Une case à symbole s'ouvre d'un tap : c'est son œil qui tranche,
+           jamais la ressemblance seule, et le livre n'écrit ce signe qu'ici. */
+        const boite = h(releve.rangCle ? 'button' : 'div', { class: 'import__case' });
         const peindre = () => boite.replaceChildren(h('span', {
           class: 'import__pastille',
           style: `background:${releve.hex};color:${encreSur(releve.hex)}`
         }, marqueCode(releve, encreSur(releve.hex))));
-        if (bascule) {
-          boite.addEventListener('click', () => {
-            const refuse = !releve.glyphe;
-            releve.glyphe = refuse ? releve.decoupe : undefined;
-            releve.code = refuse ? releve.rangCle : releve.reconnu;
-            peindre();
-          });
+        if (releve.rangCle) {
+          boite.addEventListener('click', () => panneauSymbole({
+            hex: releve.hex,
+            glyphe: releve.glyphe,
+            code: releve.code,
+            rangCle: releve.rangCle,
+            pris: new Set(releves.filter(r => r !== releve).map(r => r.code)),
+            surChoix: (nouveau) => { releve.code = nouveau; peindre(); }
+          }));
         }
         peindre();
         return boite;
-      })));
+      })]));
 
     const enregistrer = h('button', {
       class: 'bouton bouton--primaire',

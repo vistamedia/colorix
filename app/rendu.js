@@ -49,20 +49,26 @@ export const ailes = () => [
   h('div', { class: 'eclat eclat--b' })
 ];
 
-/* Le code d'une rangée : son caractère quand le livre le nomme, sinon le
-   symbole découpé sur la photo du nuancier de la planche. Le masque est peint
-   dans l'encre calculée pour la pastille, comme le serait un caractère.
+/* Le code d'une rangée : son caractère quand la case en porte un — celui du
+   livre, celui que la reconnaissance a trouvé, ou celui qu'elle a tapé — sinon
+   le symbole découpé sur la photo du nuancier de la planche. Le masque est
+   peint dans l'encre calculée pour la pastille, comme le serait un caractère.
    Faute des deux — photo trop floue pour découper quoi que ce soit — reste le
-   rang de la case, qui se lit encore sur la bande. */
+   rang de la case, qui se lit encore sur la bande.
+
+   Le découpage est gardé même sur une case nommée : c'est le code seul qui
+   tranche. Sans cela, nommer un symbole jetterait son image, et se raviser
+   imposerait de refaire la photo. */
 export function marqueCode(entree, encre) {
+  const rang = /^s(\d+)$/.exec(entree?.code || '');
+  if (!rang) return entree?.code ?? '';
   if (entree?.glyphe) {
     return h('span', {
       class: 'glyphe',
       style: `-webkit-mask-image:url(${entree.glyphe});mask-image:url(${entree.glyphe});background-color:${encre}`
     });
   }
-  const rang = /^s(\d+)$/.exec(entree?.code || '');
-  return rang ? h('span', { class: 'rang-case' }, rang[1]) : (entree?.code ?? '');
+  return h('span', { class: 'rang-case' }, rang[1]);
 }
 
 export const deuxChiffres = (n) => String(n).padStart(2, '0');
