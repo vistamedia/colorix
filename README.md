@@ -268,6 +268,12 @@ Les propositions ne piochent que dans les feutres **qui ont un hexadécimal** et
 qu'elle **déclare posséder**. Elles s'élargissent donc à chaque planche du
 nuancier papier relevée, et un feutre à sec n'est jamais proposé.
 
+L'écran le dit en toutes lettres — *« comparé à 72 feutres dont la couleur est
+relevée, sur 360 que tu possèdes »* — et compte les codes sans candidat assez
+proche. Sans ce chiffre, une planche à moitié pourvue laisse croire que ses
+couleurs sont introuvables, alors que c'est le nuancier des feutres qui est à
+moitié relevé.
+
 ---
 
 ## Sauvegarde
