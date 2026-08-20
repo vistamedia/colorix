@@ -114,7 +114,7 @@ premier affichage, repli sur un dégradé de couleur.
 | Album | Grille des planches — pas commencée, en cours, terminée avec sa photo |
 | **Fiche coloriage** | L'écran de travail : les codes du livre et leurs feutres |
 | Relevé du nuancier | Les couleurs d'une planche, lues sur sa page « Mon nuancier » |
-| Attribution | Feutres d'un code, superposition ordonnée, recherche, propositions ΔE |
+| Attribution | Feutres d'un code et leur écart ΔE, recherche, propositions |
 | Propositions | Un feutre proposé pour chaque code de la planche, à valider en bloc |
 | Pipette | Relevé d'une couleur du livre sur photo de légende |
 | Feutres | Inventaire, états, couleurs |
@@ -266,6 +266,21 @@ aux couleurs vraies **ΔE 14,3 sans correction, 2,9 avec**.
 Un feutre sans hexadécimal n'est jamais proposé — plutôt que de proposer du
 faux. Le Pack 360 est intégralement relevé et livré avec l'app ; la règle vaut
 pour les sets à venir, Posca compris.
+
+---
+
+## Comparer une couleur du livre à celle des feutres
+
+Chaque rangée de la fiche porte un **comparateur** : la case du livre et,
+collées à elle, les couleurs des feutres retenus. Sans écart entre les deux —
+l'œil ne compare deux teintes qu'au contact, et un filet blanc suffit à fausser
+son jugement.
+
+**Plusieurs feutres sur un même code sont des équivalents, pas des couches.**
+Ils viennent de la proximité de teinte : la fiche les sépare par « ou », et
+l'écran d'attribution donne à chacun son écart ΔE à la couleur du livre. Sans ce
+chiffre, deux feutres retenus se valent à l'affichage alors que l'un peut être
+trois fois plus loin que l'autre.
 
 ---
 

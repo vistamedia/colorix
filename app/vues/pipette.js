@@ -81,7 +81,7 @@ export async function monter(coloriageId, code) {
     h('div', { class: 'entete__contenu' },
       h('a', { class: 'retour retour--sombre', href: `#/planche/${coloriageId}/code/${encodeURIComponent(code)}` },
         `‹ Code ${code}`),
-      h('h1', { class: 'titre-code' }, 'Pipette'),
+      h('h1', { class: 'titre-code' }, 'Scanner la couleur'),
       consigne));
 
   const corps = h('div', { class: 'corps corps--pipette' },
