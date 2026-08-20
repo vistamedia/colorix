@@ -106,6 +106,7 @@ premier affichage, repli sur un dégradé de couleur.
 | **Fiche coloriage** | L'écran de travail : les codes du livre et leurs feutres |
 | Relevé du nuancier | Les couleurs d'une planche, lues sur sa page « Mon nuancier » |
 | Attribution | Feutres d'un code, superposition ordonnée, recherche, propositions ΔE |
+| Propositions | Un feutre proposé pour chaque code de la planche, à valider en bloc |
 | Pipette | Relevé d'une couleur du livre sur photo de légende |
 | Feutres | Inventaire, états, couleurs |
 | Import de nuancier | Relevé d'une planche du nuancier papier des feutres, sur photo |
@@ -240,6 +241,35 @@ pas d'hexadécimal — plutôt que de proposer du faux.
 
 ---
 
+## Attribuer les feutres d'un coup
+
+Fiche coloriage → *Proposer les feutres manquants*. Le bouton n'apparaît que
+lorsqu'il a de quoi travailler : des codes dont la couleur est relevée mais sans
+feutre, et des feutres dont la couleur est relevée.
+
+L'écran propose, pour chaque code à pourvoir, **le feutre le plus proche** parmi
+ceux qu'elle possède. Chaque rangée montre côte à côte la couleur du livre et
+celle du feutre, la référence en grand, et l'écart ΔE. Un tap écarte une
+proposition, un autre la reprend ; le bouton du bas n'attribue que ce qui reste
+retenu.
+
+Trois règles de prudence :
+
+- **Rien n'est écrasé.** Un code qui a déjà un feutre n'est pas proposé du tout.
+  Pour en changer un, on passe par sa rangée sur la fiche.
+- **Au-delà de ΔE 25**, la ligne s'affiche avec son chiffre en magenta mais
+  n'est pas retenue d'avance : le plus proche n'est plus une proposition, c'est
+  un pis-aller.
+- **Un même feutre peut être proposé pour deux codes voisins.** C'est légitime —
+  deux teintes proches du livre appellent souvent le même feutre — et c'est à
+  elle de trancher.
+
+Les propositions ne piochent que dans les feutres **qui ont un hexadécimal** et
+qu'elle **déclare posséder**. Elles s'élargissent donc à chaque planche du
+nuancier papier relevée, et un feutre à sec n'est jamais proposé.
+
+---
+
 ## Sauvegarde
 
 Réglages → **Exporter tout** produit une archive ZIP contenant `data.json` et le
@@ -270,8 +300,9 @@ service worker.
 
 ## Ce qui reste ouvert
 
-- **Les hexadécimaux des 360 feutres** ne sont pas renseignés. À relever planche
-  par planche depuis l'app.
+- **Les hexadécimaux des feutres** se relèvent planche par planche depuis l'app.
+  Les propositions ne piochent que dans ceux qui en ont : chaque planche relevée
+  les élargit.
 - **Les palettes des planches** ne sont pas relevées : chaque planche demande la
   photo de sa page « Mon nuancier ».
 - **Les seuils des paliers Winx** (`app/paliers.js`) sont posés par déduction,
