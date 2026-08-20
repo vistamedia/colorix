@@ -121,8 +121,9 @@ Coloriage {
   note                          texte libre
 }
 
-Nuancier { coloriage_id, entrees: [ Entree ] }
-Entree   { code: "1".."0" | "a".."z" | "◊" | "Δ",
+Nuancier { coloriage_id, releve_le, entrees: [ Entree ] }
+Entree   { code: "1".."0" | "a".."z" | "s30".."sN" pour un symbole
+           glyphe,              masque du symbole découpé sur la photo, s'il y en a un
            pastille_hex,        couleur imprimée sur cette planche-là, relevée
            feutres: [feutre_id] ordonnés — superposition pour créer la nuance
            note }
@@ -151,6 +152,14 @@ d'identité et d'ordre d'une planche à l'autre.** Ils ne sont donc pas une
 propriété du livre mais de la planche, et le catalogue ne peut pas les porter.
 `Nuancier.entrees` tient la série du livre, puis ce que la planche a en propre,
 dans son ordre à elle.
+
+**Un symbole n'est pas nommé, il est découpé.** Le relevé du §6.0 connaît la
+position exacte de chaque case : il extrait le code imprimé et le garde en
+masque dans `Entree.glyphe`, que les écrans peignent dans l'encre calculée
+comme ils peindraient un caractère. Aucun répertoire de symboles à tenir, aucun
+clavier grec à installer, et ce qui s'affiche est exactement ce qui est imprimé.
+La clé `Entree.code` d'un symbole est son rang — `s30`, `s31` — ; `s` est l'une
+des lettres écartées par l'éditeur, la collision est donc impossible.
 
 Le jeu de codes vient du catalogue seul : en garder une copie à la coche de
 l'album empêcherait toute correction de la série d'atteindre les planches déjà
@@ -208,7 +217,8 @@ la planche.
 
 **Le compte de cases vient de la page, jamais du jeu de codes.** Avant la photo,
 la série du livre est proposée et elle **tape le dernier code de la bande** ; le
-reste se grise. Un compte faux ne donne pas un relevé incomplet mais un relevé
+reste se grise. Si la bande continue au-delà de `z`, elle **compte les cases à
+symbole** au lieu de les nommer. Un compte faux ne donne pas un relevé incomplet mais un relevé
 **décalé** : l'homographie étalerait N cases sur K rangées et chaque couleur
 tomberait sur le mauvais code. Les codes au-delà restent gris, ils ne sont pas
 effacés.

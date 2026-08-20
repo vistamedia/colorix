@@ -133,8 +133,9 @@ jamais être proposés.
 **Ces vingt-neuf rangs sont les seuls stables.** Une planche qui a davantage de
 nuances les note avec des symboles, et ces symboles changent d'identité et
 d'ordre d'un coloriage à l'autre : ils appartiennent à la planche, pas au livre.
-Le catalogue ne les porte donc pas ; le nuancier d'une planche garde ce qu'elle
-a en propre à la suite de la série.
+Le catalogue ne les porte donc pas — ils sont **découpés sur la photo** du
+nuancier de la planche et gardés en masque, que les écrans peignent dans l'encre
+calculée comme ils peindraient un caractère.
 
 **`data/nuanciers/guangna-360.json`** — les 360 feutres du Pack 360 :
 référence, nom, plus petit pack contenant le feutre, planche et position dans le
@@ -154,9 +155,11 @@ davantage sur la 50. Tant qu'une planche n'a pas été relevée, ses cases
 restent grises.
 
 Avant la photo, l'écran affiche la série et laisse **taper le dernier code de la
-bande** ; le reste se grise. **C'est ce compte qui découpe la photo, pas le jeu
-de codes** : un compte faux ne donne pas un relevé incomplet mais un relevé
-décalé, chaque couleur tombant sur le mauvais code.
+bande** ; le reste se grise. Si la bande continue au-delà de `z`, un compteur
+demande **combien de cases à symbole** suivent — on ne les nomme pas, on les
+découpe. **C'est ce compte qui découpe la photo, pas le jeu de codes** : un
+compte faux ne donne pas un relevé incomplet mais un relevé décalé, chaque
+couleur tombant sur le mauvais code.
 
 Quatre repères aux **coins de la bande** donnent l'homographie, un cinquième sur
 le blanc de la page donne la référence colorimétrique. Ici, aucune feuille à
@@ -226,10 +229,6 @@ service worker.
 
 - **Les hexadécimaux des 360 feutres** ne sont pas renseignés. À relever planche
   par planche depuis l'app.
-- **Les planches de plus de vingt-neuf nuances ne peuvent pas être relevées.**
-  Leurs codes supplémentaires sont des symboles propres à chaque planche ;
-  l'app ne sait pas encore les nommer, et l'écran de relevé prévient plutôt que
-  de produire un nuancier décalé.
 - **Les palettes des planches** ne sont pas relevées : chaque planche demande la
   photo de sa page « Mon nuancier ».
 - **Les seuils des paliers Winx** (`app/paliers.js`) sont posés par déduction,

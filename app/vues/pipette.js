@@ -1,4 +1,4 @@
-import { h, naviguer } from '../rendu.js';
+import { h, naviguer, marqueCode } from '../rendu.js';
 import { encreSur, moyenneZone } from '../couleur.js';
 import { planche, nuancier, pipetter, contexteNuancier } from '../donnees.js';
 import { compresser, versDonnees } from '../photo.js';
@@ -24,7 +24,7 @@ export async function monter(coloriageId, code) {
   const temoin = h('span', {
     class: 'pipette__temoin',
     style: choisi ? `background:${choisi};color:${encreSur(choisi)}` : ''
-  }, code);
+  }, marqueCode(entree, encreSur(choisi || '#EFE6F4')));
   const valeur = h('span', { class: 'pipette__valeur' }, choisi || 'tape sur la couleur');
 
   const valider = h('button', {

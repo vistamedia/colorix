@@ -499,6 +499,21 @@ button, input, textarea, select {
 /* ---------- mise en page B ---------- */
 
 .rangee--bande { align-items: stretch; gap: 0; padding: 0; min-height: 74px; }
+/* Les symboles au-delà de « z » changent d'une planche à l'autre : ils sont
+   découpés sur la photo et peints en masque, jamais en caractère. */
+.glyphe {
+  display: block;
+  -webkit-mask-size: contain; mask-size: contain;
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+  -webkit-mask-position: center; mask-position: center;
+}
+.pastille .glyphe { width: 46%; height: 40%; }
+.bande .glyphe { width: 34%; height: 34%; }
+.pastille-manquante .glyphe { width: 46%; height: 40%; }
+.import__pastille .glyphe { width: 34%; height: 46%; }
+.pipette__temoin .glyphe { width: 46%; height: 40%; }
+.titre-code .glyphe { display: inline-block; width: .9em; height: .9em; vertical-align: -.1em; }
+
 .bande {
   flex: none;
   width: 74px;
@@ -779,6 +794,21 @@ button, input, textarea, select {
   text-decoration: line-through;
 }
 .section__note--compte { font-weight: 700; color: var(--encre); }
+.compteur { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.compteur__libelle { flex: 1; font: 600 14px/1.25 'Space Grotesk', sans-serif; color: var(--encre-2); }
+.compteur__reglage { flex: none; display: flex; align-items: center; gap: 4px; }
+.compteur__pas {
+  width: 44px; height: 44px;
+  border-radius: 14px;
+  background: var(--presse);
+  color: var(--encre);
+  font: 700 20px 'Space Grotesk', sans-serif;
+}
+.compteur__pas:disabled { color: var(--encre-3); }
+.compteur__valeur {
+  min-width: 34px; text-align: center;
+  font: 700 20px 'Space Grotesk', sans-serif; font-variant-numeric: tabular-nums;
+}
 
 .import__apercu { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
 .import__case { display: flex; flex-direction: column; align-items: center; gap: 2px; }

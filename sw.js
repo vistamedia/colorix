@@ -1,4 +1,4 @@
-const CACHE = 'colorix-11';
+const CACHE = 'colorix-12';
 const CACHE_COUVERTURES = 'colorix-couvertures-1';
 
 const COQUILLE = [

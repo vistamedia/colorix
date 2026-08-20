@@ -49,6 +49,17 @@ export const ailes = () => [
   h('div', { class: 'eclat eclat--b' })
 ];
 
+/* Le code d'une rangée : son caractère quand le livre le nomme, sinon le
+   symbole découpé sur la photo du nuancier de la planche. Le masque est peint
+   dans l'encre calculée pour la pastille, comme le serait un caractère. */
+export const marqueCode = (entree, encre) =>
+  entree?.glyphe
+    ? h('span', {
+        class: 'glyphe',
+        style: `-webkit-mask-image:url(${entree.glyphe});mask-image:url(${entree.glyphe});background-color:${encre}`
+      })
+    : (entree?.code ?? '');
+
 export const deuxChiffres = (n) => String(n).padStart(2, '0');
 
 export function dureeCourte(secondes) {

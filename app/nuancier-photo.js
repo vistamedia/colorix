@@ -78,6 +78,20 @@ function pointsPastille(m, grille, colonne, rangee, colonnes, rangees) {
   return points;
 }
 
+/* Le code est imprimé au centre de la case : c'est cette zone qu'on découpe
+   pour les symboles que le catalogue ne peut pas nommer. Assez large pour un
+   « ¶ » ou un « » », assez étroite pour ne pas mordre sur la case voisine. */
+const PART_U = 0.34, PART_V = 0.36;
+
+function cadreGlyphe(m, grille, colonne, rangee, colonnes, rangees) {
+  const [u, pasU] = grille(colonne, colonnes);
+  const [v, pasV] = grille(rangee, rangees);
+  const points = [[-1, -1], [1, -1], [1, 1], [-1, 1]]
+    .map(([su, sv]) => projeter(m, u + su * PART_U * pasU, v + sv * PART_V * pasV));
+  const xs = points.map(p => p[0]), ys = points.map(p => p[1]);
+  return [Math.min(...xs), Math.min(...ys), Math.max(...xs), Math.max(...ys)];
+}
+
 export function extraire(image, coins, colonnes, rangees, repere) {
   const m = homographie(coins);
   if (!m) return null;
@@ -88,11 +102,83 @@ export function extraire(image, coins, colonnes, rangees, repere) {
       cases.push({
         colonne, rangee,
         brut: echantillonner(image, pointsPastille(m, grille, colonne, rangee, colonnes, rangees)),
-        centre: projeter(m, grille(colonne, colonnes)[0], grille(rangee, rangees)[0])
+        centre: projeter(m, grille(colonne, colonnes)[0], grille(rangee, rangees)[0]),
+        cadre: cadreGlyphe(m, grille, colonne, rangee, colonnes, rangees)
       });
     }
   }
   return cases;
+}
+
+const HAUTEUR_GLYPHE = 60;
+const ECART_MINIMAL = 40;
+
+/* Découpe le code imprimé et le rend en masque : opaque là où l'encre s'écarte
+   de la couleur de la case, transparent ailleurs. La fiche le peint ensuite
+   dans son encre calculée, comme elle peindrait un caractère. Les seuils sont
+   pris sur l'écart maximal de la case, non fixés : le contraste d'un symbole
+   blanc sur noir n'a rien de celui d'un symbole noir sur jaune. */
+export function glypheDeCase(image, cadre, brut) {
+  const [x0, y0, x1, y1] = cadre.map(Math.round);
+  const L = x1 - x0, H = y1 - y0;
+  if (!brut || L < 6 || H < 6) return null;
+
+  const ecarts = new Float32Array(L * H);
+  let maximum = 0;
+  for (let y = 0; y < H; y++) {
+    for (let x = 0; x < L; x++) {
+      const px = x0 + x, py = y0 + y;
+      if (px < 0 || py < 0 || px >= image.width || py >= image.height) continue;
+      const i = (py * image.width + px) * 4;
+      const d = Math.hypot(image.data[i] - brut[0], image.data[i + 1] - brut[1], image.data[i + 2] - brut[2]);
+      ecarts[y * L + x] = d;
+      if (d > maximum) maximum = d;
+    }
+  }
+  if (maximum < ECART_MINIMAL) return null;
+
+  const bas = maximum * 0.30, haut = maximum * 0.70;
+  const source = new OffscreenCanvas(L, H);
+  const pinceau = source.getContext('2d');
+  const zone = pinceau.createImageData(L, H);
+
+  /* La découpe garde de la marge autour du code : on la resserre sur ce qui est
+     opaque, sans quoi un symbole étroit s'afficherait plus petit qu'un large. */
+  let xMin = L, yMin = H, xMax = -1, yMax = -1;
+  for (let i = 0; i < ecarts.length; i++) {
+    const alpha = Math.max(0, Math.min(1, (ecarts[i] - bas) / (haut - bas)));
+    zone.data[i * 4] = 255;
+    zone.data[i * 4 + 1] = 255;
+    zone.data[i * 4 + 2] = 255;
+    zone.data[i * 4 + 3] = Math.round(255 * alpha);
+    if (alpha > 0.5) {
+      const x = i % L, y = (i / L) | 0;
+      if (x < xMin) xMin = x;
+      if (x > xMax) xMax = x;
+      if (y < yMin) yMin = y;
+      if (y > yMax) yMax = y;
+    }
+  }
+  if (xMax < 0) return null;
+  pinceau.putImageData(zone, 0, 0);
+
+  const marge = Math.max(1, Math.round(Math.max(xMax - xMin, yMax - yMin) * 0.08));
+  const gx = Math.max(0, xMin - marge), gy = Math.max(0, yMin - marge);
+  const gL = Math.min(L, xMax + marge + 1) - gx, gH = Math.min(H, yMax + marge + 1) - gy;
+
+  const facteur = HAUTEUR_GLYPHE / gH;
+  const cible = new OffscreenCanvas(Math.max(1, Math.round(gL * facteur)), HAUTEUR_GLYPHE);
+  cible.getContext('2d').drawImage(source, gx, gy, gL, gH, 0, 0, cible.width, cible.height);
+  return cible;
+}
+
+export async function enDonnees(toile) {
+  const blob = await toile.convertToBlob({ type: 'image/png' });
+  return new Promise(resolve => {
+    const lecteur = new FileReader();
+    lecteur.onload = () => resolve(lecteur.result);
+    lecteur.readAsDataURL(blob);
+  });
 }
 
 export function mesurerBlanc(image, point, rayon = 9) {

@@ -1,4 +1,4 @@
-import { h, naviguer, sansAccent } from '../rendu.js';
+import { h, naviguer, sansAccent, marqueCode } from '../rendu.js';
 import { encreSur, plusProches } from '../couleur.js';
 import { planche, nuancier, attribuer, feutres, marques, majFeutre, contexteNuancier } from '../donnees.js';
 
@@ -127,9 +127,9 @@ export async function monter(coloriageId, code) {
         h('span', {
           class: 'pastille pastille--grande',
           style: `background:${hexPastille};color:${encreSur(hexPastille)}`
-        }, code),
+        }, marqueCode(entree, encreSur(hexPastille))),
         h('div', {},
-          h('h1', { class: 'titre-code' }, `Code ${code}`),
+          h('h1', { class: 'titre-code' }, 'Code ', marqueCode(entree, 'var(--encre)')),
           h('p', { class: 'titre-code__note' },
             entree?.pastille_hex ? entree.pastille_hex : 'couleur du livre non relevée')),
         h('a', { class: 'bouton--secondaire', href: `#/pipette/${coloriageId}/${encodeURIComponent(code)}` }, 'Pipetter'))));
