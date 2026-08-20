@@ -594,6 +594,28 @@ button, input, textarea, select {
 .panneau__actions { display: flex; gap: 12px; align-items: center; }
 .panneau__actions .bouton--secondaire { flex: none; padding: 0 18px; height: 62px; }
 
+/* Nommer un symbole. La palette est en six colonnes et non huit : à huit, une
+   touche tombe sous les 44 pt et le doigt rate. */
+.symbole__apercu { display: flex; justify-content: center; padding: 4px 0; }
+.palette { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; }
+.palette__signe {
+  height: 48px;
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: inset 0 0 0 2px var(--bordure-bouton);
+  color: var(--encre);
+  font: 700 22px 'Space Grotesk', sans-serif;
+}
+.palette__signe:active { background: var(--presse); }
+.palette__signe--actuel { box-shadow: inset 0 0 0 3px var(--magenta); }
+.palette__signe:disabled { opacity: .28; }
+
+.panneau__saisie { display: flex; align-items: center; gap: 10px; }
+.panneau__saisie .bouton--secondaire { flex: none; padding: 0 18px; height: 48px; }
+.champ--symbole { text-align: center; font-size: 22px; font-weight: 700; }
+.panneau__refus { color: var(--magenta); font-weight: 600; }
+.panneau__refus:empty { display: none; }
+
 .apercu:empty { display: none; }
 .apercu img { width: 100%; border-radius: 16px; }
 .apercu__attente { font-size: 14px; color: var(--encre-2); }

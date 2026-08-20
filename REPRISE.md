@@ -83,6 +83,9 @@ entière. Tout le reste de l'app peut être médiocre, celui-ci non.
   livrées** dans `data/nuanciers/guangna-360.json`.
 - **Propositions ΔE** : une passe propose un feutre pour tous les codes d'une
   planche, à valider en bloc. Mesuré sur 132 codes : écart médian ΔE 7, maximum 15.
+- **Symboles nommés à la main** : au-delà de `z`, un tap sur une case ouvre la
+  palette des seize signes connus et un champ de saisie. Le découpage est gardé
+  quoi qu'il arrive, on peut donc se raviser sans reprendre la photo.
 - **Réglages → Actualiser l'app** : cherche la nouvelle version, l'installe,
   recharge, et affiche la version en place.
 

@@ -81,10 +81,10 @@ IndexedDB pour tout, y compris les photos en `Blob` : `possessions`,
 fiche, date du dernier export.
 
 Un `nuancier` porte la palette de sa planche : ses codes dans l'ordre, leur
-couleur relevée, les feutres attribués, et le masque des symboles que la
-reconnaissance n'a pas nommés. Ces masques sont de petites images encodées en
-`data:` — environ 1,5 Ko pièce — pour que l'export du §9 les emporte avec le
-reste plutôt que de les perdre à la sérialisation.
+couleur relevée, les feutres attribués, et le masque de chaque symbole découpé
+sur sa photo — qu'il soit nommé ou non. Ces masques sont de petites images
+encodées en `data:` — environ 1,5 Ko pièce — pour que l'export du §9 les emporte
+avec le reste plutôt que de les perdre à la sérialisation.
 
 ### Service worker
 
@@ -204,9 +204,20 @@ par indice de Jaccard. Un moteur d'OCR pèserait plusieurs mégaoctets de
 WebAssembly pour une quinzaine de signes, et lirait mal des caractères isolés et
 rares — il est entraîné à lire des mots.
 
-Reconnu, le symbole devient un vrai caractère ; sinon son découpage est gardé en
-masque, que les écrans peignent dans l'encre calculée comme ils peindraient un
-caractère.
+Reconnu, le symbole devient un vrai caractère ; sinon la case garde le rang pour
+clé. Dans les deux cas **le découpage est conservé** — environ 1,5 Ko par
+symbole — et c'est le code seul qui dit lequel du caractère ou de l'image
+s'affiche. Sans cette copie, nommer un symbole jetterait son image.
+
+**Elle peut nommer un symbole elle-même.** Un tap sur une case à symbole ouvre
+le découpage en grand, la palette des seize signes que la reconnaissance
+connaît, un champ de saisie et le retour à l'image. La palette n'est pas un
+confort : le clavier iOS ne donne ni « Δ », ni « ◊ », ni « ψ » tant qu'un
+clavier grec n'a pas été ajouté dans les réglages du téléphone. Un seul
+caractère, et jamais celui d'une autre case — deux entrées de même code
+rendraient la seconde inatteignable, en attribution comme dans sa route. Le tap
+est offert sur l'écran de vérification du relevé, et plus tard depuis l'écran
+d'attribution du code : la photo n'est pas à refaire pour corriger un signe.
 
 Deux candidats trop proches ne sont jamais départagés — « φ » et « ψ » se
 ressemblent — et le découpage l'emporte : un symbole en image vaut mieux qu'un

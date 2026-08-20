@@ -1,6 +1,7 @@
 import { h, naviguer, sansAccent, marqueCode } from '../rendu.js';
 import { encreSur, plusProches } from '../couleur.js';
-import { planche, nuancier, attribuer, feutres, marques, majFeutre, contexteNuancier } from '../donnees.js';
+import { planche, nuancier, attribuer, feutres, marques, majFeutre, contexteNuancier, cleDeRang, renommerCode } from '../donnees.js';
+import { panneauSymbole } from './nommer-symbole.js';
 
 const ETATS = [
   ['possede', 'possédé'],
@@ -119,6 +120,29 @@ export async function monter(coloriageId, code) {
     inputmode: 'search', oninput: (e) => chercher(e.target.value)
   });
 
+  /* Un code absent de la série du livre appartient à la planche : c'est un
+     symbole, et lui seul peut être nommé ou renommé. La photo n'est pas à
+     refaire pour cela — le découpage est resté dans l'entrée. */
+  const symbole = entree && !contexte.jeu.includes(entree.code);
+  const rangCle = cleDeRang(n.entrees.indexOf(entree));
+
+  const nommer = symbole
+    ? h('button', {
+        class: 'bouton--secondaire',
+        onclick: () => panneauSymbole({
+          hex: entree.pastille_hex,
+          glyphe: entree.glyphe,
+          code: entree.code,
+          rangCle,
+          pris: new Set(n.entrees.filter(e => e !== entree).map(e => e.code)),
+          surChoix: async (nouveau) => {
+            await renommerCode(coloriageId, entree.code, nouveau, contexte);
+            naviguer(`#/planche/${coloriageId}/code/${encodeURIComponent(nouveau)}`);
+          }
+        })
+      }, entree.code === rangCle ? 'Nommer' : 'Renommer')
+    : null;
+
   const hexPastille = entree?.pastille_hex || '#EFE6F4';
   const entete = h('header', { class: 'entete entete--sobre' },
     h('div', { class: 'entete__contenu' },
@@ -132,7 +156,8 @@ export async function monter(coloriageId, code) {
           h('h1', { class: 'titre-code' }, 'Code ', marqueCode(entree, 'var(--encre)')),
           h('p', { class: 'titre-code__note' },
             entree?.pastille_hex ? entree.pastille_hex : 'couleur du livre non relevée')),
-        h('a', { class: 'bouton--secondaire', href: `#/pipette/${coloriageId}/${encodeURIComponent(code)}` }, 'Pipetter'))));
+        h('a', { class: 'bouton--secondaire', href: `#/pipette/${coloriageId}/${encodeURIComponent(code)}` }, 'Pipetter'),
+        nommer)));
 
   dessinerChoisis();
   dessinerPropositions();

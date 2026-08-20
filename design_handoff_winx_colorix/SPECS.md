@@ -161,15 +161,25 @@ plusieurs mégaoctets pour une quinzaine de signes, et lirait mal des caractère
 isolés et rares.
 
 Reconnu, le symbole devient un vrai caractère et `Entree.code` le porte. Sinon
-le découpage est gardé en masque dans `Entree.glyphe`, que les écrans peignent
-dans l'encre calculée comme ils peindraient un caractère, et la clé est le rang
-de la case — `s30`, `s31` ; `s` est l'une des lettres écartées par l'éditeur, la
-collision est donc impossible.
+la clé reste le rang de la case — `s30`, `s31` ; `s` est l'une des lettres
+écartées par l'éditeur, la collision est donc impossible. **Le découpage est
+gardé dans `Entree.glyphe` dans les deux cas** : c'est `Entree.code` seul qui
+dit lequel des deux s'affiche. Sans cela, nommer un symbole jetterait son image
+et se raviser imposerait de refaire la photo.
 
 **Deux candidats trop proches ne sont jamais départagés** : le découpage
 l'emporte. Un symbole en image vaut mieux qu'un mauvais caractère, et c'est le
-même principe qu'au §6.2 — l'app propose, son œil tranche. Sur l'écran de
-vérification, un tap sur une case refuse le caractère reconnu et rend son image.
+même principe qu'au §6.2 — l'app propose, son œil tranche.
+
+**Elle peut aussi nommer le symbole elle-même.** Un tap sur une case à symbole —
+sur l'écran de vérification du §6.0, ou plus tard depuis l'écran d'attribution
+du code, sans reprendre la photo — ouvre le découpage en grand, la palette des
+signes que la reconnaissance connaît, un champ de saisie, et le retour à
+l'image. La palette existe parce que le clavier iOS ne donne ni « Δ », ni « ◊ »,
+ni « ψ » sans qu'un clavier grec soit ajouté dans les réglages du téléphone.
+Un seul caractère, jamais un doublon d'une autre case : deux entrées de même
+code rendraient la seconde inatteignable. Le caractère tapé vaut pour cette
+planche seule — il n'est jamais reversé dans le catalogue.
 
 Le jeu de codes vient du catalogue seul : en garder une copie à la coche de
 l'album empêcherait toute correction de la série d'atteindre les planches déjà
@@ -428,7 +438,8 @@ la réserve ne vaut plus que pour les sets à venir.
 - Safari iOS uniquement
 - La reconnaissance des symboles du §6.0 peut se tromper : deux candidats trop
   proches sont laissés en image plutôt que départagés, mais une lecture fausse
-  reste possible. D'où le refus d'un tap sur l'écran de vérification
+  reste possible. D'où le tap qui rend son image à une case, ou lui donne le
+  signe qu'elle a sous les yeux
 
 ## 15. Évolutions envisageables
 
