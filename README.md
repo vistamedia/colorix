@@ -127,10 +127,16 @@ nuancier papier. Les hexadécimaux sont vides : ils se relèvent depuis l'app.
 
 Fiche coloriage → *Relever le nuancier en photo*.
 
-Chaque planche du livre a sa page « Mon nuancier #N », où la bande des 31 codes
-est imprimée avec **les couleurs de cette planche-là**. Le jeu de codes ne bouge
-pas d'une planche à l'autre, les couleurs si — d'où le relevé planche par
-planche. Tant qu'une planche n'a pas été relevée, ses cases restent grises.
+Chaque planche du livre a sa page « Mon nuancier #N », où sa bande de codes est
+imprimée avec **les couleurs de cette planche-là**. Le jeu de codes reste une
+propriété du livre, mais une planche n'en emploie pas forcément la totalité : le
+nombre de nuances varie d'un coloriage à l'autre. Tant qu'une planche n'a pas
+été relevée, ses cases restent grises.
+
+Avant la photo, l'écran propose les codes du livre et laisse décocher ceux qui
+ne sont pas sur la bande. **C'est ce compte qui découpe la photo, pas le jeu de
+codes** : un compte faux ne donne pas un relevé incomplet mais un relevé décalé,
+chaque couleur tombant sur le mauvais code.
 
 Quatre repères aux **coins de la bande** donnent l'homographie, un cinquième sur
 le blanc de la page donne la référence colorimétrique. Ici, aucune feuille à
@@ -141,10 +147,10 @@ Le relevé reste accessible une fois fait : un mauvais cadrage se voit souvent
 après coup.
 
 Mesuré sur des bandes de synthèse projetées en perspective — de face, inclinée
-à 20°, inclinée et pivotée, en gros plan à 32° — les 31 couleurs sortent
-exactes. La pose des repères tolère environ quatre pixels d'écart ; au-delà, les
-rangées commencent à baver l'une sur l'autre, ce que l'écran de vérification
-montre avant l'enregistrement.
+à 20°, inclinée et pivotée, en gros plan à 32°, et sur des bandes de 31, 24, 17
+et 9 cases — les couleurs sortent exactes. La pose des repères tolère environ
+quatre pixels d'écart ; au-delà, les rangées commencent à baver l'une sur
+l'autre, ce que l'écran de vérification montre avant l'enregistrement.
 
 ## Relever les couleurs d'un nuancier de feutres
 

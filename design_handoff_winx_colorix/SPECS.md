@@ -147,10 +147,13 @@ C'est l'écran le plus utilisé de l'app. Tout le reste peut être médiocre, ce
 non.
 
 **La palette appartient à la planche, pas au livre.** Chaque planche a sa page
-« Mon nuancier #N » dans le livre, où la bande des codes est imprimée avec les
-couleurs de cette planche-là. Le jeu de codes, lui, ne bouge pas. Aucune couleur
-n'est donc livrée avec le catalogue : tant qu'une planche n'a pas été relevée,
-ses cases sont grises — une couleur approchée serait plus trompeuse que rien.
+« Mon nuancier #N » dans le livre, où sa bande de codes est imprimée avec ses
+couleurs à elle. Le jeu de codes reste une propriété du livre, mais **une
+planche n'en emploie pas forcément la totalité** : le nombre de nuances varie
+d'un coloriage à l'autre, et la bande ne liste que celles qui servent. Aucune
+couleur n'est donc livrée avec le catalogue : tant qu'une planche n'a pas été
+relevée, ses cases sont grises — une couleur approchée serait plus trompeuse
+que rien.
 
 **Contenu.** L'album et le numéro en en-tête. Puis la liste des codes du nuancier :
 pour chacun, la pastille de couleur du livre, le caractère du code, et la ou les
@@ -182,8 +185,15 @@ Trois voies, de la plus rapide à la plus manuelle. Toutes partent de
 « Mon nuancier #N » du livre. Quatre repères aux coins de la bande de couleurs
 donnent l'homographie, un cinquième sur le blanc de la page donne la référence
 colorimétrique — la page étant elle-même blanche, aucune feuille n'est à
-ajouter dans le cadre. Les couleurs des codes du livre sont écrites d'un coup
-dans le nuancier de la planche.
+ajouter dans le cadre. Les couleurs sont écrites d'un coup dans le nuancier de
+la planche.
+
+**Le compte de cases vient de la page, jamais du jeu de codes.** Avant la photo,
+les codes du livre sont proposés et elle décoche ceux qui ne figurent pas sur la
+bande ; l'ordre du livre fait le reste. Un compte faux ne donne pas un relevé
+incomplet mais un relevé **décalé** : l'homographie étalerait N cases sur K
+rangées et chaque couleur tomberait sur le mauvais code. Les codes décochés
+restent gris, ils ne sont pas effacés.
 
 **6.1 Pipette.** Pour un code isolé, ou pour corriger. Elle photographie la
 bande de légende de la planche. L'app affiche la photo, elle tape sur une
