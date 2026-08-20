@@ -111,7 +111,7 @@ premier affichage, repli sur un dégradé de couleur.
 |---|---|
 | Bibliothèque | Albums possédés, progression, palier atteint |
 | Catalogue | Les 129 livres, recherche, coche d'un album |
-| Album | Grille des planches — pas commencée, en cours, terminée avec sa photo |
+| Album | Grille des planches, et ce qui reste à pourvoir dans chaque nuancier |
 | **Fiche coloriage** | L'écran de travail : les codes du livre et leurs feutres |
 | Relevé du nuancier | Les couleurs d'une planche, lues sur sa page « Mon nuancier » |
 | Attribution | Feutres d'un code et leur écart ΔE, recherche, propositions |
@@ -124,6 +124,13 @@ premier affichage, repli sur un dégradé de couleur.
 
 La fiche coloriage n'a pas de barre d'onglets : c'est un écran de travail. On en
 sort par le sur-titre, qui ramène à l'album.
+
+Sur la grille d'un album, chaque tuile porte l'avancement de son nuancier dans
+l'angle opposé au numéro : le **nombre de codes encore sans feutre**, ou un
+**point vert** quand ils l'ont tous. Une planche jamais relevée ne porte rien —
+sans palette, il n'y a rien à compter, et un zéro se lirait « complète ». Les
+cinquante nuanciers se lisent par leurs clés en une seule transaction :
+`lireTout` rapporterait au passage les masques de symboles des autres albums.
 
 ---
 
