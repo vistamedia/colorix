@@ -105,10 +105,11 @@ export async function nuancier(coloriageId, jeuCodes) {
   if (!jeuCodes?.length) return existant || { coloriage_id: coloriageId, entrees: [] };
   if (!existant) return { coloriage_id: coloriageId, entrees: jeuCodes.map(vide) };
 
-  /* Les chiffres et les lettres tiennent toujours les mêmes rangs d'une planche
-     à l'autre ; les symboles qui les suivent changent d'identité et d'ordre.
-     Le nuancier porte donc la série du livre, puis ce que la planche a en
-     propre, dans l'ordre où elle l'a enregistré. */
+  /* Une planche relevée porte sa propre palette : le nombre de ses cases et
+     ses symboles viennent de sa page, plus du livre. On n'y touche pas.
+     Les autres suivent la série, et gardent ce qu'elles ont en propre. */
+  if (existant.releve_le) return existant;
+
   const parCode = new Map(existant.entrees.map(e => [e.code, e]));
   const duLivre = new Set(jeuCodes);
   return {
@@ -147,14 +148,19 @@ export async function pipetter(coloriageId, code, hex, contexte) {
   return enregistrerNuancier(n);
 }
 
-/* Le relevé photo de la page « Mon nuancier » du livre : toutes les couleurs
-   de la planche d'un coup, les codes absents de la photo restant intacts. */
-export async function releverPastilles(coloriageId, couleurs, contexte) {
+/* Le relevé photo de la page « Mon nuancier » définit la palette de la planche :
+   ses codes, leur nombre, et les symboles qu'elle a en propre — découpés sur la
+   photo puisque le livre ne les nomme pas deux fois pareil. Ce qui était déjà
+   attribué sur un code survit au relevé. */
+export async function releverPalette(coloriageId, releves, contexte) {
   const n = await nuancier(coloriageId, contexte.jeu);
-  for (const entree of n.entrees) {
-    if (couleurs[entree.code]) entree.pastille_hex = couleurs[entree.code];
-  }
-  return enregistrerNuancier(n);
+  const parCode = new Map(n.entrees.map(e => [e.code, e]));
+  const entrees = releves.map(({ code, hex, glyphe }) => ({
+    ...(parCode.get(code) || { code, feutres: [], note: '' }),
+    pastille_hex: hex,
+    ...(glyphe ? { glyphe } : {})
+  }));
+  return enregistrerNuancier({ ...n, entrees, releve_le: new Date().toISOString() });
 }
 
 /* Copie les correspondances d'une autre planche du même album. SPECS §5.

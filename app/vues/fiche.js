@@ -1,4 +1,4 @@
-import { h, naviguer, dureeCourte } from '../rendu.js';
+import { h, naviguer, dureeCourte, marqueCode } from '../rendu.js';
 import { encreSur } from '../couleur.js';
 import { planche, nuancier, feutres, marques, majPlanche, terminer, reprendreNuancier, planchesDe, contexteNuancier } from '../donnees.js';
 import { miseEnPage } from '../preferences.js';
@@ -36,7 +36,7 @@ function rangeeA(entree, attribues, ouvrir) {
     h('span', {
       class: 'pastille',
       style: `background:${hex};color:${encreSur(hex)}`
-    }, entree.code),
+    }, marqueCode(entree, encreSur(hex))),
     h('span', { class: 'rangee__texte' },
       h('span', { class: 'rangee__ligne' },
         reference,
@@ -56,7 +56,8 @@ function rangeeB(entree, attribues, ouvrir) {
   const dessus = attribues[1];
 
   return h('button', { class: 'rangee rangee--bande', onclick: ouvrir },
-    h('span', { class: 'bande', style: `background:${hex};color:${encreSur(hex)}` }, entree.code),
+    h('span', { class: 'bande', style: `background:${hex};color:${encreSur(hex)}` },
+      marqueCode(entree, encreSur(hex))),
     h('span', { class: 'rangee__corps' },
       h('span', { class: 'rangee__texte' },
         h('span', { class: 'reference reference--large' }, principal.reference),
@@ -81,7 +82,7 @@ function bandeauManquants(manquants, ouvrir) {
           class: 'pastille-manquante',
           style: `background:${hex};color:${encreSur(hex)}`,
           onclick: () => ouvrir(e.code)
-        }, e.code);
+        }, marqueCode(e, encreSur(hex)));
       })));
 }
 

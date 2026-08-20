@@ -1,8 +1,8 @@
-import { h, naviguer } from '../rendu.js';
+import { h, naviguer, marqueCode } from '../rendu.js';
 import { encreSur } from '../couleur.js';
-import { planche, contexteNuancier, releverPastilles } from '../donnees.js';
+import { planche, contexteNuancier, releverPalette } from '../donnees.js';
 import { compresser, versDonnees } from '../photo.js';
-import { extraire, mesurerBlanc, gainsDepuisBlanc, corriger, enHex, qualite } from '../nuancier-photo.js';
+import { extraire, mesurerBlanc, gainsDepuisBlanc, corriger, enHex, qualite, glypheDeCase, enDonnees } from '../nuancier-photo.js';
 import { ecranReperes } from '../viseur.js';
 
 /* La bande du livre n'a qu'une colonne : ses coins se visent bien mieux que le
@@ -45,11 +45,16 @@ export async function monter(coloriageId) {
      dernier code de la bande. Le compte doit être juste — sans quoi
      l'homographie étale N cases sur K rangées et décale tout le nuancier au
      lieu de l'écourter.
-     La série s'arrête à « z » : au-delà, le livre emploie des symboles qui
-     changent d'identité et d'ordre d'une planche à l'autre, et que l'app ne
-     sait pas encore nommer. */
+     La série s'arrête à « z ». Au-delà, le livre emploie des symboles qui
+     changent d'identité et d'ordre d'une planche à l'autre : on en demande
+     seulement le nombre, et on les découpe sur la photo. Leur clé est leur
+     rang, la seule chose qui ne bouge pas. */
   let dernier = codes.length - 1;
-  const listeRetenue = () => codes.slice(0, dernier + 1);
+  let symboles = 0;
+  const listeRetenue = () => [
+    ...codes.slice(0, dernier + 1),
+    ...Array.from({ length: symboles }, (_, i) => `s${dernier + 2 + i}`)
+  ];
 
   /* ---------- étape 1 : les codes de la bande, puis la photo ---------- */
 
@@ -64,18 +69,27 @@ export async function monter(coloriageId) {
     });
     const jetons = h('div', { class: 'bande-codes' }, tous);
 
-    const limite = h('p', { class: 'alerte alerte--avertissement' },
-      `Si ta bande continue après « ${codes[codes.length - 1]} » avec des symboles, `
-      + 'arrête-toi : l’app ne sait pas encore les nommer, et un compte faux '
-      + 'décalerait tout le relevé au lieu de l’écourter.');
+    /* Les symboles ne se nomment pas : on n'en demande que le nombre. */
+    const combien = h('span', { class: 'compteur__valeur' });
+    const moins = h('button', { class: 'compteur__pas', onclick: () => { symboles = Math.max(0, symboles - 1); majCompte(); } }, '−');
+    const plus = h('button', { class: 'compteur__pas', onclick: () => { symboles += 1; majCompte(); } }, '＋');
+    const suite = h('div', { class: 'compteur' },
+      h('span', { class: 'compteur__libelle' },
+        `Et après « ${codes[codes.length - 1]} », combien de cases à symbole ?`),
+      h('span', { class: 'compteur__reglage' }, moins, combien, plus));
 
     const majCompte = () => {
       tous.forEach((jeton, rang) => {
         jeton.classList.toggle('jeton-code--absent', rang > dernier);
         jeton.classList.toggle('jeton-code--dernier', rang === dernier);
       });
-      compte.textContent = `${dernier + 1} case${dernier ? 's' : ''} sur la bande, de « ${codes[0]} » à « ${codes[dernier]} ».`;
-      limite.hidden = dernier < codes.length - 1;
+      const total = dernier + 1 + symboles;
+      compte.textContent = `${total} cases sur la bande, de « ${codes[0]} » à « ${codes[dernier]} »`
+        + (symboles ? `, puis ${symboles} symbole${symboles > 1 ? 's' : ''}.` : '.');
+      combien.textContent = symboles;
+      moins.disabled = !symboles;
+      suite.hidden = dernier < codes.length - 1;
+      if (suite.hidden) symboles = 0;
     };
     majCompte();
 
@@ -92,11 +106,13 @@ export async function monter(coloriageId) {
     const corps = h('div', { class: 'corps corps--import' },
       h('h2', { class: 'section__titre' }, `La page « Mon nuancier #${courante.numero} »`),
       h('p', { class: 'section__note' },
-        'Tape le dernier code de la bande, celui du bas de la page. Le compte '
-        + 'doit tomber juste : c’est lui qui découpe la photo.'),
+        'Tape le dernier code de la bande. S’il est suivi de cases à symbole, '
+        + 'compte-les : l’app les découpera sur la photo, puisque le livre ne '
+        + 'les emploie pas deux fois dans le même ordre. Le compte doit tomber '
+        + 'juste, c’est lui qui découpe la photo.'),
       jetons,
+      suite,
       compte,
-      limite,
       h('p', { class: 'section__note' },
         'Photographie ensuite la page bien à plat, la bande entière dans le cadre, '
         + 'sans soleil direct ni flash. Le blanc de la page sert de référence : '
@@ -119,7 +135,7 @@ export async function monter(coloriageId) {
 
   /* ---------- étape 3 : vérification ---------- */
 
-  function etapeVerification() {
+  async function etapeVerification() {
     const blanc = mesurerBlanc(image, reperes.blanc);
     const gains = blanc && gainsDepuisBlanc(blanc);
     const controle = gains && qualite(blanc, gains);
@@ -138,9 +154,23 @@ export async function monter(coloriageId) {
 
     const attendus = listeRetenue();
     const cases = extraire(image, [reperes.hg, reperes.hd, reperes.bd, reperes.bg], 1, attendus.length, 'bords');
-    const releves = cases
-      .map((c, i) => ({ code: attendus[i], hex: c.brut ? enHex(corriger(c.brut, gains)) : null }))
-      .filter(x => x.hex);
+
+    corps.append(h('p', { class: 'section__note' }, 'Découpe des couleurs…'));
+    vue.replaceChildren(entete('Résultat'), corps);
+
+    /* « s » est l'une des lettres que l'éditeur écarte : la clé d'un symbole ne
+       peut donc jamais heurter un code du livre. */
+    const releves = [];
+    for (let i = 0; i < cases.length; i++) {
+      if (!cases[i].brut) continue;
+      const releve = { code: attendus[i], hex: enHex(corriger(cases[i].brut, gains)) };
+      if (releve.code.startsWith('s')) {
+        const decoupe = glypheDeCase(image, cases[i].cadre, cases[i].brut);
+        if (decoupe) releve.glyphe = await enDonnees(decoupe);
+      }
+      releves.push(releve);
+    }
+    corps.replaceChildren();
 
     const avertissement = controle.alertes.find(a => a.gravite === 'avertissement');
 
@@ -150,19 +180,19 @@ export async function monter(coloriageId) {
         + 'Compare chaque case à la bande du livre, code par code. Si tout est décalé '
         + 'd’un cran, c’est le compte de cases qui est faux : reviens le corriger.'),
       avertissement ? h('p', { class: 'alerte alerte--avertissement' }, avertissement.texte) : null,
-      h('div', { class: 'import__apercu' }, releves.map(({ code, hex }) =>
+      h('div', { class: 'import__apercu' }, releves.map(releve =>
         h('div', { class: 'import__case' },
           h('span', {
             class: 'import__pastille',
-            style: `background:${hex};color:${encreSur(hex)}`
-          }, code)))));
+            style: `background:${releve.hex};color:${encreSur(releve.hex)}`
+          }, marqueCode(releve, encreSur(releve.hex)))))));
 
     const enregistrer = h('button', {
       class: 'bouton bouton--primaire',
       onclick: async () => {
         enregistrer.disabled = true;
         enregistrer.textContent = 'Enregistrement…';
-        await releverPastilles(coloriageId, Object.fromEntries(releves.map(r => [r.code, r.hex])), contexte);
+        await releverPalette(coloriageId, releves, contexte);
         naviguer(retour);
       }
     }, `Enregistrer ${releves.length} couleurs`);
