@@ -773,6 +773,22 @@ button, input, textarea, select {
   background: #17101E;
 }
 
+/* Le doigt masque ce qu'il vise : les flèches affinent le repère au pixel,
+   la loupe restant ouverte pour montrer où il tombe. */
+.ajustement { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.ajustement__libelle { font: 600 13px 'Space Grotesk', sans-serif; color: var(--encre-2); }
+.ajustement__croix { display: flex; gap: 6px; }
+.ajustement__fleche {
+  width: 54px; height: 44px;
+  border-radius: 12px;
+  background: var(--presse);
+  color: var(--encre);
+  font: 700 19px 'Space Grotesk', sans-serif;
+  touch-action: manipulation;
+}
+.ajustement__fleche:active { background: var(--bordure-bouton); }
+.ajustement__fleche:disabled { background: var(--separateur); color: var(--encre-3); }
+
 .alerte { margin: 0; padding: 12px 14px; border-radius: 14px; font: 600 14px/1.4 'Space Grotesk', sans-serif; }
 .alerte--echec { background: #FDECEF; color: #B4162F; }
 .alerte--avertissement { background: var(--encours-fond); color: var(--encours-texte); }
