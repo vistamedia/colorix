@@ -53,6 +53,18 @@ export async function monter(coloriageId) {
       + 'Pour en changer un, tape sa rangée sur la fiche.');
   }
 
+  /* Dire dans quoi les propositions puisent : dix codes sans candidat proche,
+     c'est presque toujours un nuancier de feutres à moitié relevé, pas une
+     couleur du livre introuvable. Sans ce chiffre, l'écran laisse croire le
+     contraire. */
+  const possedes = tous.filter(f => f.etat !== 'non_possede').length;
+  const auDela = propositions.filter(p => p.ecart > ECART_ACCEPTABLE).length;
+  const couverture = h('p', { class: 'section__note' },
+    `Comparé à ${disponibles.length} feutres dont la couleur est relevée, sur ${possedes} que tu possèdes.`
+    + (auDela
+      ? ` ${auDela} code${auDela > 1 ? 's n’ont' : ' n’a'} rien d’assez proche : relever d’autres `
+        + 'planches du nuancier élargirait le choix.'
+      : ''));
   const compte = h('p', { class: 'section__note section__note--compte' });
   const enregistrer = h('button', { class: 'bouton bouton--primaire' });
 
@@ -110,6 +122,7 @@ export async function monter(coloriageId) {
           'Le feutre le plus proche de chaque couleur du livre, parmi ceux que tu '
           + 'possèdes et dont la couleur est relevée. Tape une rangée pour l’écarter. '
           + 'Au-delà de ΔE ' + ECART_ACCEPTABLE + ', rien n’est retenu d’avance.'),
+        couverture,
         compte,
         ...propositions.map(ligne)),
       h('div', { class: 'actions' },
