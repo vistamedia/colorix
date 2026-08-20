@@ -53,7 +53,7 @@ app/
   couleur.js            encre sur pastille, sRGB → Lab, ΔE76
   photo.js              compression 1600 px / qualité 0.8
   nuancier-photo.js     homographie, échantillonnage, correction du blanc
-  viseur.js             pose des repères au doigt, loupe ×5
+  viseur.js             pose des repères au doigt, loupe ×5, ajustement aux flèches
   zip.js                écriture et lecture ZIP en mode stored
   partage.js            navigator.share avec légende
   paliers.js            seuils des paliers Winx
@@ -186,7 +186,10 @@ compte faux ne donne pas un relevé incomplet mais un relevé décalé, chaque
 couleur tombant sur le mauvais code.
 
 Quatre repères aux **coins de la bande** donnent l'homographie, un cinquième sur
-le blanc de la page donne la référence colorimétrique. Ici, aucune feuille à
+le blanc de la page donne la référence colorimétrique. Chacun se pose au doigt,
+sous une loupe grossie cinq fois, puis s'affine **aux quatre flèches**, un pixel
+par appui — maintenir répète. La loupe reste ouverte pendant l'ajustement :
+c'est le seul endroit où un pixel se voit, et le doigt n'y masque plus la cible. Ici, aucune feuille à
 ajouter dans le cadre : la page est déjà blanche. Les coins de la bande se
 visent bien mieux qu'un centre de case sur une colonne large de trente pixels.
 

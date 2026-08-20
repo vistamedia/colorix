@@ -222,7 +222,9 @@ Trois voies, de la plus rapide à la plus manuelle. Toutes partent de
 « Mon nuancier #N » du livre. Quatre repères aux coins de la bande de couleurs
 donnent l'homographie, un cinquième sur le blanc de la page donne la référence
 colorimétrique — la page étant elle-même blanche, aucune feuille n'est à
-ajouter dans le cadre. Les couleurs sont écrites d'un coup dans le nuancier de
+ajouter dans le cadre. Chaque repère se pose au doigt sous une loupe grossie
+cinq fois, puis s'affine aux quatre flèches, un pixel par appui : le doigt
+masque ce qu'il vise, la flèche non. Les couleurs sont écrites d'un coup dans le nuancier de
 la planche.
 
 **Le compte de cases vient de la page, jamais du jeu de codes.** Avant la photo,
