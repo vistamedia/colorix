@@ -74,6 +74,16 @@ async function demarrer() {
   await afficher();
 
   if ('serviceWorker' in navigator) {
+    /* Un nouveau worker qui prend la main sert déjà la nouvelle coquille, mais
+       la page affiche encore l'ancienne : sans ce rechargement, une mise à jour
+       ne se voit qu'au lancement suivant. Il n'arrive qu'au démarrage, puisque
+       c'est l'enregistrement ci-dessous qui déclenche la recherche. */
+    let recharge = false;
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (recharge) return;
+      recharge = true;
+      location.reload();
+    });
     navigator.serviceWorker.register('./sw.js', { scope: './' }).catch(() => {});
   }
   navigator.storage?.persist?.().catch(() => {});

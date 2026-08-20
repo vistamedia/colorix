@@ -24,9 +24,11 @@ nouvelle version, l'installe et recharge. La section affiche au-dessus la
 version en place (`colorix-8`, `colorix-9`…), ce qui permet de vérifier que la
 mise à jour a bien pris.
 
-Sans le bouton, la nouvelle coquille arrive quand même, mais au **deuxième**
-lancement : le service worker s'installe au premier, la page n'en profite qu'au
-suivant.
+Sans le bouton, la nouvelle coquille arrive quand même au lancement suivant :
+le nouveau service worker s'installe au démarrage, prend la main, et la page se
+recharge d'elle-même (`controllerchange` dans `principal.js`). Sans ce
+rechargement, il fallait **deux** lancements — le worker s'installait au
+premier, la page n'en profitait qu'au second.
 
 **Ne jamais retirer l'app de l'écran d'accueil pour la mettre à jour.** iOS
 efface alors son IndexedDB, et tout le travail part avec — c'est ce qui obligeait
