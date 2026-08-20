@@ -269,8 +269,13 @@ Le point de friction principal : le Pack 360 GuangNa représente 360 saisies.
 
 **Amorçage.** Les nuanciers de référence des sets sont livrés avec l'app sous
 forme de `data/nuanciers/guangna-360.json` et `posca.json` — référence, nom,
-hexadécimal. Générés une fois à partir des planches photographiées, hors app.
-À l'installation, elle coche ses sets et tout apparaît d'un coup.
+hexadécimal. À l'installation, elle coche ses sets et tout apparaît d'un coup.
+
+Les 360 couleurs du Pack 360 y sont, relevées **dans l'app** sur les planches du
+nuancier papier puis reversées dans le fichier — et non générées hors app comme
+le prévoyait ce paragraphe. Sur les 132 codes de quatre planches relevées,
+l'écart au feutre le plus proche est de **ΔE 7 en médiane, 15 au pire** : le set
+couvre la palette du livre sans trou.
 
 **État de chaque feutre.** `possédé / faible / à sec / non possédé`, modifiable
 d'un tap depuis n'importe quel écran où le feutre apparaît. C'est ce qui
@@ -404,9 +409,10 @@ Deux écarts assumés par rapport à ce document :
 - Le **nombre de planches d'un livre** n'est pas dans le catalogue : l'éditeur
   ne publie que le nombre de pages. Il est demandé à la coche d'un album.
 
-Les propositions automatiques du §6.2 sont écrites et branchées, mais restent
-muettes tant que les feutres n'ont pas d'hexadécimal — proposer sur des couleurs
-fausses serait pire que ne rien proposer.
+Les propositions automatiques du §6.2 ne piochent que dans les feutres qui ont
+un hexadécimal — proposer sur des couleurs fausses serait pire que ne rien
+proposer. Les 360 du Pack GuangNa l'ont désormais, et sont livrés avec l'app ;
+la réserve ne vaut plus que pour les sets à venir.
 
 ---
 

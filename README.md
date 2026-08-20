@@ -145,7 +145,14 @@ Le catalogue ne les porte donc pas — l'app les lit sur la photo, voir plus bas
 
 **`data/nuanciers/guangna-360.json`** — les 360 feutres du Pack 360 :
 référence, nom, plus petit pack contenant le feutre, planche et position dans le
-nuancier papier. Les hexadécimaux sont vides : ils se relèvent depuis l'app.
+nuancier papier, et **la couleur de chacun**. Les 360 hexadécimaux ont été
+relevés sur les planches du nuancier papier, avec l'écran d'import, puis
+reversés dans le fichier livré : une installation neuve les a d'emblée, et les
+propositions ΔE fonctionnent sans rien relever.
+
+Le ré-amorçage d'un set ne les écrase jamais (`hex: ancien?.hex ?? f.hex`) :
+une couleur pipettée sur son propre papier reste prioritaire sur celle du
+fichier.
 
 ---
 
@@ -236,8 +243,9 @@ correction de von Kries en espace linéaire.
 Mesuré sur une planche de synthèse soumise à une dominante bleue : écart moyen
 aux couleurs vraies **ΔE 14,3 sans correction, 2,9 avec**.
 
-Les propositions automatiques du jalon 3 restent muettes tant qu'un feutre n'a
-pas d'hexadécimal — plutôt que de proposer du faux.
+Un feutre sans hexadécimal n'est jamais proposé — plutôt que de proposer du
+faux. Le Pack 360 est intégralement relevé et livré avec l'app ; la règle vaut
+pour les sets à venir, Posca compris.
 
 ---
 
@@ -268,11 +276,17 @@ Les propositions ne piochent que dans les feutres **qui ont un hexadécimal** et
 qu'elle **déclare posséder**. Elles s'élargissent donc à chaque planche du
 nuancier papier relevée, et un feutre à sec n'est jamais proposé.
 
-L'écran le dit en toutes lettres — *« comparé à 72 feutres dont la couleur est
+L'écran le dit en toutes lettres — *« comparé à 360 feutres dont la couleur est
 relevée, sur 360 que tu possèdes »* — et compte les codes sans candidat assez
 proche. Sans ce chiffre, une planche à moitié pourvue laisse croire que ses
 couleurs sont introuvables, alors que c'est le nuancier des feutres qui est à
 moitié relevé.
+
+**Mesuré sur les 132 codes de quatre planches relevées, face aux 360 feutres :**
+écart médian **ΔE 7**, neuvième décile 11, **maximum 15**. Aucun code ne dépasse
+le seuil de 25, et 114 sur 132 tombent sous 10. Le Pack 360 couvre donc la
+palette de ce livre sans trou — quand un code semblait introuvable, c'est que le
+nuancier des feutres n'était pas encore relevé.
 
 ---
 
@@ -306,9 +320,6 @@ service worker.
 
 ## Ce qui reste ouvert
 
-- **Les hexadécimaux des feutres** se relèvent planche par planche depuis l'app.
-  Les propositions ne piochent que dans ceux qui en ont : chaque planche relevée
-  les élargit.
 - **Les palettes des planches** ne sont pas relevées : chaque planche demande la
   photo de sa page « Mon nuancier ».
 - **Les seuils des paliers Winx** (`app/paliers.js`) sont posés par déduction,
