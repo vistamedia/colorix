@@ -216,7 +216,7 @@ export async function monter(coloriageId) {
         }
         peindre();
         return boite;
-      })]));
+      }))]);
 
     const enregistrer = h('button', {
       class: 'bouton bouton--primaire',
