@@ -41,10 +41,13 @@ export async function monter(coloriageId) {
   let image = null;
 
   /* Une planche prend le début de la série, jamais un sous-ensemble à trous :
-     celle de 17 nuances va de « 1 » à « h », celle de 45 jusqu'au bout. Il
-     suffit donc de désigner le dernier code de la bande. Le compte doit être
-     juste — sans quoi l'homographie étale N cases sur K rangées et décale tout
-     le nuancier au lieu de l'écourter. */
+     celle de 17 nuances va de « 1 » à « h ». Il suffit donc de désigner le
+     dernier code de la bande. Le compte doit être juste — sans quoi
+     l'homographie étale N cases sur K rangées et décale tout le nuancier au
+     lieu de l'écourter.
+     La série s'arrête à « z » : au-delà, le livre emploie des symboles qui
+     changent d'identité et d'ordre d'une planche à l'autre, et que l'app ne
+     sait pas encore nommer. */
   let dernier = codes.length - 1;
   const listeRetenue = () => codes.slice(0, dernier + 1);
 
@@ -61,12 +64,18 @@ export async function monter(coloriageId) {
     });
     const jetons = h('div', { class: 'bande-codes' }, tous);
 
+    const limite = h('p', { class: 'alerte alerte--avertissement' },
+      `Si ta bande continue après « ${codes[codes.length - 1]} » avec des symboles, `
+      + 'arrête-toi : l’app ne sait pas encore les nommer, et un compte faux '
+      + 'décalerait tout le relevé au lieu de l’écourter.');
+
     const majCompte = () => {
       tous.forEach((jeton, rang) => {
         jeton.classList.toggle('jeton-code--absent', rang > dernier);
         jeton.classList.toggle('jeton-code--dernier', rang === dernier);
       });
       compte.textContent = `${dernier + 1} case${dernier ? 's' : ''} sur la bande, de « ${codes[0]} » à « ${codes[dernier]} ».`;
+      limite.hidden = dernier < codes.length - 1;
     };
     majCompte();
 
@@ -87,6 +96,7 @@ export async function monter(coloriageId) {
         + 'doit tomber juste : c’est lui qui découpe la photo.'),
       jetons,
       compte,
+      limite,
       h('p', { class: 'section__note' },
         'Photographie ensuite la page bien à plat, la bande entière dans le cadre, '
         + 'sans soleil direct ni flash. Le blanc de la page sert de référence : '

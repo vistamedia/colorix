@@ -117,18 +117,24 @@ auteur, EAN13, année, nombre de pages, couverture locale. Le **nombre de
 planches n'existe nulle part chez l'éditeur** : il est demandé à la coche d'un
 album, le nombre de pages servant de repère.
 
-Le livre Winx Club porte en plus son **jeu de 31 codes**. Le jeu de codes est une
-propriété du livre, jamais une constante globale — un autre album aura un autre
-jeu. Il ne porte **aucune couleur** : la palette change d'une planche à l'autre,
-elle se relève sur la page « Mon nuancier » de chaque planche.
+Le livre Winx Club porte en plus sa **série de 29 codes stables**, jamais une
+constante globale — un autre album aura la sienne. Elle ne porte **aucune
+couleur** : la palette change d'une planche à l'autre, elle se relève sur la
+page « Mon nuancier » de chaque planche.
 
 ```
-1 2 3 4 5 6 7 8 9 0 a b c d e f h k m n p q r t u v x y z ◊ Δ
+1 2 3 4 5 6 7 8 9 0 a b c d e f h k m n p q r t u v x y z
 ```
 
-L'ordre est celui de la légende imprimée : `0` vient après `9`, `◊` (U+25CA) et
-`Δ` (U+0394) ferment la série. Les caractères ambigus `g i j l o s w` sont
-volontairement écartés par l'éditeur et ne doivent jamais être proposés.
+L'ordre est celui de la légende imprimée : `0` vient après `9`. Les caractères
+ambigus `g i j l o s w` sont volontairement écartés par l'éditeur et ne doivent
+jamais être proposés.
+
+**Ces vingt-neuf rangs sont les seuls stables.** Une planche qui a davantage de
+nuances les note avec des symboles, et ces symboles changent d'identité et
+d'ordre d'un coloriage à l'autre : ils appartiennent à la planche, pas au livre.
+Le catalogue ne les porte donc pas ; le nuancier d'une planche garde ce qu'elle
+a en propre à la suite de la série.
 
 **`data/nuanciers/guangna-360.json`** — les 360 feutres du Pack 360 :
 référence, nom, plus petit pack contenant le feutre, planche et position dans le
@@ -144,7 +150,7 @@ Chaque planche du livre a sa page « Mon nuancier #N », où sa bande de codes e
 imprimée avec **les couleurs de cette planche-là**. Le jeu de codes reste une
 propriété du livre, mais une planche en prend **le début, jamais un
 sous-ensemble à trous** : 17 nuances sur la planche 47, qui s'arrête à `h`, la
-série entière sur la 50. Tant qu'une planche n'a pas été relevée, ses cases
+davantage sur la 50. Tant qu'une planche n'a pas été relevée, ses cases
 restent grises.
 
 Avant la photo, l'écran affiche la série et laisse **taper le dernier code de la
@@ -220,11 +226,10 @@ service worker.
 
 - **Les hexadécimaux des 360 feutres** ne sont pas renseignés. À relever planche
   par planche depuis l'app.
-- **La série de codes du livre est incomplète.** Le catalogue en porte 31, se
-  terminant par `◊ Δ` ; la planche 50 en montre nettement plus, avec une suite
-  de symboles après `z`. La lecture des glyphes doit être confirmée sur le livre
-  avant d'étendre `jeu_codes` : changer un caractère après coup orphelinerait
-  les couleurs déjà relevées sous l'ancien.
+- **Les planches de plus de vingt-neuf nuances ne peuvent pas être relevées.**
+  Leurs codes supplémentaires sont des symboles propres à chaque planche ;
+  l'app ne sait pas encore les nommer, et l'écran de relevé prévient plutôt que
+  de produire un nuancier décalé.
 - **Les palettes des planches** ne sont pas relevées : chaque planche demande la
   photo de sa page « Mon nuancier ».
 - **Les seuils des paliers Winx** (`app/paliers.js`) sont posés par déduction,

@@ -135,13 +135,26 @@ Feutre   { id, set_id, reference "792", nom "Leaf green",
 Photo    { id, coloriage_id, blob, role: resultat | detail | reference, date }
 ```
 
-**Le code de légende n'est pas numérique.** L'album Winx Club utilise 31 codes :
-`1 2 3 4 5 6 7 8 9 0 a b c d e f h k m n p q r t u v x y z ◊ Δ`. Les caractères
-ambigus sont volontairement écartés par l'éditeur (pas de `g i j l o s w`) —
-l'app doit respecter ce jeu et ne jamais proposer les lettres exclues. Le jeu de
-codes est une propriété du livre, pas une constante globale, et il vient du
-catalogue seul : en garder une copie à la coche de l'album empêcherait toute
-correction de la série d'atteindre les planches déjà ouvertes.
+**Le code de légende n'est pas numérique, et il n'est stable qu'en partie.**
+Les vingt-neuf premiers rangs ne bougent jamais d'une planche à l'autre :
+
+```
+1 2 3 4 5 6 7 8 9 0 a b c d e f h k m n p q r t u v x y z
+```
+
+Les caractères ambigus sont volontairement écartés par l'éditeur (pas de
+`g i j l o s w`) — l'app doit respecter ce jeu et ne jamais proposer les lettres
+exclues.
+
+**Au-delà du vingt-neuvième rang, l'éditeur emploie des symboles qui changent
+d'identité et d'ordre d'une planche à l'autre.** Ils ne sont donc pas une
+propriété du livre mais de la planche, et le catalogue ne peut pas les porter.
+`Nuancier.entrees` tient la série du livre, puis ce que la planche a en propre,
+dans son ordre à elle.
+
+Le jeu de codes vient du catalogue seul : en garder une copie à la coche de
+l'album empêcherait toute correction de la série d'atteindre les planches déjà
+ouvertes.
 
 ---
 
@@ -154,8 +167,8 @@ non.
 « Mon nuancier #N » dans le livre, où sa bande de codes est imprimée avec ses
 couleurs à elle. Le jeu de codes reste une propriété du livre, mais **une
 planche en prend le début, pas la totalité** : le nombre de nuances varie d'un
-coloriage à l'autre — 17 sur la planche 47, qui s'arrête à `h`, la série
-entière sur la 50 — et jamais avec de trou au milieu. Aucune
+coloriage à l'autre — 17 sur la planche 47, qui s'arrête à `h`, bien davantage
+sur la 50 — et jamais avec de trou au milieu. Aucune
 couleur n'est donc livrée avec le catalogue : tant qu'une planche n'a pas été
 relevée, ses cases sont grises — une couleur approchée serait plus trompeuse
 que rien.

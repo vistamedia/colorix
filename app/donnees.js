@@ -105,11 +105,19 @@ export async function nuancier(coloriageId, jeuCodes) {
   if (!jeuCodes?.length) return existant || { coloriage_id: coloriageId, entrees: [] };
   if (!existant) return { coloriage_id: coloriageId, entrees: jeuCodes.map(vide) };
 
-  /* La série du livre peut s'allonger d'une version du catalogue à l'autre :
-     les entrées déjà là gardent leur couleur et leurs feutres, les nouvelles
-     prennent leur rang. */
+  /* Les chiffres et les lettres tiennent toujours les mêmes rangs d'une planche
+     à l'autre ; les symboles qui les suivent changent d'identité et d'ordre.
+     Le nuancier porte donc la série du livre, puis ce que la planche a en
+     propre, dans l'ordre où elle l'a enregistré. */
   const parCode = new Map(existant.entrees.map(e => [e.code, e]));
-  return { ...existant, entrees: jeuCodes.map(code => parCode.get(code) || vide(code)) };
+  const duLivre = new Set(jeuCodes);
+  return {
+    ...existant,
+    entrees: [
+      ...jeuCodes.map(code => parCode.get(code) || vide(code)),
+      ...existant.entrees.filter(e => !duLivre.has(e.code))
+    ]
+  };
 }
 
 /* Le jeu de codes vient du catalogue, et de lui seul : une copie figée à la
