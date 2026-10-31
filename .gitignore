@@ -1,3 +1,4 @@
 .DS_Store
 data/couvertures/
 photos-nuancier/
+.deploiement.env

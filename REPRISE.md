@@ -9,8 +9,9 @@ déployée et utilisée au quotidien ; j'ai des améliorations à te soumettre.
 
 - **En ligne** : https://colorix.dananlab.fr/ — version `colorix-18`
 - **Dépôt** : https://github.com/vistamedia/colorix — branche `main`, **public**
-- **Serveur** : `ssh utilisateur@serveur`, cible
-  `~/colorix.dananlab.fr/` (clé SSH déjà en place)
+- **Serveur** : coordonnées SSH dans `.deploiement.env` (`COLORIX_CIBLE`),
+  fichier local hors dépôt ; clé SSH déjà en place. Ne jamais les écrire dans
+  un fichier versionné : le dépôt est public.
 
 ## À lire avant d'écrire du code
 
@@ -106,8 +107,9 @@ entière. Tout le reste de l'app peut être médiocre, celui-ci non.
 ## Déploiement, et les pièges déjà payés
 
 ```bash
+. ./.deploiement.env
 rsync -az app data index.html sw.js manifest.webmanifest .htaccess polices icons \
-  utilisateur@serveur:colorix.dananlab.fr/
+  "$COLORIX_CIBLE"
 ```
 
 - **Incrémente `CACHE` dans `sw.js` à chaque changement de la coquille**, sinon

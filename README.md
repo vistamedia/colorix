@@ -346,9 +346,14 @@ le poids de l'export.
 
 ## Déploiement
 
+Les coordonnées du serveur ne sont pas dans le dépôt, qui est public : elles
+vivent dans `.deploiement.env`, un fichier local ignoré par Git, sous la forme
+`COLORIX_CIBLE=utilisateur@serveur:colorix.dananlab.fr/`.
+
 ```bash
+. ./.deploiement.env
 rsync -az app data index.html sw.js manifest.webmanifest .htaccess polices icons \
-  utilisateur@serveur:colorix.dananlab.fr/
+  "$COLORIX_CIBLE"
 ```
 
 Attention : `rsync` place chaque source sous son nom de base. `data/nuanciers`
